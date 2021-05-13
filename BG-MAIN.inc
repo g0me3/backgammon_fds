@@ -1,262 +1,4 @@
 
-;		ORG $6000
-;_prog_crc_w:
-;		.WORD $0000
-;_sound_crc_w:
-;		.WORD $0000
-; =============== S U B	R O U T	I N E =======================================
-;_load_file_by_idx:
-;		JSR		$E1F8 ; _BIOS_load_files_by_idx
-; ---------------------------------------------------------------------------
-;		.WORD _disk_id
-;_load_files_idx_list_ofs_w:
-;		.WORD $0000
-; ---------------------------------------------------------------------------
-;		RTS
-; ---------------------------------------------------------------------------
-;_first_boot_init_flag_w:
-;		.BYTE $00
-;_overlay_loaded_flag_w:
-;		.BYTE $00
-;_ppu_title_tiles_ppu_swap_flag_w:
-;		.BYTE $00
-
-_tlm_res_6012:
-		.BYTE $31
-		.WORD $421
-		.BYTE $01
-		.BYTE $10
-		.WORD $521
-		.BYTE $12
-		.BYTE __,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__
-		.WORD $1721
-		.BYTE $01
-		.BYTE $2D
-		.WORD $2421
-		.BYTE $01
-		.BYTE $10
-		.WORD $2521
-		.BYTE $52
-		.BYTE __
-		.WORD $3721
-		.BYTE $01
-		.BYTE $2D
-		.WORD $D123
-		.BYTE $05
-		.BYTE $AA,$AA,$AA,$AA,$AA
-_tlm_res_6044:
-		.BYTE $29
-		.WORD $4421
-		.BYTE $01
-		.BYTE $10
-		.WORD $4521
-		.BYTE $52
-		.BYTE __
-		.WORD $5721
-		.BYTE $01
-		.BYTE $2D
-		.WORD $6421
-		.BYTE $01
-		.BYTE $10
-		.WORD $6521
-		.BYTE $12
-		.BYTE __,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__
-		.WORD $7721
-		.BYTE $01
-		.BYTE $2D
-_tlm_res_606E:
-		.BYTE $19
-		.WORD $A421
-		.BYTE $01
-		.BYTE $10
-		.WORD $A521
-		.BYTE $47
-		.BYTE __
-		.WORD $AA21
-		.BYTE $0E
-		.BYTE __,__,__,__,__,_P,_O,_I,_N,_T,__,__,__,$2D
-_tlm_res_6088:
-		.BYTE $23
-		.WORD $0622
-		.BYTE $14
-		.BYTE $10,__,__,__,__,_P,_O,_I,_N,_T,_S,__,__,__,__,__,__,__,__,$2D
-		.WORD $2622
-		.BYTE $01
-		.BYTE $10
-		.WORD $2722
-		.BYTE $52
-		.BYTE __
-		.WORD $3922
-		.BYTE $01
-		.BYTE $2D
-_tlm_res_60AC:
-		.BYTE $23
-		.WORD $4622
-		.BYTE $01
-		.BYTE $10
-		.WORD $4722
-		.BYTE $52
-		.BYTE __
-		.WORD $5922
-		.BYTE $01
-		.BYTE $2D
-		.WORD $6622
-		.BYTE $14
-		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
-_tlm_res_60D0:
-		.BYTE $23
-		.WORD $8622
-		.BYTE $01
-		.BYTE $10
-		.WORD $8722
-		.BYTE $52
-		.BYTE __
-		.WORD $9922
-		.BYTE $01
-		.BYTE $2D
-		.WORD $A622
-		.BYTE $14
-		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
-_tlm_60F4_w:
-		.WORD $8621
-		.BYTE $01
-		.BYTE $0A
-		.WORD $8721
-		.BYTE $50
-		.BYTE $0B
-		.WORD $9721
-		.BYTE $01
-		.BYTE $0C
-		.WORD $A621
-		.BYTE $01
-		.BYTE $10
-		.WORD $A721
-		.BYTE $50
-		.BYTE __
-		.WORD $B721
-		.BYTE $01
-		.BYTE $2D
-		.WORD $C621
-		.BYTE $12
-_tlm_60F4_p0_w:
-		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
-		.WORD $E621
-		.BYTE $01
-		.BYTE $10
-		.WORD $E721
-		.BYTE $50
-		.BYTE __
-		.WORD $F721
-		.BYTE $01
-		.BYTE $2D
-		.WORD $0622
-		.BYTE $12
-_tlm_60F4_p1_w:
-		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
-		.WORD $2622
-		.BYTE $01
-		.BYTE $10
-		.WORD $2722
-		.BYTE $50
-		.BYTE __
-		.WORD $3722
-		.BYTE $01
-		.BYTE $2D
-		.WORD $4622
-		.BYTE $01
-		.BYTE $0D
-		.WORD $4722
-		.BYTE $50
-		.BYTE $0E
-		.WORD $5722
-		.BYTE $01
-		.BYTE $0F
-		.BYTE $FF
-_tlm_res_615B:
-		.BYTE $24
-		.WORD $C521
-		.BYTE $14
-		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
-		.WORD $E521
-		.BYTE $01
-		.BYTE $10
-		.WORD $E621
-		.BYTE $52
-		.BYTE __
-		.WORD $F821
-		.BYTE $01
-		.BYTE $2D
-		.BYTE $FF
-_tlm_res_6180:
-		.BYTE $24
-		.WORD $522
-		.BYTE $14
-		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
-		.WORD $2522
-		.BYTE $01
-		.BYTE $10
-		.WORD $2622
-		.BYTE $52
-		.BYTE __
-		.WORD $3822
-		.BYTE $01
-		.BYTE $2D
-		.BYTE $FF
-_tlm_res_61A5:
-		.BYTE $24
-		.WORD $4522
-		.BYTE $14
-		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
-		.WORD $6522
-		.BYTE $01
-		.BYTE $0D
-		.WORD $6622
-		.BYTE $52
-		.BYTE $0E
-		.WORD $7822
-		.BYTE $01
-		.BYTE $0F
-		.BYTE $FF
-_tlm_res_61CA:
-		.BYTE $18
-		.WORD $0000
-		.BYTE $14
-		.BYTE $2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$63,$64,$2F,$2F,$2F,$2F,$2F
-		.BYTE $2F,$2F,$2F,$2F
-		.BYTE $FF
-_pal1_w:
-		.WORD $003F
-		.BYTE $20
-_pal1_pw:
-		.BYTE $17,$30,$1A,$0F,$17,$16,$1A,$0F,$17,$30,$27,$0F,$17,$16,$27,$0F
-		.BYTE $17,$37,$2C,$0F,$17,$12,$2C,$0F,$17,$30,$30,$0F,$17,$16,$0F,$0F
-		.BYTE $FF
-_pal2_w:
-		.WORD $103F
-		.BYTE $04
-_pal2_p0_w:
-		.BYTE $17,$36,$2C,$0F
-		.WORD $1C3F
-		.BYTE $04
-_pal2_p1_w:
-		.BYTE $17,$16,$10,$0F
-		.BYTE $FF
-_pal3_w:
-		.WORD $103F
-		.BYTE $04
-_pal3_p0_w:
-		.BYTE $17,$37,$2C,$0F
-		.WORD $1C3F
-		.BYTE $04
-_pal3_p1_w:
-		.BYTE $17,$16,$25,$0F
-		.BYTE $FF
-_tlm_points_match_w:
-		.WORD   0
-		.BYTE $0C
-		.BYTE _P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H
-		.BYTE $FF
-
 ; =============== S U B	R O U T	I N E =======================================
 RESET:
 		CLD
@@ -269,7 +11,6 @@ loc_623E:
 		DEX
 		TXS
 		LDX		_frames_counter
-;		JSR		_first_boot_init
 		LDY		#>[byte_700]
 		STY		word_10+1
 		LDY		#$00
@@ -314,160 +55,862 @@ loc_6262:
 		STA		_main00_sub_idx
 		STA		byte_567
 		STA		_main02_sub_idx
-;		LDA		_overlay_loaded_flag_w
-;		CMP		#$70
-;		BNE		loc_62BD
-;		LDY		#$00
-;		STY		_ppu_title_tiles_ppu_swap_flag_w
-;		STY		_overlay_loaded_flag_w
-;		INY
-;		STY		_load_file_list_idx
-;		TYA
-;		JSR		_file_load
-;loc_62BD:
-;		JSR		_integrity_test
-		JMP		_MAIN
 
-; =============== S U B	R O U T	I N E =======================================
-;_first_boot_init:
-;		LDA		_first_boot_init_flag_w
-;		BEQ		loc_62C9
-;		RTS
-; ---------------------------------------------------------------------------
-;loc_62C9:
-;		LDA		#$70
-;		STA		_overlay_loaded_flag_w
-;		INC		_first_boot_init_flag_w
-;		JSR		_crc_sum_prog
-;		LDA		byte_1E
-;		STA		_prog_crc_w
-;		LDA		byte_1F
-;		STA		_prog_crc_w+1
-;		JSR		_crc_sum_sound
-;		LDA		byte_1E
-;		STA		_sound_crc_w
-;		LDA		byte_1F
-;		STA		_sound_crc_w+1
-;		LDA		#$2C
-;		STA		_tmp20w+1
-;		LDA		#>[_spr_buf]
-;		STA		_tmp1Cw+1
-;		STA		byte_1F
-;		LDA		#$00
-;		STA		_tmp20w
-;		STA		_tmp1Cw
-;		STA		byte_1E
-;		JSR		_ppu_load_mem_swap
-;		LDA		#$2E
-;		STA		_tmp20w+1
-;		LDA		#>[byte_600]
-;		STA		_tmp1Cw+1
-;		LDA		#$02
-;		STA		byte_1F
-;		LDA		#$00
-;		STA		_tmp20w
-;		STA		_tmp1Cw
-;		STA		byte_1E
-;		JSR		_ppu_load_mem_swap
-;		LDA		#$00
-;		STA		_overlay_loaded_flag_w
-;		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-;_integrity_test:
-;		JSR		_nmi_off
-;		JSR		_crc_sum_prog
-;		LDA		byte_1E
-;		CMP		_prog_crc_w
-;		BNE		loc_6345
-;		LDA		byte_1F
-;		CMP		_prog_crc_w+1
-;		BNE		loc_6345
-;		JSR		_crc_sum_sound
-;		LDA		byte_1E
-;		CMP		_sound_crc_w
-;		BNE		loc_6345
-;		LDA		byte_1F
-;		CMP		_sound_crc_w+1
-;		BNE		loc_6345
-;		JMP		_nmi_on
-;; ---------------------------------------------------------------------------
-;loc_6345:
-;		JSR		_nmi_on
-;		LDA		#$03
-;		STA		_load_file_list_idx
-;		JSR		_file_load
-;		JSR		_nmi_off
-;		JMP		RESET
-
-; =============== S U B	R O U T	I N E =======================================
-;_crc_sum_prog:
-;		LDA		#>[RESET]
-;		STA		_tmp20w+1
-;		LDA		#<[RESET]
-;		STA		_tmp20w
-;		LDA		#>[$BBF3]
-;		STA		_tmp1Cw+1
-;		LDA		#<[$BBF3]
-;		STA		_tmp1Cw
-;		JMP		_crc_sum
-
-; =============== S U B	R O U T	I N E =======================================
-;_crc_sum_sound:
-;		LDA		#>[j__apu_play]
-;		STA		_tmp20w+1
-;		LDA		#<[j__apu_play]
-;		STA		_tmp20w
-;		LDA		#>[$E000]
-;		STA		_tmp1Cw+1
-;		LDA		#<[$E000]
-;		STA		_tmp1Cw
-
-; =============== S U B	R O U T	I N E =======================================
-;_crc_sum:
-;		LDY		#$00
-;		STY		byte_1F
-;		STY		byte_1E
-;loc_637F:
-;		LDA		(_tmp20w),Y
-;		CLC
-;		ADC		byte_1E
-;		STA		byte_1E
-;		BCC		loc_638A
-;		INC		byte_1F
-;loc_638A:
-;		INC		_tmp20w
-;		BNE		loc_6390
-;		INC		_tmp20w+1
-;loc_6390:
-;		LDA		_tmp1Cw
-;		SEC
-;		SBC		_tmp20w
-;		STA		byte_57
-;		LDA		_tmp1Cw+1
-;		SBC		_tmp20w+1
-;		BNE		loc_637F
-;		LDA		byte_57
-;		BNE		loc_637F
-;		RTS
+; !FALLTHROUGH!
 
 ; =============== S U B	R O U T	I N E =======================================
 _MAIN:
 		JSR		_main_subA_dice_roll_editor
-		JSR		_main_subB
+		JSR		_main_sub_exec
 		JSR		_main_subC
 		JSR		_main_subD
 		JSR		_sync
 		BEQ		_MAIN
 
 ; =============== S U B	R O U T	I N E =======================================
-_main_subB:
+_main_subA_dice_roll_editor:
+		LDA		_ingame_sub_idx
+		BNE		locret_7066
+		LDA		_cheat_flag1_w
+		BEQ		locret_7066
+		LDY		_cur_player_idx
+		LDA		_pads_held,Y
+		CMP		#$85
+		BNE		locret_7066
+		LDA		#$06
+		STA		_1p_first_dice_roll_override
+		STA		_2p_first_dice_roll_override
+loc_701A:
+		JSR		_main_subD
+		JSR		sub_9202
+		JSR		_sync
+		LDY		_cur_player_idx
+		LDA		_pads_press,Y
+		TAX
+		AND		#$C0
+		BNE		sub_7057
+		TXA
+		LDX		#$00
+		CMP		#$01
+		BEQ		loc_7041
+		INX
+		CMP		#$04
+		BEQ		loc_7041
+		CMP		#$02
+		BNE		loc_701A
+		JSR		sub_7047
+		DEX
+loc_7041:
+		JSR		sub_7047
+		JMP		loc_701A
+
+; =============== S U B	R O U T	I N E =======================================
+sub_7047:
+		INC		_1p_first_dice_roll_override,X
+		LDA		_1p_first_dice_roll_override,X
+		CMP		#$07
+		BCC		locret_7056
+		LDA		#$01
+		STA		_1p_first_dice_roll_override,X
+locret_7056:
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+sub_7057:
+		LDY		#$05
+		LDA		#$00
+loc_705B:
+		STA		_pads_held,Y
+		DEY
+		BPL		loc_705B
+		LDA		#$01
+		STA		byte_57B
+locret_7066:
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_main_sub_exec:
 		LDA		_main_sub_idx
 		JSR		_switch
 ; ---------------------------------------------------------------------------
 		.WORD _main00_setup
 		.WORD $0000; _j_demo
 		.WORD _main02_game
+
+; =============== S U B	R O U T	I N E =======================================
+_main00_setup:
+		LDA		_main00_sub_idx
+		JSR		_switch
+; ---------------------------------------------------------------------------
+		.WORD _main00_sub00_title_draw
+		.WORD _main00_sub01_title_init
+		.WORD _main00_sub02_title_input
+		.WORD _main00_sub03_menu_draw
+		.WORD _main00_sub04_menu_input
+		.WORD _main00_sub05_match_menu_draw
+		.WORD _main00_sub06_match_menu_input
+		.WORD _main00_sub07_menu_restore
+
+; =============== S U B	R O U T	I N E =======================================
+_main00_sub00_title_draw:
+		JSR		_randA
+		LDY		#$00
+		STY		byte_FC
+		STY		byte_FD
+		JSR		_apu_play_ctrlA_set01
+		LDA		_ppu_ctrl_shadow
+		AND		#$F4
+		STA		_ppu_ctrl_shadow
+		LDA		#$07
+		STA		_nmi_tlm_lib_idx
+		JSR		_sync
+		JSR		_ppu_render_off
+		LDA		#$2F
+		JSR		sub_9C7F
+		LDA		#$20
+		LDX		#$2F
+		LDY		#$00
+		JSR		_ppu_fill_ex
+		JSR		_spr_clear
+		LDA		#$01
+		STA		_nmi_disable_flush
+		LDX		#<[_tlm_title]
+		LDY		#>[_tlm_title]
+		JSR		_ppu_tlm_unpack
+loc_A294:
+		LDA		#$00
+		STA		_nmi_disable_flush
+		LDY		#$05
+		JSR		_pal_fade_outA
+		LDY		#$FF
+		STY		byte_55F
+		LDA		#$1C
+		STA		byte_55B
+		INC		_main00_sub_idx
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_main00_sub01_title_init:
+		JSR		_apu_play_ctrlD_set04
+		INC		_main00_sub_idx
+		LDA		#$0B
+		STA		_tmp4Bb
+		LDY		#$00
+		STY		_tpp_idx
+		STY		_cheat_flag0
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_main00_sub02_title_input:
+		JSR		sub_9C94
+		LDA		#>[_cheat_seq0]
+		STA		_tmp20w+1
+		LDA		#<[_cheat_seq0]
+		STA		_tmp20w
+		JSR		_cheat_seq_test
+		BCC		loc_A2D0
+		LDA		#$01
+		STA		_cheat_flag0
+loc_A2D0:
+		LDA		_nmi_counter
+		AND		#$07
+		CMP		#$07
+		BNE		loc_A2EC
+		LDY		_tmp4Bb
+		DEC		_tmp4Bb
+		BPL		loc_A2E2
+		LDY		#$0B
+		STY		_tmp4Bb
+loc_A2E2:
+		LDA		byte_A343,Y
+		STA		_ppu_pal_buf4+4
+		LDA		#$04
+		STA		_nmi_tlm_lib_idx
+loc_A2EC:
+		LDA		_pads_held
+		AND		#$90
+		BEQ		loc_A30D
+		JSR		_apu_play_ctrlB_set02
+		INC		_main00_sub_idx
+		LDY		#$05
+		JSR		_pal_fade_outB
+		LDA		#$01
+		STA		_nmi_disable_flush
+loc_A308:
+		LDA		#$00
+		STA		_nmi_disable_flush
+locret_A30C:
+		RTS
+; ---------------------------------------------------------------------------
+loc_A30D:
+		LDA		_nmi_counter
+		BNE		locret_A30C
+		LDY		#<[_txt_push_start]
+		STY		_tmp20w
+		LDY		#>[_txt_push_start]
+		STY		_tmp20w+1
+		LDX		#$1E
+		LDA		_title_push_start_toggle
+		EOR		#$01
+		STA		_title_push_start_toggle
+		BNE		loc_A32F
+		LDA		#<[_txt_blank]
+		STA		_tmp20w
+		LDA		#>[_txt_blank]
+		STA		_tmp20w+1
+		LDX		#$0F
+loc_A32F:
+		STX		_nmi_counter
+		LDY		#$00
+		LDA		(_tmp20w),Y
+		TAY
+loc_A336:
+		LDA		(_tmp20w),Y
+		STA		_tlm_ramB1_buf,Y
+		DEY
+		BNE		loc_A336
+		LDA		#$01
+		STA		byte_32
+		RTS
+; ---------------------------------------------------------------------------
+byte_A343:
+		.BYTE $3C,$3B,$3A,$39,$38,$37,$36,$35,$34,$33,$32,$31
+_txt_push_start:
+		.BYTE $0E
+		.WORD $4B23
+		.BYTE $0A
+		.BYTE $20,$25,$23,$18,$2F,$23,$24,$11,$22,$24
+		.BYTE $FF
+_txt_blank:
+		.BYTE $05
+		.WORD $4B23
+		.BYTE $4A
+		.BYTE $2F
+		.BYTE $FF
+
+; =============== S U B	R O U T	I N E =======================================
+_cheat_seq_test:
+		LDA		_pads_press+1
+		BEQ		loc_A374
+		LDY		_tpp_idx
+		CMP		(_tmp20w),Y
+		BNE		loc_A376
+		INC		_tpp_idx
+		CPY		#$07
+		BCS		loc_A377
+loc_A374:
+		CLC
+		RTS
+; ---------------------------------------------------------------------------
+loc_A376:
+		CLC
+loc_A377:
+		LDA		#$00
+		STA		_tpp_idx
+		RTS
+; ---------------------------------------------------------------------------
+_cheat_seq0:
+		.BYTE $80,$80,$80,$08,$01,$40,$04,$08
+_cheat_seq1:
+		.BYTE $04,$02,$01,$01,$40,$80,$80,$04
+
+; =============== S U B	R O U T	I N E =======================================
+_main00_sub03_menu_draw:
+		LDY		#$00
+		STY		byte_FC
+		LDY		#$04
+		STY		byte_FD
+		JSR		_ppu_render_off
+		LDA		#$2F
+		JSR		sub_9C7F
+		LDA		#$20
+		LDX		#$2F
+		LDY		#$00
+		JSR		_ppu_fill_ex
+		LDA		#$01
+		STA		_nmi_disable_flush
+		LDX		#<[_tlm_menu]
+		LDY		#>[_tlm_menu]
+		JSR		_ppu_tlm_unpack
+		LDA		#$00
+		STA		_nmi_disable_flush
+		LDY		#$06
+		JSR		_pal_fade_outA
+		LDY		#$00
+		STY		_1p_cpu_ctrl_flag
+		STY		_2p_cpu_ctrl_flag
+		STY		_main02_sub_idx
+		STY		_timer_minutes
+		INC		_main00_sub_idx
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_main00_sub04_menu_input:
+		LDA		#>[_cheat_seq1]
+		STA		_tmp20w+1
+		LDA		#<[_cheat_seq1]
+		STA		_tmp20w
+		JSR		_cheat_seq_test
+		BCC		loc_A3DD
+		LDA		_cheat_flag0
+		BEQ		loc_A3DD
+		LDA		#$01
+		STA		_cheat_flag1_w
+loc_A3DD:
+		LDY		_menu_pos_idx_w
+		LDA		_pads_press
+		AND		#$08
+		BEQ		loc_A3ED
+		DEY
+		BPL		loc_A3FC
+		LDY		#$04
+		BPL		loc_A3FC
+loc_A3ED:
+		LDA		_pads_press
+		AND		#$24
+		BEQ		loc_A3FF
+		INY
+		CPY		#$05
+		BCC		loc_A3FC
+		LDY		#$00
+		BMI		loc_A3FF
+loc_A3FC:
+		JMP		loc_A474
+; ---------------------------------------------------------------------------
+loc_A3FF:
+		LDA		_pads_press
+		AND		#$90
+		BEQ		loc_A477
+		STY		_menu_pos_idx_w
+		STY		_game_mode_idx
+		JSR		_apu_play_ctrlB_set02
+		LDA		_cheat_flag1_w
+		BEQ		loc_A419
+		LDA		_pads_held
+		AND		#$01
+		BNE		loc_A41C
+loc_A419:
+		LDA		_1p_cpu_ctrl_list,Y
+loc_A41C:
+		STA		_1p_cpu_ctrl_flag
+		LDA		_2p_cpu_ctrl_list,Y
+		STA		_2p_cpu_ctrl_flag
+		CPY		#$02
+		BEQ		_match_select_menu_start
+		CPY		#$04
+		BNE		_demo_play_start
+_match_select_menu_start:
+		INC		_main00_sub_idx
+		RTS
+; ---------------------------------------------------------------------------
+_demo_play_start:
+		CPY		#$00
+		BNE		_other_game_start
+		LDA		#$1E
+		JSR		_wait_for_nmi
+		JSR		_apu_play_ctrlA_set04
+		LDY		#$06
+		JSR		_pal_fade_outB
+		JSR		_wait_for_70_frames
+		LDA		#$00
+		STA		_load_file_list_idx
+		JSR		_file_load
+;		LDA		#$70
+;		STA		_overlay_loaded_flag_w
+		LDY		#$00
+		STY		_demo_sub_idx
+		INC		_main_sub_idx
+		RTS
+; ---------------------------------------------------------------------------
+_other_game_start:
+		LDX		#$00
+		STX		_main00_sub_idx
+		INX
+		INX
+		STX		_main_sub_idx
+		LDA		_ppu_ctrl_shadow
+		AND		#$F7
+		ORA		#$20
+		STA		_ppu_ctrl_shadow
+		JSR		_apu_play_ctrlA_set04
+		LDY		#$06
+		JSR		_pal_fade_outB
+		JMP		_wait_for_70_frames
+; ---------------------------------------------------------------------------
+loc_A474:
+		JSR		_apu_play_ctrlB_set01
+loc_A477:
+		LDA		byte_A490,Y
+		STA		_spr_buf
+		LDA		#$FE
+		STA		_spr_buf+1
+		LDA		#$00
+		STA		_spr_buf+2
+		LDA		#$34
+		STA		_spr_buf+3
+		STY		_menu_pos_idx_w
+		RTS
+; ---------------------------------------------------------------------------
+byte_A490:
+		.BYTE $47,$57,$67,$77,$87
+_1p_cpu_ctrl_list:
+		.BYTE $01,$00,$00,$00,$00
+_2p_cpu_ctrl_list:
+		.BYTE $01,$01,$01,$01,$00
+
+; =============== S U B	R O U T	I N E =======================================
+_main00_sub05_match_menu_draw:
+		LDY		#$06
+loc_A4A1:
+		STY		_tmp4Bb
+		LDX		_tlm_res_match_menu_lib_hi,Y
+		LDA		_tlm_res_match_menu_lib_lo,Y
+		TAY
+		JSR		_tlm_B1_ram_queue
+		JSR		_sync
+		LDY		_tmp4Bb
+		DEY
+		BPL		loc_A4A1
+		INC		_main00_sub_idx
+		RTS
+; ---------------------------------------------------------------------------
+_tlm_res_match_menu_lib_lo:
+		.BYTE >[_tlm_res_match_menu0]
+		.BYTE >[_tlm_res_match_menu1]
+		.BYTE >[_tlm_res_match_menu2]
+		.BYTE >[_tlm_res_match_menu3]
+		.BYTE >[_tlm_res_match_menu4]
+		.BYTE >[_tlm_res_match_menu5]
+		.BYTE >[_tlm_res_match_menu6]
+_tlm_res_match_menu_lib_hi:
+		.BYTE <[_tlm_res_match_menu0]
+		.BYTE <[_tlm_res_match_menu1]
+		.BYTE <[_tlm_res_match_menu2]
+		.BYTE <[_tlm_res_match_menu3]
+		.BYTE <[_tlm_res_match_menu4]
+		.BYTE <[_tlm_res_match_menu5]
+		.BYTE <[_tlm_res_match_menu6]
+
+; =============== S U B	R O U T	I N E =======================================
+_main00_sub06_match_menu_input:
+		LDY		_match_pts_w
+		LDA		_pads_press
+		AND		#$08
+		BEQ		loc_A4D6
+		DEY
+		BPL		loc_A527
+		LDY		#$02
+		BPL		loc_A527
+loc_A4D6:
+		LDA		_pads_press
+		AND		#$24
+		BEQ		loc_A4E5
+		INY
+		CPY		#$03
+		BCC		loc_A527
+		LDY		#$00
+		BPL		loc_A527
+loc_A4E5:
+		LDA		_pads_press
+		AND		#$40
+		BEQ		loc_A4F0
+		LDA		#$07
+		STA		_main00_sub_idx
+		RTS
+; ---------------------------------------------------------------------------
+loc_A4F0:
+		LDA		_pads_press
+		AND		#$90
+		BEQ		loc_A52A
+		JSR		_apu_play_ctrlB_set02
+		LDA		byte_A546,Y
+		STA		byte_560
+		LDA		byte_A549,Y
+		STA		byte_561
+		LDX		#$00
+		CPY		#$02
+		BNE		loc_A50C
+		INX
+loc_A50C:
+		STX		byte_554
+		LDX		#$02
+		STX		_main_sub_idx
+		LDA		_ppu_ctrl_shadow
+		AND		#$F7
+		ORA		#$20
+		STA		_ppu_ctrl_shadow
+		JSR		_apu_play_ctrlA_set04
+		LDY		#$06
+		JSR		_pal_fade_outB
+		JMP		_wait_for_70_frames
+; ---------------------------------------------------------------------------
+loc_A527:
+		JSR		_apu_play_ctrlB_set01
+loc_A52A:
+		LDA		byte_A543,Y
+		STA		_spr_buf+4
+		LDA		#$FE
+		STA		_spr_buf+5
+		LDA		#$00
+		STA		_spr_buf+6
+		LDA		#$48
+		STA		_spr_buf+7
+		STY		_match_pts_w
+		RTS
+; ---------------------------------------------------------------------------
+byte_A543:
+		.BYTE $87,$97,$A7
+byte_A546:
+		.BYTE $05,$0B,$99
+byte_A549:
+		.BYTE $00,$00,$09
+
+; =============== S U B	R O U T	I N E =======================================
+_main00_sub07_menu_restore:
+		LDA		#$F4
+		STA		_spr_buf+4
+		LDY		#$04
+loc_A553:
+		LDA		off_A572,Y
+		STA		_tmp20w+1
+		LDA		off_A577,Y
+		STA		_tmp20w
+		STY		_tmp4Bb
+		JSR		_tlm_ram_queue22
+		LDY		_tmp4Bb
+		DEY
+		BPL		loc_A553
+		LDY		#$00
+		STY		_1p_cpu_ctrl_flag
+		STY		_2p_cpu_ctrl_flag
+		LDA		#$04
+		STA		_main00_sub_idx
+		RTS
+; ---------------------------------------------------------------------------
+off_A572:
+		.BYTE >[_tlm_res_main_menu_restore0]
+		.BYTE >[_tlm_res_main_menu_restore1]
+		.BYTE >[_tlm_res_main_menu_restore2]
+		.BYTE >[_tlm_res_main_menu_restore3]
+		.BYTE >[_tlm_res_main_menu_restore4]
+off_A577:
+		.BYTE <[_tlm_res_main_menu_restore0]
+		.BYTE <[_tlm_res_main_menu_restore1]
+		.BYTE <[_tlm_res_main_menu_restore2]
+		.BYTE <[_tlm_res_main_menu_restore3]
+		.BYTE <[_tlm_res_main_menu_restore4]
+
+; =============== S U B	R O U T	I N E =======================================
+_tlm_ram_queue22:
+		LDY		#$22
+loc_A57E:
+		LDA		(_tmp20w),Y
+		STA		_nmi_tlmB1_ram,Y
+		DEY
+		BPL		loc_A57E
+		LDA		#$01
+		STA		byte_32
+		JMP		_sync
+
+; =============== S U B	R O U T	I N E =======================================
+_common_program_reload:
+		LDA		#$01
+		STA		_load_file_list_idx
+		JSR		_file_load
+		LDA		#$00
+		STA		_main_sub_idx
+		STA		_main00_sub_idx
+		STA		byte_568
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_set_field_pal:
+		TYA
+		ASL
+		ASL
+		TAY
+		LDA		_field_pal_patch_lib,Y
+		STA		_pal1_pw
+		STA		_pal1_pw+4
+		STA		_pal1_pw+8
+		STA		_pal1_pw+$C
+		STA		_pal1_pw+$10
+		STA		_pal1_pw+$14
+		STA		_pal1_pw+$18
+		STA		_pal1_pw+$1C
+		STA		_pal2_p0_w
+		STA		_pal2_p1_w
+		STA		_pal3_p0_w
+		STA		_pal3_p1_w
+		LDA		_field_pal_patch_lib+1,Y
+		STA		_pal1_pw+5
+		STA		_pal1_pw+$D
+		STA		_pal1_pw+$1D
+		STA		_pal2_p1_w+1
+		STA		_pal3_p1_w+1
+		LDA		_field_pal_patch_lib+2,Y
+		STA		_pal1_pw+2
+		STA		_pal1_pw+6
+		LDA		_field_pal_patch_lib+3,Y
+		STA		_pal1_pw+$A
+		STA		_pal1_pw+$E
+		RTS
+; ---------------------------------------------------------------------------
+_field_pal_patch_lib:
+		.BYTE $17,$16,$1A,$27
+		.BYTE $3B,$16,$38,$2B
+		.BYTE $0F,$30,$21,$34
+		.BYTE $28,$16,$1A,$17
+		.BYTE $14,$15,$25,$34
+		.BYTE $10,$15,$1C,$3C
+		.BYTE $1A,$16,$18,$28
+		.BYTE $1A,$16,$28,$29
+		.BYTE $17,$15,$18,$28
+		.BYTE $1C,$16,$24,$3C
+		.BYTE $3B,$16,$24,$32
+		.BYTE $3C,$16,$35,$3A
+		.BYTE $38,$16,$24,$2B
+_tlm_title:
+		.BYTE $20,$82,$5D,$76,$20,$C2,$1D,$90,$91,$92,$2F,$94,$2F,$D0,$D1,$D2
+		.BYTE $96,$97,$98,$99,$9A,$2F,$94,$2F,$9B,$9C,$9D,$9B,$9C,$9D,$C8,$C9
+		.BYTE $CA,$9E,$9F,$E6,$20,$E2,$1D,$A0,$A1,$93,$2F,$A4,$2F,$E0,$2F,$E2
+		.BYTE $A1,$A7,$A8,$E9,$AA,$2F,$A4,$2F,$AB,$AC,$AD,$AB,$AC,$AD,$E0,$A0
+		.BYTE $A9,$AE,$2F,$E9,$21,$02,$1D,$A0,$A1,$A2,$B3,$B4,$B5,$F0,$2F,$A0
+		.BYTE $B6,$B7,$B8,$E9,$2F,$B3,$B4,$B5,$BB,$BC,$AD,$BB,$BC,$AD,$F0,$A0
+		.BYTE $B9,$BE,$BF,$E9,$21,$22,$1D,$A0,$B1,$B2,$C3,$C4,$C5,$F0,$2F,$A0
+		.BYTE $C6,$C7,$B8,$E9,$2F,$C3,$C4,$C5,$CB,$CC,$AD,$CB,$CC,$AD,$F0,$A0
+		.BYTE $B9,$CE,$CF,$E9,$21,$42,$1D,$A0,$A1,$B0,$D3,$D4,$D5,$F0,$2F,$A0
+		.BYTE $D6,$D7,$B8,$D9,$DA,$D3,$D4,$D5,$DB,$DC,$AD,$DB,$DC,$AD,$F0,$A0
+		.BYTE $B9,$DE,$DF,$E9,$21,$62,$1D,$A0,$A1,$93,$E3,$E4,$E5,$E1,$2F,$A3
+		.BYTE $A1,$E7,$E8,$E9,$EA,$E3,$E4,$E5,$EB,$EC,$AD,$EB,$EC,$AD,$E1,$A0
+		.BYTE $BD,$EE,$EF,$E9,$21,$82,$1D,$C0,$C1,$C2,$F3,$F4,$F5,$F1,$F2,$95
+		.BYTE $F6,$F7,$F8,$F9,$FA,$F3,$F4,$F5,$FB,$FC,$FD,$FB,$FC,$FD,$DD,$ED
+		.BYTE $CD,$FE,$FF,$E9,$21,$C2,$5D,$76,$22,$48,$10,$70,$71,$72,$73,$74
+		.BYTE $75,$A5,$77,$78,$79,$7A,$7B,$2F,$7C,$7D,$7E,$22,$68,$10,$80,$81
+		.BYTE $82,$83,$84,$85,$86,$87,$88,$89,$8A,$8B,$2F,$8C,$8D,$8E,$22,$EA
+		.BYTE $0C,$2C,$01,$09,$09,$00,$2F,$A6,$AF,$BA,$D8,$7F,$8F,$23,$E2,$04
+		.BYTE $50,$50,$50,$50,$23,$EA,$0C,$80,$A0,$A0,$20,$00,$00,$00,$00,$80
+		.BYTE $A0,$A0,$20,$FF
+_tlm_menu:
+		.BYTE $20,$E5,$01,$0A
+		.BYTE $20,$E6,$52,$0B
+		.BYTE $20,$F8,$01,$0C
+		.BYTE $21,$05,$01,$10
+		.BYTE $21,$06,$52,__
+		.BYTE $21,$18,$01,$2D
+		.BYTE $21,$25,$14,$10,__,__,__,_D,_E,_M,_O,_N,_S,_T,_R,_A,_T,_I,_O,_N,__,__,$2D
+		.BYTE $21,$45,$01,$10
+		.BYTE $21,$46,$52,__
+		.BYTE $21,$58,$01,$2D
+		.BYTE $21,$65,$14,$10,__,__,__,_T,_R,_A,_I,_N,_I,_N,_G,__,_P,_L,_A,_Y,__,__,$2D
+		.BYTE $21,$85,$01,$10
+		.BYTE $21,$86,$52,__
+		.BYTE $21,$98,$01,$2D
+		.BYTE $21,$A5,$14,$10,__,__,__,_M,_A,_T,_C,_H,__,_P,_L,_A,_Y,__,__,__,__,__,$2D
+		.BYTE $21,$C5,$01,$10
+		.BYTE $21,$C6,$52,__
+		.BYTE $21,$D8,$01,$2D
+		.BYTE $21,$E5,$14,$10,__,__,__,_T,_O,_U,_R,_N,_A,_M,_E,_N,_T,__,__,__,__,__,$2D
+		.BYTE $22,$05,$01,$10
+		.BYTE $22,$06,$52,__
+		.BYTE $22,$18,$01,$2D
+		.BYTE $22,$25,$14,$10,__,__,__,_2,__,_P,_L,_A,_Y,_E,_R,_S,__,_G,_A,_M,_E,__,$2D
+		.BYTE $22,$45,$01,$10
+		.BYTE $22,$46,$52,__
+		.BYTE $22,$58,$01,$2D
+		.BYTE $22,$65,$01,$0D
+		.BYTE $22,$66,$52,$0E
+		.BYTE $22,$78,$01,$0F
+		.BYTE $FF
+_tlm_res_match_menu6:
+		.BYTE $18
+		.BYTE $21,$E8,$01,$0A
+		.BYTE $21,$E9,$52,$0B
+		.BYTE $21,$FB,$01,$0C
+		.BYTE $22,$08,$01,$10
+		.BYTE $22,$09,$52,$2E
+		.BYTE $22,$1B,$01,$2D
+_tlm_res_match_menu5:
+		.BYTE $17
+		.BYTE $22,$28,$14,$10,__,__,__,_5,__,_P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H,__,$2D
+_tlm_res_match_menu4:
+		.BYTE $0C
+		.BYTE $22,$48,$01,$10
+		.BYTE $22,$49,$52,$2E
+		.BYTE $22,$5B,$01,$2D
+_tlm_res_match_menu3:
+		.BYTE $17
+		.BYTE $22,$68,$14,$10,__,__,_1,_1,__,_P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H,__,$2D
+_tlm_res_match_menu2:
+		.BYTE $0C
+		.BYTE $22,$88,$01,$10
+		.BYTE $22,$89,$52,__
+		.BYTE $22,$9B,$01,$2D
+_tlm_res_match_menu1:
+		.BYTE $17
+		.BYTE $22,$A8,$14,$10,__,__,__,_E,_N,_D,_L,_E,_S,_S,__,__,_M,_A,_T,_C,_H,__,$2D
+_tlm_res_match_menu0:
+		.BYTE $18
+		.BYTE $22,$C8,$01,$10
+		.BYTE $22,$C9,$52,__
+		.BYTE $22,$DB,$01,$2D
+		.BYTE $22,$E8,$01,$0D
+		.BYTE $22,$E9,$52,$0E
+		.BYTE $22,$FB,$01,$0F
+_tlm_res_main_menu_restore0:
+		.WORD $E821
+		.BYTE $14
+		.BYTE __,_T,_O,_U,_R,_N,_A,_M,_E,_N,_T,__,__,__,__,__,$2D,$2F,$2F,$2F
+		.WORD $0822
+		.BYTE $50
+		.BYTE __
+		.WORD $1822
+		.BYTE $04
+		.BYTE $2D,$2F,$2F,$2F
+		.BYTE $FF
+_tlm_res_main_menu_restore1:
+		.WORD $2822
+		.BYTE $14
+		.BYTE __,_2,__,_P,_L,_A,_Y,_E,_R,_S,__,_G,_A,_M,_E,__,$2D,$2F,$2F,$2F
+		.WORD $4822
+		.BYTE $50
+		.BYTE __
+		.WORD $5822
+		.BYTE $04
+		.BYTE $2D,$2F,$2F,$2F
+		.BYTE $FF
+_tlm_res_main_menu_restore2:
+		.WORD $6822
+		.BYTE $50
+		.BYTE $0E
+		.WORD $7822
+		.BYTE $04
+		.BYTE $0F,$2F,$2F,$2F
+		.WORD $8822
+		.BYTE $54
+		.BYTE $2F
+		.BYTE $FF
+_tlm_res_main_menu_restore3:
+		.WORD $A822
+		.BYTE $54
+		.BYTE $2F
+		.WORD $C822
+		.BYTE $54
+		.BYTE $2F
+		.BYTE $FF
+_tlm_res_main_menu_restore4:
+		.WORD $E822
+		.BYTE $54
+		.BYTE $2F
+		.BYTE $FF
+
+; =============== S U B	R O U T	I N E =======================================
+_main_subC:
+		LDA		byte_32
+		ORA		_ppu_queue_req
+		ORA		_nmi_tlm_lib_idx
+		ORA		byte_62
+		ORA		byte_577
+		BEQ		loc_A061
+locret_A060:
+		RTS
+; ---------------------------------------------------------------------------
+loc_A061:
+		LDY		byte_55C
+		BEQ		locret_A060
+		DEY
+		LDA		off_A079,Y
+		STA		_tmp20w+1
+		LDA		off_A07F,Y
+		STA		_tmp20w
+		LDA		#$00
+		STA		byte_55C
+		JMP		sub_A0E5
+; ---------------------------------------------------------------------------
+off_A079:
+		.BYTE >[byte_A085]
+		.BYTE >[byte_A095]
+		.BYTE >[byte_A0A5]
+		.BYTE >[byte_A0B5]
+		.BYTE >[byte_A0C5]
+		.BYTE >[byte_A0D5]
+off_A07F:
+		.BYTE <[byte_A085]
+		.BYTE <[byte_A095]
+		.BYTE <[byte_A0A5]
+		.BYTE <[byte_A0B5]
+		.BYTE <[byte_A0C5]
+		.BYTE <[byte_A0D5]
+byte_A085:
+		.BYTE $22,$23,$23,$20,$23,$23,$23,$23,$02,$E2,$E2,$22,$E2,$E2,$E2,$E2
+byte_A095:
+		.BYTE $23,$23,$22,$22,$22,$22,$20,$20,$E2,$E2,$C2,$C2,$C2,$C2,$C2,$C2
+byte_A0A5:
+		.BYTE $22,$23,$23,$22,$23,$23,$23,$23,$22,$E2,$E2,$22,$E2,$E2,$E2,$E2
+byte_A0B5:
+		.BYTE $22,$22,$22,$22,$2E,$2E,$2F,$2F,$4A,$7A,$7A,$42,$7A,$7A,$7A,$7A
+byte_A0C5:
+		.BYTE $21,$2F,$2F,$21,$2F,$2F,$2F,$2F,$42,$7A,$7A,$0A,$7A,$7A,$7A,$7A
+byte_A0D5:
+		.BYTE $29,$2F,$2F,$28,$2F,$2F,$2F,$2F,$7A,$7A,$52,$52,$52,$52,$12,$12
+
+; =============== S U B	R O U T	I N E =======================================
+sub_A0E5:
+		LDX		#$00
+		STX		byte_57
+loc_A0E9:
+		LDY		byte_57
+		CPY		#$04
+		BEQ		locret_A112
+		LDA		#$00
+		STA		_tmp1Cw+1
+		LDA		byte_A113,Y
+		STA		_tmp1Cw
+		LDA		byte_A117,Y
+		TAY
+		JSR		sub_A11B
+		LDY		byte_57
+		LDA		_tmp20w
+		CLC
+		ADC		byte_A117,Y
+		BCC		loc_A10B
+		INC		_tmp20w+1
+loc_A10B:
+		STA		_tmp20w
+		INC		byte_57
+		JMP		loc_A0E9
+; ---------------------------------------------------------------------------
+locret_A112:
+		RTS
+; ---------------------------------------------------------------------------
+byte_A113:
+		.BYTE $0A,$18,$2A,$38
+byte_A117:
+		.BYTE $06,$02,$06,$02
+
+; =============== S U B	R O U T	I N E =======================================
+sub_A11B:
+		LDA		_tmp1Cw+1
+		STA		_nmi_tlmB1_ram,X
+		INX
+		LDA		_tmp1Cw
+		STA		_nmi_tlmB1_ram,X
+		INX
+		TYA
+		STA		_nmi_tlmB1_ram,X
+		INX
+		DEY
+loc_A12D:
+		LDA		(_tmp20w),Y
+		STA		_nmi_tlmB1_ram,X
+		INX
+		DEY
+		BPL		loc_A12D
+		LDA		#$FF
+		STA		_nmi_tlmB1_ram,X
+		LDA		#$01
+		STA		byte_32
+		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
 _main02_game:
@@ -803,15 +1246,15 @@ loc_6615:
 		BNE		loc_6615
 loc_6619:
 		STA		byte_31C
-		LDY		#>[_tlm_patch_gets]
-		LDX		#<[_tlm_patch_gets]
-		CMP		#$01
-		BNE		loc_6628
-		LDY		#>[_tlm_patch_gets]
-		LDX		#<[_tlm_patch_gets]
-loc_6628:
-		STY		word_5A2
-		STX		word_5A2+1
+;		LDY		#>[_tlm_patch_gets]
+;		LDX		#<[_tlm_patch_gets]
+;		CMP		#$01
+;		BNE		loc_6628
+;		LDY		#>[_tlm_patch_gets]
+;		LDX		#<[_tlm_patch_gets]
+;loc_6628:
+;		STY		word_5A2
+;		STX		word_5A2+1
 		JSR		_spr_clear
 		LDA		_cur_player_idx
 		BNE		loc_664F
@@ -856,7 +1299,7 @@ loc_667F:
 		LDA		byte_502,Y
 		AND		#$0F
 		ORA		#$A0
-		STA		_nmi_tlmB1_ram+3-4,X
+		STA		_nmi_tlmB1_ram-1,X
 		DEY
 		INX
 		CPX		#$09
@@ -898,8 +1341,10 @@ loc_66C6:
 		ASL
 		ORA		_2p_cpu_ctrl_flag
 		BNE		loc_6701
-		LDY		word_5A2
-		LDA		word_5A2+1
+;		LDY		word_5A2
+;		LDA		word_5A2+1
+		LDY		#>[_tlm_patch_gets]
+		LDX		#<[_tlm_patch_gets]
 		LDX		#$21
 		JSR		_tlm_B1_ram_patch_queue
 		LDY		#>[_tlm_patch_player]
@@ -934,13 +1379,17 @@ loc_6716:
 		JSR		_tlm_B1_ram_patch_queue
 		LDX		#$21
 loc_6721:
-		LDY		word_5A2
-		LDA		word_5A2+1
+;		LDY		word_5A2
+;		LDA		word_5A2+1
+		LDY		#>[_tlm_patch_gets]
+		LDA		#<[_tlm_patch_gets]
 		JSR		_tlm_B1_ram_patch_queue
 		BEQ		loc_6740
 loc_672C:
-		LDY		word_5A2
-		LDA		word_5A2+1
+;		LDY		word_5A2
+;		LDA		word_5A2+1
+		LDY		#>[_tlm_patch_gets]
+		LDA		#<[_tlm_patch_gets]
 		LDX		#$21
 		JSR		_tlm_B1_ram_patch_queue
 		LDY		#>[_tlm_patch_computer]
@@ -1005,10 +1454,10 @@ _tlm_B1_ram_queue:
 		LDA		(_tmp20w),Y
 		TAY
 		LDA		#$FF
-		STA		_tlm_ram_buf+1,Y
+		STA		_tlm_ramB1_buf+1,Y
 loc_67BA:
 		LDA		(_tmp20w),Y
-		STA		_tlm_ram_buf,Y
+		STA		_tlm_ramB1_buf,Y
 		DEY
 		BNE		loc_67BA
 		INC		byte_32
@@ -1095,9 +1544,6 @@ _tlm_patch_backgammon:
 _tlm_patch_gets:
 		.BYTE $04
 		.BYTE _G,_E,_T,_S
-;_unref_tlm_get:
-;		.BYTE $04
-;		.BYTE _G,_E,_T,__
 _tlm_patch_player:
 		.BYTE $06
 		.BYTE _P,_L,_A,_Y,_E,_R
@@ -1704,33 +2150,29 @@ _main02_sub0C_tournament_name:
 		LDX		#<[_tlm_tournament_name_frame]
 		LDY		#>[_tlm_tournament_name_frame]
 		JSR		_ppu_tlm_unpack
-		LDY		#$21
-		LDX		#$CB
+		LDX		#<[_tlm_points_matchB]
+		LDY		#>[_tlm_points_matchB]
 		LDA		_match_idx
 		CMP		#$03
 		BNE		loc_6CF5
-		LDY		#$21
-		LDX		#$CC
+		LDX		#<[_tlm_points_matchA]
+		LDY		#>[_tlm_points_matchA]
 loc_6CF5:
-		STY		_tlm_points_match_w
-		STX		_tlm_points_match_w+1
-		LDX		#<[_tlm_points_match_w]
-		LDY		#>[_tlm_points_match_w]
 		JSR		_ppu_tlm_unpack
 		LDY		_match_idx
-		LDA		_game_name_tlm_li_lo,Y
+		LDA		_game_name_tlm_lib_lo,Y
 		TAX
-		LDA		_game_name_tlm_li_hi,Y
+		LDA		_game_name_tlm_lib_hi,Y
 		TAY
 		JSR		_ppu_tlm_unpack
 		LDA		#$00
 		STA		byte_561
 		LDY		_match_idx
-		LDA		byte_6D9F,Y
+		LDA		_trnm_match_points_list,Y
 		STA		byte_560
-		LDA		off_6DA3,Y
+		LDA		_tlm_pts_lib_lo,Y
 		TAX
-		LDA		off_6DA7,Y
+		LDA		_tlm_pts_lib_hi,Y
 		TAY
 		JSR		_ppu_tlm_unpack
 		LDY		#$02
@@ -1817,44 +2259,14 @@ _tlm_tournament_name_frame:
 		.BYTE $01
 		.BYTE $0F
 		.BYTE $FF
-byte_6D9F:
+_trnm_match_points_list:
 		.BYTE $05,$07,$0B,$0F
-off_6DA3:
-		.BYTE <[_tlm_6DAB]
-		.BYTE <[_tlm_6DB1]
-		.BYTE <[_tlm_6DB7]
-		.BYTE <[_tlm_6DBD]
-off_6DA7:
-		.BYTE >[_tlm_6DAB]
-		.BYTE >[_tlm_6DB1]
-		.BYTE >[_tlm_6DB7]
-		.BYTE >[_tlm_6DBD]
-_tlm_6DAB:
-		.WORD $C821
-		.BYTE $02
-		.BYTE $2E,$05
-		.BYTE $FF
-_tlm_6DB1:
-		.WORD $C821
-		.BYTE $02
-		.BYTE $2E,$07
-		.BYTE $FF
-_tlm_6DB7:
-		.WORD $C821
-		.BYTE $02
-		.BYTE $01,$01
-		.BYTE $FF
-_tlm_6DBD:
-		.WORD $C921
-		.BYTE $02
-		.BYTE $01,$05
-		.BYTE $FF
-_game_name_tlm_li_lo:
+_game_name_tlm_lib_lo:
 		.BYTE <[_tlm_first_game]
 		.BYTE <[_tlm_second_game]
 		.BYTE <[_tlm_semifinal_game]
 		.BYTE <[_tlm_final_game]
-_game_name_tlm_li_hi:
+_game_name_tlm_lib_hi:
 		.BYTE >[_tlm_first_game]
 		.BYTE >[_tlm_second_game]
 		.BYTE >[_tlm_semifinal_game]
@@ -1878,6 +2290,46 @@ _tlm_final_game:
 		.WORD $6921
 		.BYTE $0E
 		.BYTE _T,_H,_E,__,_F,_I,_N,_A,_L,__,_G,_A,_M,_E
+		.BYTE $FF
+_tlm_pts_lib_lo:
+		.BYTE <[_tlm_pts5]
+		.BYTE <[_tlm_pts7]
+		.BYTE <[_tlm_pts11]
+		.BYTE <[_tlm_pts15]
+_tlm_pts_lib_hi:
+		.BYTE >[_tlm_pts5]
+		.BYTE >[_tlm_pts7]
+		.BYTE >[_tlm_pts11]
+		.BYTE >[_tlm_pts15]
+_tlm_pts5:
+		.WORD $C821
+		.BYTE $02
+		.BYTE __,_5
+		.BYTE $FF
+_tlm_pts7:
+		.WORD $C821
+		.BYTE $02
+		.BYTE __,_7
+		.BYTE $FF
+_tlm_points_matchA:
+		.WORD $CC21
+		.BYTE $0C
+		.BYTE _P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H
+		.BYTE $FF
+_tlm_pts11:
+		.WORD $C821
+		.BYTE $02
+		.BYTE _1,_1
+		.BYTE $FF
+_tlm_pts15:
+		.WORD $C921
+		.BYTE $02
+		.BYTE _1,_5
+		.BYTE $FF
+_tlm_points_matchB:
+		.WORD $CB21
+		.BYTE $0C
+		.BYTE _P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H
 		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -2106,67 +2558,236 @@ _tlm_res_6FE6:
 		.BYTE $21,$A6,$52,$2E
 		.BYTE $21,$B8,$01,$2D
 		.BYTE $FF
-
-; =============== S U B	R O U T	I N E =======================================
-_main_subA_dice_roll_editor:
-		LDA		_ingame_sub_idx
-		BNE		locret_7066
-		LDA		_cheat_flag1_w
-		BEQ		locret_7066
-		LDY		_cur_player_idx
-		LDA		_pads_held,Y
-		CMP		#$85
-		BNE		locret_7066
-		LDA		#$06
-		STA		_1p_first_dice_roll_override
-		STA		_2p_first_dice_roll_override
-loc_701A:
-		JSR		_main_subD
-		JSR		sub_9202
-		JSR		_sync
-		LDY		_cur_player_idx
-		LDA		_pads_press,Y
-		TAX
-		AND		#$C0
-		BNE		sub_7057
-		TXA
-		LDX		#$00
-		CMP		#$01
-		BEQ		loc_7041
-		INX
-		CMP		#$04
-		BEQ		loc_7041
-		CMP		#$02
-		BNE		loc_701A
-		JSR		sub_7047
-		DEX
-loc_7041:
-		JSR		sub_7047
-		JMP		loc_701A
-
-; =============== S U B	R O U T	I N E =======================================
-sub_7047:
-		INC		_1p_first_dice_roll_override,X
-		LDA		_1p_first_dice_roll_override,X
-		CMP		#$07
-		BCC		locret_7056
-		LDA		#$01
-		STA		_1p_first_dice_roll_override,X
-locret_7056:
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-sub_7057:
-		LDY		#$05
-		LDA		#$00
-loc_705B:
-		STA		_pads_held,Y
-		DEY
-		BPL		loc_705B
-		LDA		#$01
-		STA		byte_57B
-locret_7066:
-		RTS
+_tlm_res_6012:
+		.BYTE $31
+		.WORD $0421
+		.BYTE $01
+		.BYTE $10
+		.WORD $0521
+		.BYTE $12
+		.BYTE __,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__
+		.WORD $1721
+		.BYTE $01
+		.BYTE $2D
+		.WORD $2421
+		.BYTE $01
+		.BYTE $10
+		.WORD $2521
+		.BYTE $52
+		.BYTE __
+		.WORD $3721
+		.BYTE $01
+		.BYTE $2D
+		.WORD $D123
+		.BYTE $05
+		.BYTE $AA,$AA,$AA,$AA,$AA
+_tlm_res_6044:
+		.BYTE $29
+		.WORD $4421
+		.BYTE $01
+		.BYTE $10
+		.WORD $4521
+		.BYTE $52
+		.BYTE __
+		.WORD $5721
+		.BYTE $01
+		.BYTE $2D
+		.WORD $6421
+		.BYTE $01
+		.BYTE $10
+		.WORD $6521
+		.BYTE $12
+		.BYTE __,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__
+		.WORD $7721
+		.BYTE $01
+		.BYTE $2D
+_tlm_res_606E:
+		.BYTE $19
+		.WORD $A421
+		.BYTE $01
+		.BYTE $10
+		.WORD $A521
+		.BYTE $47
+		.BYTE __
+		.WORD $AA21
+		.BYTE $0E
+		.BYTE __,__,__,__,__,_P,_O,_I,_N,_T,__,__,__,$2D
+_tlm_res_6088:
+		.BYTE $23
+		.WORD $0622
+		.BYTE $14
+		.BYTE $10,__,__,__,__,_P,_O,_I,_N,_T,_S,__,__,__,__,__,__,__,__,$2D
+		.WORD $2622
+		.BYTE $01
+		.BYTE $10
+		.WORD $2722
+		.BYTE $52
+		.BYTE __
+		.WORD $3922
+		.BYTE $01
+		.BYTE $2D
+_tlm_res_60AC:
+		.BYTE $23
+		.WORD $4622
+		.BYTE $01
+		.BYTE $10
+		.WORD $4722
+		.BYTE $52
+		.BYTE __
+		.WORD $5922
+		.BYTE $01
+		.BYTE $2D
+		.WORD $6622
+		.BYTE $14
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
+_tlm_res_60D0:
+		.BYTE $23
+		.WORD $8622
+		.BYTE $01
+		.BYTE $10
+		.WORD $8722
+		.BYTE $52
+		.BYTE __
+		.WORD $9922
+		.BYTE $01
+		.BYTE $2D
+		.WORD $A622
+		.BYTE $14
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
+_tlm_60F4_w:
+		.WORD $8621
+		.BYTE $01
+		.BYTE $0A
+		.WORD $8721
+		.BYTE $50
+		.BYTE $0B
+		.WORD $9721
+		.BYTE $01
+		.BYTE $0C
+		.WORD $A621
+		.BYTE $01
+		.BYTE $10
+		.WORD $A721
+		.BYTE $50
+		.BYTE __
+		.WORD $B721
+		.BYTE $01
+		.BYTE $2D
+		.WORD $C621
+		.BYTE $12
+_tlm_60F4_p0_w:
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
+		.WORD $E621
+		.BYTE $01
+		.BYTE $10
+		.WORD $E721
+		.BYTE $50
+		.BYTE __
+		.WORD $F721
+		.BYTE $01
+		.BYTE $2D
+		.WORD $0622
+		.BYTE $12
+_tlm_60F4_p1_w:
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
+		.WORD $2622
+		.BYTE $01
+		.BYTE $10
+		.WORD $2722
+		.BYTE $50
+		.BYTE __
+		.WORD $3722
+		.BYTE $01
+		.BYTE $2D
+		.WORD $4622
+		.BYTE $01
+		.BYTE $0D
+		.WORD $4722
+		.BYTE $50
+		.BYTE $0E
+		.WORD $5722
+		.BYTE $01
+		.BYTE $0F
+		.BYTE $FF
+_tlm_res_615B:
+		.BYTE $24
+		.WORD $C521
+		.BYTE $14
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
+		.WORD $E521
+		.BYTE $01
+		.BYTE $10
+		.WORD $E621
+		.BYTE $52
+		.BYTE __
+		.WORD $F821
+		.BYTE $01
+		.BYTE $2D
+		.BYTE $FF
+_tlm_res_6180:
+		.BYTE $24
+		.WORD $522
+		.BYTE $14
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
+		.WORD $2522
+		.BYTE $01
+		.BYTE $10
+		.WORD $2622
+		.BYTE $52
+		.BYTE __
+		.WORD $3822
+		.BYTE $01
+		.BYTE $2D
+		.BYTE $FF
+_tlm_res_61A5:
+		.BYTE $24
+		.WORD $4522
+		.BYTE $14
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
+		.WORD $6522
+		.BYTE $01
+		.BYTE $0D
+		.WORD $6622
+		.BYTE $52
+		.BYTE $0E
+		.WORD $7822
+		.BYTE $01
+		.BYTE $0F
+		.BYTE $FF
+_tlm_res_61CA:
+		.BYTE $18
+		.WORD $0000
+		.BYTE $14
+		.BYTE $2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$63,$64,$2F,$2F,$2F,$2F,$2F
+		.BYTE $2F,$2F,$2F,$2F
+		.BYTE $FF
+_pal1_w:
+		.WORD $003F
+		.BYTE $20
+_pal1_pw:
+		.BYTE $17,$30,$1A,$0F,$17,$16,$1A,$0F,$17,$30,$27,$0F,$17,$16,$27,$0F
+		.BYTE $17,$37,$2C,$0F,$17,$12,$2C,$0F,$17,$30,$30,$0F,$17,$16,$0F,$0F
+		.BYTE $FF
+_pal2_w:
+		.WORD $103F
+		.BYTE $04
+_pal2_p0_w:
+		.BYTE $17,$36,$2C,$0F
+		.WORD $1C3F
+		.BYTE $04
+_pal2_p1_w:
+		.BYTE $17,$16,$10,$0F
+		.BYTE $FF
+_pal3_w:
+		.WORD $103F
+		.BYTE $04
+_pal3_p0_w:
+		.BYTE $17,$37,$2C,$0F
+		.WORD $1C3F
+		.BYTE $04
+_pal3_p1_w:
+		.BYTE $17,$16,$25,$0F
+		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
 _spr_lib_insert:
@@ -7389,7 +8010,7 @@ loc_9A7A:
 loc_9A7D:
 		LDA		#$01
 		STA		byte_533
-		JSR		j__apu_play
+		JSR		_apu_play
 		LDY		_nmi_counter
 		BNE		loc_9A8B
 		LDY		#$3C
@@ -7595,7 +8216,7 @@ _nmi_tlm_libB_send:
 		STA		word_10+1
 		JSR		_ppu_tlm_unpack_ex
 		LDA		#$00
-		STA		_tlm_ram_buf
+		STA		_tlm_ramB1_buf
 		STA		_nmi_tlmB1_ram
 		STA		byte_32
 locret_9BB4:
@@ -7840,36 +8461,12 @@ loc_9D08:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_unref_1:
-		STX		_tlm_ram_buf
-		LDA		#$FF
-		STA		_nmi_tlmB1_ram,X
-		LDA		#$01
-		STA		byte_32
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
 sub_9D1E:
 		STX		_ppu_queue_buf_pos
 		LDA		#$00
 		STA		_ppu_queue_buf,X
 		LDA		#$01
 		STA		_ppu_queue_req
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_unref:
-		STA		_tlm_ram_buf+1,X
-		INX
-		TXA
-		CMP		#$55
-		BCC		locret_9D3F
-		LDX		_tlm_ram_buf
-		LDA		#$FF
-		STA		_tlm_ram_buf+1,X
-		PLA
-		PLA
-locret_9D3F:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -7982,54 +8579,14 @@ _file_load:
 		LDX		#$2F
 		LDY		#$00
 		JSR		_ppu_fill_ex
-;		LDX		#<[_tlm_9E36]
-;		LDY		#>[_tlm_9E36]
-;		JSR		_ppu_tlm_unpack
-;		LDX		#<[_tlm_9E1D]
-;		LDY		#>[_tlm_9E1D]
-;		JSR		_ppu_tlm_unpack
 		JSR		_nmi_on
 		JSR		_ppu_render_on
-;		JSR		_fds_file_load
 		LDA		#$07
 		STA		_nmi_tlm_lib_idx
 		JMP		_nmi_on
-; ---------------------------------------------------------------------------
-;_tlm_9E1D:
-;		.WORD $AB21
-;		.BYTE $0B
-;		.BYTE _N,_O,_W,__,_L,_O,_A,_D,_I,_N,_G
-;		.WORD $ED21
-;		.BYTE $07
-;		.BYTE _W,_A,_I,_T,_dt,_dt,_dt
-;		.BYTE $FF
-;_tlm_9E36:
-;		.BYTE $21,$89,$01,$0A
-;		.BYTE $21,$8A,$4D,$0B
-;		.BYTE $21,$97,$01,$0C
-;		.BYTE $21,$A9,$01,$10
-;		.BYTE $21,$AA,$4D,$2E
-;		.BYTE $21,$B7,$01,$2D
-;		.BYTE $21,$C9,$01,$10
-;		.BYTE $21,$CA,$4D,$2E
-;		.BYTE $21,$D7,$01,$2D
-;		.BYTE $21,$E9,$01,$10
-;		.BYTE $21,$EA,$4D,$2E
-;		.BYTE $21,$F7,$01,$2D
-;		.BYTE $22,$09,$01,$0D
-;		.BYTE $22,$0A,$4D,$0E
-;		.BYTE $22,$17,$01,$0F
-;		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
 _fds_file_load:
-;		LDA		#$70
-;		STA		_overlay_loaded_flag_w
-;		LDY		_load_file_list_idx
-;		LDA		off_9EA9,Y
-;		STA		_load_files_idx_list_ofs_w
-;		LDA		off_9EAD,Y
-;		STA		_load_files_idx_list_ofs_w+1
 		LDA		#$00
 		STA		$4022
 		STA		$4010
@@ -8040,438 +8597,6 @@ _fds_file_load:
 		AND		#$FB
 		STA		_ppu_ctrl_shadow
 		STA		_PPU_CTRL
-;		JSR		_load_file_by_idx
-;		BNE		_error_message
-;		STA		_overlay_loaded_flag_w
-		RTS
-; ---------------------------------------------------------------------------
-;off_9EA9:
-;		.BYTE <[byte_9EBB]
-;		.BYTE <[byte_9EBE]
-;		.BYTE <[byte_9EC0]
-;		.BYTE <[byte_9EC4]
-;off_9EAD:
-;		.BYTE >[byte_9EBB]
-;		.BYTE >[byte_9EBE]
-;		.BYTE >[byte_9EC0]
-;		.BYTE >[byte_9EC4]
-;_disk_id:
-;		.BYTE $01
-;		.BYTE "BAG "
-;		.BYTE $00, $00, $00, $00, $00
-;byte_9EBB:
-;		.BYTE $10,$11,$FF
-;byte_9EBE:
-;		.BYTE $01,$FF
-;byte_9EC0:
-;		.BYTE $20,$11,$21,$FF
-;byte_9EC4:
-;		.BYTE $01,$00,$FF
-; ---------------------------------------------------------------------------
-;_error_message:
-;		PHA
-;		STA		byte_57
-;		LSR
-;		LSR
-;		LSR
-;		LSR
-;		CMP		#$0A
-;		BCC		loc_9ED4
-;		ADC		#$07
-;loc_9ED4:
-;		STA		_tlm_9F36_p0_w+4
-;		LDA		byte_57
-;		AND		#$0F
-;		CMP		#$0A
-;		BCC		loc_9EE1
-;		ADC		#$07
-;loc_9EE1:
-;		STA		_tlm_9F36_p0_w+5
-;		JSR		_nmi_on
-;		JSR		_ppu_render_off
-;		JSR		_nmi_off
-;		JSR		_ppu_nt_clear
-;		LDX		#<[_tlm_9E36]
-;		LDY		#>[_tlm_9E36]
-;		JSR		_ppu_tlm_unpack
-;		LDY		byte_57
-;		CPY		#$09
-;		BCC		loc_9EFF
-;		LDY		#$09
-;loc_9EFF:
-;		DEY
-;		LDA		off_9F40,Y
-;		CLC
-;		ADC		#<[_tlm_9F49]
-;		TAX
-;		LDA		#>[_tlm_9F49]
-;		ADC		#$00
-;		TAY
-;		JSR		_ppu_tlm_unpack
-;		LDY		#>[_tlm_9F36_w]
-;		LDX		#<[_tlm_9F36_w]
-;		JSR		_ppu_tlm_unpack
-;		JSR		_nmi_on
-;		JSR		_ppu_render_on
-;		PLA
-;		CMP		#$01
-;		BEQ		loc_9F2A
-;loc_9F21:
-;		LDA		word_10
-;		LDA		$4032
-;		AND		#$01
-;		BEQ		loc_9F21
-;loc_9F2A:
-;		LDA		word_10
-;		LDA		$4032
-;		AND		#$01
-;		BNE		loc_9F2A
-;		JMP		_file_load
-; ---------------------------------------------------------------------------
-_tlm_9F36_w:
-		.WORD $ED21
-		.BYTE $06
-_tlm_9F36_p0_w:
-		.BYTE _E,_R,_R,_dt,$00,$00
-		.BYTE $FF
-off_9F40:
-		.BYTE _tlm_9F49	- $9F49
-		.BYTE _tlm_9F55	- $9F49
-		.BYTE _tlm_9F60	- $9F49
-		.BYTE _tlm_9F71	- $9F49
-		.BYTE _tlm_9F7F	- $9F49
-		.BYTE _tlm_9F8C	- $9F49
-		.BYTE _tlm_9F9C	- $9F49
-		.BYTE _tlm_9FA8	- $9F49
-		.BYTE _tlm_9FB4	- $9F49
-_tlm_9F49:
-		.WORD $AC21
-		.BYTE $08
-		.BYTE _D,_I,_S,_K,__,_S,_E,_T,$FF
-_tlm_9F55:
-		.WORD $AC21
-		.BYTE $07
-		.BYTE _B,_A,_T,_T,_E,_R,_Y,$FF
-_tlm_9F60:
-		.WORD $AA21
-		.BYTE $0D
-		.BYTE _W,_R,_I,_T,_E,__,_P,_R,_O,_T,_E,_C,_T,$FF
-_tlm_9F71:
-		.WORD $AB21
-		.BYTE $0A
-		.BYTE _G,_A,_M,_E,__,_M,_A,_K,_E,_R,$FF
-_tlm_9F7F:
-		.WORD $AC21
-		.BYTE $09
-		.BYTE _G,_A,_M,_E,__,_N,_A,_M,_E,$FF
-_tlm_9F8C:
-		.WORD $AA21
-		.BYTE $0C
-		.BYTE _G,_A,_M,_E,__,_V,_E,_R,_S,_I,_O,_N,$FF
-_tlm_9F9C:
-		.WORD $AC21
-		.BYTE $08
-		.BYTE _A,_dt,_B,__,_S,_I,_D,_E,$FF
-_tlm_9FA8:
-		.WORD $AC21
-		.BYTE $08
-		.BYTE _D,_I,_S,_K,__,_N,_O,_dt,$FF
-_tlm_9FB4:
-		.WORD $AA21
-		.BYTE $0C
-		.BYTE _D,_I,_S,_K,__,_T,_R,_O,_U,_B,_L,_E,$FF
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set01:
-		LDA		#$01
-		BNE		_apu_play_ctrlA_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set02:
-		LDA		#$02
-		BNE		_apu_play_ctrlA_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set04:
-		LDA		#$04
-		BNE		_apu_play_ctrlA_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set10:
-		LDA		#$10
-		BNE		_apu_play_ctrlA_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set02_0:
-		LDA		#$20
-		BNE		_apu_play_ctrlA_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set40:
-		LDA		#$40
-		BNE		_apu_play_ctrlA_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set80:
-		LDA		#$80
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set_ex:
-		STA		_apu_ctrlA
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set01:
-		LDA		#$01
-		BNE		_apu_play_ctrlB_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set02:
-		LDA		#$02
-		BNE		_apu_play_ctrlB_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set04:
-		LDA		#$04
-		BNE		_apu_play_ctrlB_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set08:
-		LDA		#$08
-		BNE		_apu_play_ctrlB_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set10:
-		LDA		#$10
-		BNE		_apu_play_ctrlB_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set20:
-		LDA		#$20
-		BNE		_apu_play_ctrlB_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set40:
-		LDA		#$40
-		BNE		_apu_play_ctrlB_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set80:
-		LDA		#$80
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set_ex:
-		STA		_apu_ctrlB
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set01:
-		LDA		#$01
-		BNE		_apu_play_ctrlC_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set02:
-		LDA		#$02
-		BNE		_apu_play_ctrlC_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set40:
-		LDA		#$40
-		BNE		_apu_play_ctrlC_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set80:
-		LDA		#$80
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set_ex:
-		STA		_apu_ctrlC
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set01:
-		LDA		#$01
-		BNE		_apu_play_ctrlD_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set02:
-		LDA		#$02
-		BNE		_apu_play_ctrlD_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set04:
-		LDA		#$04
-		BNE		_apu_play_ctrlD_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set08:
-		LDA		#$08
-		BNE		_apu_play_ctrlD_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set10:
-		LDA		#$10
-		BNE		_apu_play_ctrlD_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set20:
-		LDA		#$20
-		BNE		_apu_play_ctrlD_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set40:
-		LDA		#$40
-		BNE		_apu_play_ctrlD_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set80:
-		LDA		#$80
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set_ex:
-		STA		_apu_play_ctrlD
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set01:
-		LDA		#$01
-		BNE		_apu_play_ctrlE_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set02:
-		LDA		#$02
-		BNE		_apu_play_ctrlE_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set04:
-		LDA		#$04
-		BNE		_apu_play_ctrlE_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set08:
-		LDA		#$08
-		BNE		_apu_play_ctrlE_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set10:
-		LDA		#$10
-		BNE		_apu_play_ctrlE_set_ex
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set20:
-		LDA		#$20
-
-; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set_ex:
-		STA		_apu_play_ctrlE
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_main_subC:
-		LDA		byte_32
-		ORA		_ppu_queue_req
-		ORA		_nmi_tlm_lib_idx
-		ORA		byte_62
-		ORA		byte_577
-		BEQ		loc_A061
-locret_A060:
-		RTS
-; ---------------------------------------------------------------------------
-loc_A061:
-		LDY		byte_55C
-		BEQ		locret_A060
-		DEY
-		LDA		off_A079,Y
-		STA		_tmp20w+1
-		LDA		off_A07F,Y
-		STA		_tmp20w
-		LDA		#$00
-		STA		byte_55C
-		JMP		sub_A0E5
-; ---------------------------------------------------------------------------
-off_A079:
-		.BYTE >[byte_A085]
-		.BYTE >[byte_A095]
-		.BYTE >[byte_A0A5]
-		.BYTE >[byte_A0B5]
-		.BYTE >[byte_A0C5]
-		.BYTE >[byte_A0D5]
-off_A07F:
-		.BYTE <[byte_A085]
-		.BYTE <[byte_A095]
-		.BYTE <[byte_A0A5]
-		.BYTE <[byte_A0B5]
-		.BYTE <[byte_A0C5]
-		.BYTE <[byte_A0D5]
-byte_A085:
-		.BYTE $22,$23,$23,$20,$23,$23,$23,$23,$02,$E2,$E2,$22,$E2,$E2,$E2,$E2
-byte_A095:
-		.BYTE $23,$23,$22,$22,$22,$22,$20,$20,$E2,$E2,$C2,$C2,$C2,$C2,$C2,$C2
-byte_A0A5:
-		.BYTE $22,$23,$23,$22,$23,$23,$23,$23,$22,$E2,$E2,$22,$E2,$E2,$E2,$E2
-byte_A0B5:
-		.BYTE $22,$22,$22,$22,$2E,$2E,$2F,$2F,$4A,$7A,$7A,$42,$7A,$7A,$7A,$7A
-byte_A0C5:
-		.BYTE $21,$2F,$2F,$21,$2F,$2F,$2F,$2F,$42,$7A,$7A,$0A,$7A,$7A,$7A,$7A
-byte_A0D5:
-		.BYTE $29,$2F,$2F,$28,$2F,$2F,$2F,$2F,$7A,$7A,$52,$52,$52,$52,$12,$12
-
-; =============== S U B	R O U T	I N E =======================================
-sub_A0E5:
-		LDX		#$00
-		STX		byte_57
-loc_A0E9:
-		LDY		byte_57
-		CPY		#$04
-		BEQ		locret_A112
-		LDA		#$00
-		STA		_tmp1Cw+1
-		LDA		byte_A113,Y
-		STA		_tmp1Cw
-		LDA		byte_A117,Y
-		TAY
-		JSR		sub_A11B
-		LDY		byte_57
-		LDA		_tmp20w
-		CLC
-		ADC		byte_A117,Y
-		BCC		loc_A10B
-		INC		_tmp20w+1
-loc_A10B:
-		STA		_tmp20w
-		INC		byte_57
-		JMP		loc_A0E9
-; ---------------------------------------------------------------------------
-locret_A112:
-		RTS
-; ---------------------------------------------------------------------------
-byte_A113:
-		.BYTE $0A,$18,$2A,$38
-byte_A117:
-		.BYTE $06,$02,$06,$02
-
-; =============== S U B	R O U T	I N E =======================================
-sub_A11B:
-		LDA		_tmp1Cw+1
-		STA		_nmi_tlmB1_ram,X
-		INX
-		LDA		_tmp1Cw
-		STA		_nmi_tlmB1_ram,X
-		INX
-		TYA
-		STA		_nmi_tlmB1_ram,X
-		INX
-		DEY
-loc_A12D:
-		LDA		(_tmp20w),Y
-		STA		_nmi_tlmB1_ram,X
-		INX
-		DEY
-		BPL		loc_A12D
-		LDA		#$FF
-		STA		_nmi_tlmB1_ram,X
-		LDA		#$01
-		STA		byte_32
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -8641,715 +8766,3 @@ loc_A21E:
 ; ---------------------------------------------------------------------------
 locret_A23E:
 		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_main00_setup:
-		LDA		_main00_sub_idx
-		JSR		_switch
-; ---------------------------------------------------------------------------
-		.WORD _main00_sub00_title_draw
-		.WORD _main00_sub01_title_init
-		.WORD _main00_sub02_title_input
-		.WORD _main00_sub03_menu_draw
-		.WORD _main00_sub04_menu_input
-		.WORD _main00_sub05_match_menu_draw
-		.WORD _main00_sub06_match_menu_input
-		.WORD _main00_sub07_menu_restore
-
-; =============== S U B	R O U T	I N E =======================================
-_main00_sub00_title_draw:
-		JSR		_randA
-		LDY		#$00
-		STY		byte_FC
-		STY		byte_FD
-		JSR		_apu_play_ctrlA_set01
-		LDA		_ppu_ctrl_shadow
-		AND		#$F4
-		STA		_ppu_ctrl_shadow
-		LDA		#$07
-		STA		_nmi_tlm_lib_idx
-		JSR		_sync
-		JSR		_ppu_render_off
-		LDA		#$2F
-		JSR		sub_9C7F
-		LDA		#$20
-		LDX		#$2F
-		LDY		#$00
-		JSR		_ppu_fill_ex
-		JSR		_spr_clear
-		LDA		#$01
-		STA		_nmi_disable_flush
-		LDX		#<[_tlm_title]
-		LDY		#>[_tlm_title]
-		JSR		_ppu_tlm_unpack
-;		LDA		_ppu_title_tiles_ppu_swap_flag_w
-;		BNE		loc_A294
-;		JSR		_ppu_title_tiles_ppu_sawp
-loc_A294:
-		LDA		#$00
-		STA		_nmi_disable_flush
-		LDY		#$05
-		JSR		_pal_fade_outA
-		LDY		#$FF
-		STY		byte_55F
-		LDA		#$1C
-		STA		byte_55B
-		INC		_main00_sub_idx
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_main00_sub01_title_init:
-		JSR		_apu_play_ctrlD_set04
-		INC		_main00_sub_idx
-		LDA		#$0B
-		STA		_tmp4Bb
-		LDY		#$00
-		STY		_tpp_idx
-		STY		_cheat_flag0
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_main00_sub02_title_input:
-		JSR		sub_9C94
-		LDA		#>[_cheat_seq0]
-		STA		_tmp20w+1
-		LDA		#<[_cheat_seq0]
-		STA		_tmp20w
-		JSR		_cheat_seq_test
-		BCC		loc_A2D0
-		LDA		#$01
-		STA		_cheat_flag0
-loc_A2D0:
-		LDA		_nmi_counter
-		AND		#$07
-		CMP		#$07
-		BNE		loc_A2EC
-		LDY		_tmp4Bb
-		DEC		_tmp4Bb
-		BPL		loc_A2E2
-		LDY		#$0B
-		STY		_tmp4Bb
-loc_A2E2:
-		LDA		byte_A343,Y
-		STA		_ppu_pal_buf4+4
-		LDA		#$04
-		STA		_nmi_tlm_lib_idx
-loc_A2EC:
-		LDA		_pads_held
-		AND		#$90
-		BEQ		loc_A30D
-		JSR		_apu_play_ctrlB_set02
-		INC		_main00_sub_idx
-		LDY		#$05
-		JSR		_pal_fade_outB
-		LDA		#$01
-		STA		_nmi_disable_flush
-;		LDA		_ppu_title_tiles_ppu_swap_flag_w
-;		BEQ		loc_A308
-;		JSR		_ppu_title_tiles_ppu_sawp
-loc_A308:
-		LDA		#$00
-		STA		_nmi_disable_flush
-locret_A30C:
-		RTS
-; ---------------------------------------------------------------------------
-loc_A30D:
-		LDA		_nmi_counter
-		BNE		locret_A30C
-		LDY		#<[_txt_push_start]
-		STY		_tmp20w
-		LDY		#>[_txt_push_start]
-		STY		_tmp20w+1
-		LDX		#$1E
-		LDA		_title_push_start_toggle
-		EOR		#$01
-		STA		_title_push_start_toggle
-		BNE		loc_A32F
-		LDA		#<[_txt_blank]
-		STA		_tmp20w
-		LDA		#>[_txt_blank]
-		STA		_tmp20w+1
-		LDX		#$0F
-loc_A32F:
-		STX		_nmi_counter
-		LDY		#$00
-		LDA		(_tmp20w),Y
-		TAY
-loc_A336:
-		LDA		(_tmp20w),Y
-		STA		_tlm_ram_buf,Y
-		DEY
-		BNE		loc_A336
-		LDA		#$01
-		STA		byte_32
-		RTS
-; ---------------------------------------------------------------------------
-byte_A343:
-		.BYTE $3C,$3B,$3A,$39,$38,$37,$36,$35,$34,$33,$32,$31
-_txt_push_start:
-		.BYTE $0E
-		.WORD $4B23
-		.BYTE $0A
-		.BYTE $20,$25,$23,$18,$2F,$23,$24,$11,$22,$24
-		.BYTE $FF
-_txt_blank:
-		.BYTE $05
-		.WORD $4B23
-		.BYTE $4A
-		.BYTE $2F
-		.BYTE $FF
-
-; =============== S U B	R O U T	I N E =======================================
-_cheat_seq_test:
-		LDA		_pads_press+1
-		BEQ		loc_A374
-		LDY		_tpp_idx
-		CMP		(_tmp20w),Y
-		BNE		loc_A376
-		INC		_tpp_idx
-		CPY		#$07
-		BCS		loc_A377
-loc_A374:
-		CLC
-		RTS
-; ---------------------------------------------------------------------------
-loc_A376:
-		CLC
-loc_A377:
-		LDA		#$00
-		STA		_tpp_idx
-		RTS
-; ---------------------------------------------------------------------------
-_cheat_seq0:
-		.BYTE $80,$80,$80,$08,$01,$40,$04,$08
-_cheat_seq1:
-		.BYTE $04,$02,$01,$01,$40,$80,$80,$04
-
-; =============== S U B	R O U T	I N E =======================================
-_main00_sub03_menu_draw:
-		LDY		#$00
-		STY		byte_FC
-		LDY		#$04
-		STY		byte_FD
-		JSR		_ppu_render_off
-		LDA		#$2F
-		JSR		sub_9C7F
-		LDA		#$20
-		LDX		#$2F
-		LDY		#$00
-		JSR		_ppu_fill_ex
-		LDA		#$01
-		STA		_nmi_disable_flush
-		LDX		#<[_tlm_menu]
-		LDY		#>[_tlm_menu]
-		JSR		_ppu_tlm_unpack
-		LDA		#$00
-		STA		_nmi_disable_flush
-		LDY		#$06
-		JSR		_pal_fade_outA
-		LDY		#$00
-		STY		_1p_cpu_ctrl_flag
-		STY		_2p_cpu_ctrl_flag
-		STY		_main02_sub_idx
-		STY		_timer_minutes
-		INC		_main00_sub_idx
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_main00_sub04_menu_input:
-		LDA		#>[_cheat_seq1]
-		STA		_tmp20w+1
-		LDA		#<[_cheat_seq1]
-		STA		_tmp20w
-		JSR		_cheat_seq_test
-		BCC		loc_A3DD
-		LDA		_cheat_flag0
-		BEQ		loc_A3DD
-		LDA		#$01
-		STA		_cheat_flag1_w
-loc_A3DD:
-		LDY		_menu_pos_idx_w
-		LDA		_pads_press
-		AND		#$08
-		BEQ		loc_A3ED
-		DEY
-		BPL		loc_A3FC
-		LDY		#$04
-		BPL		loc_A3FC
-loc_A3ED:
-		LDA		_pads_press
-		AND		#$24
-		BEQ		loc_A3FF
-		INY
-		CPY		#$05
-		BCC		loc_A3FC
-		LDY		#$00
-		BMI		loc_A3FF
-loc_A3FC:
-		JMP		loc_A474
-; ---------------------------------------------------------------------------
-loc_A3FF:
-		LDA		_pads_press
-		AND		#$90
-		BEQ		loc_A477
-		STY		_menu_pos_idx_w
-		STY		_game_mode_idx
-		JSR		_apu_play_ctrlB_set02
-		LDA		_cheat_flag1_w
-		BEQ		loc_A419
-		LDA		_pads_held
-		AND		#$01
-		BNE		loc_A41C
-loc_A419:
-		LDA		_1p_cpu_ctrl_list,Y
-loc_A41C:
-		STA		_1p_cpu_ctrl_flag
-		LDA		_2p_cpu_ctrl_list,Y
-		STA		_2p_cpu_ctrl_flag
-		CPY		#$02
-		BEQ		_match_select_menu_start
-		CPY		#$04
-		BNE		_demo_play_start
-_match_select_menu_start:
-		INC		_main00_sub_idx
-		RTS
-; ---------------------------------------------------------------------------
-_demo_play_start:
-		CPY		#$00
-		BNE		_other_game_start
-		LDA		#$1E
-		JSR		_wait_for_nmi
-		JSR		_apu_play_ctrlA_set04
-		LDY		#$06
-		JSR		_pal_fade_outB
-		JSR		_wait_for_70_frames
-		LDA		#$00
-		STA		_load_file_list_idx
-		JSR		_file_load
-;		LDA		#$70
-;		STA		_overlay_loaded_flag_w
-		LDY		#$00
-		STY		_demo_sub_idx
-		INC		_main_sub_idx
-		RTS
-; ---------------------------------------------------------------------------
-_other_game_start:
-		LDX		#$00
-		STX		_main00_sub_idx
-		INX
-		INX
-		STX		_main_sub_idx
-		LDA		_ppu_ctrl_shadow
-		AND		#$F7
-		ORA		#$20
-		STA		_ppu_ctrl_shadow
-		JSR		_apu_play_ctrlA_set04
-		LDY		#$06
-		JSR		_pal_fade_outB
-		JMP		_wait_for_70_frames
-; ---------------------------------------------------------------------------
-loc_A474:
-		JSR		_apu_play_ctrlB_set01
-loc_A477:
-		LDA		byte_A490,Y
-		STA		_spr_buf
-		LDA		#$FE
-		STA		_spr_buf+1
-		LDA		#$00
-		STA		_spr_buf+2
-		LDA		#$34
-		STA		_spr_buf+3
-		STY		_menu_pos_idx_w
-		RTS
-; ---------------------------------------------------------------------------
-byte_A490:
-		.BYTE $47,$57,$67,$77,$87
-_1p_cpu_ctrl_list:
-		.BYTE $01,$00,$00,$00,$00
-_2p_cpu_ctrl_list:
-		.BYTE $01,$01,$01,$01,$00
-
-; =============== S U B	R O U T	I N E =======================================
-_main00_sub05_match_menu_draw:
-		LDY		#$06
-loc_A4A1:
-		STY		_tmp4Bb
-		LDX		_tlm_res_match_menu_lib_hi,Y
-		LDA		_tlm_res_match_menu_lib_lo,Y
-		TAY
-		JSR		_tlm_B1_ram_queue
-		JSR		_sync
-		LDY		_tmp4Bb
-		DEY
-		BPL		loc_A4A1
-		INC		_main00_sub_idx
-		RTS
-; ---------------------------------------------------------------------------
-_tlm_res_match_menu_lib_lo:
-		.BYTE >[_tlm_res_match_menu0]
-		.BYTE >[_tlm_res_match_menu1]
-		.BYTE >[_tlm_res_match_menu2]
-		.BYTE >[_tlm_res_match_menu3]
-		.BYTE >[_tlm_res_match_menu4]
-		.BYTE >[_tlm_res_match_menu5]
-		.BYTE >[_tlm_res_match_menu6]
-_tlm_res_match_menu_lib_hi:
-		.BYTE <[_tlm_res_match_menu0]
-		.BYTE <[_tlm_res_match_menu1]
-		.BYTE <[_tlm_res_match_menu2]
-		.BYTE <[_tlm_res_match_menu3]
-		.BYTE <[_tlm_res_match_menu4]
-		.BYTE <[_tlm_res_match_menu5]
-		.BYTE <[_tlm_res_match_menu6]
-
-; =============== S U B	R O U T	I N E =======================================
-_main00_sub06_match_menu_input:
-		LDY		_match_pts_w
-		LDA		_pads_press
-		AND		#$08
-		BEQ		loc_A4D6
-		DEY
-		BPL		loc_A527
-		LDY		#$02
-		BPL		loc_A527
-loc_A4D6:
-		LDA		_pads_press
-		AND		#$24
-		BEQ		loc_A4E5
-		INY
-		CPY		#$03
-		BCC		loc_A527
-		LDY		#$00
-		BPL		loc_A527
-loc_A4E5:
-		LDA		_pads_press
-		AND		#$40
-		BEQ		loc_A4F0
-		LDA		#$07
-		STA		_main00_sub_idx
-		RTS
-; ---------------------------------------------------------------------------
-loc_A4F0:
-		LDA		_pads_press
-		AND		#$90
-		BEQ		loc_A52A
-		JSR		_apu_play_ctrlB_set02
-		LDA		byte_A546,Y
-		STA		byte_560
-		LDA		byte_A549,Y
-		STA		byte_561
-		LDX		#$00
-		CPY		#$02
-		BNE		loc_A50C
-		INX
-loc_A50C:
-		STX		byte_554
-		LDX		#$02
-		STX		_main_sub_idx
-		LDA		_ppu_ctrl_shadow
-		AND		#$F7
-		ORA		#$20
-		STA		_ppu_ctrl_shadow
-		JSR		_apu_play_ctrlA_set04
-		LDY		#$06
-		JSR		_pal_fade_outB
-		JMP		_wait_for_70_frames
-; ---------------------------------------------------------------------------
-loc_A527:
-		JSR		_apu_play_ctrlB_set01
-loc_A52A:
-		LDA		byte_A543,Y
-		STA		_spr_buf+4
-		LDA		#$FE
-		STA		_spr_buf+5
-		LDA		#$00
-		STA		_spr_buf+6
-		LDA		#$48
-		STA		_spr_buf+7
-		STY		_match_pts_w
-		RTS
-; ---------------------------------------------------------------------------
-byte_A543:
-		.BYTE $87,$97,$A7
-byte_A546:
-		.BYTE $05,$0B,$99
-byte_A549:
-		.BYTE $00,$00,$09
-
-; =============== S U B	R O U T	I N E =======================================
-_main00_sub07_menu_restore:
-		LDA		#$F4
-		STA		_spr_buf+4
-		LDY		#$04
-loc_A553:
-		LDA		off_A572,Y
-		STA		_tmp20w+1
-		LDA		off_A577,Y
-		STA		_tmp20w
-		STY		_tmp4Bb
-		JSR		_tlm_ram_queue22
-		LDY		_tmp4Bb
-		DEY
-		BPL		loc_A553
-		LDY		#$00
-		STY		_1p_cpu_ctrl_flag
-		STY		_2p_cpu_ctrl_flag
-		LDA		#$04
-		STA		_main00_sub_idx
-		RTS
-; ---------------------------------------------------------------------------
-off_A572:
-		.BYTE >[_tlm_res_main_menu_restore0]
-		.BYTE >[_tlm_res_main_menu_restore1]
-		.BYTE >[_tlm_res_main_menu_restore2]
-		.BYTE >[_tlm_res_main_menu_restore3]
-		.BYTE >[_tlm_res_main_menu_restore4]
-off_A577:
-		.BYTE <[_tlm_res_main_menu_restore0]
-		.BYTE <[_tlm_res_main_menu_restore1]
-		.BYTE <[_tlm_res_main_menu_restore2]
-		.BYTE <[_tlm_res_main_menu_restore3]
-		.BYTE <[_tlm_res_main_menu_restore4]
-
-; =============== S U B	R O U T	I N E =======================================
-_tlm_ram_queue22:
-		LDY		#$22
-loc_A57E:
-		LDA		(_tmp20w),Y
-		STA		_nmi_tlmB1_ram,Y
-		DEY
-		BPL		loc_A57E
-		LDA		#$01
-		STA		byte_32
-		JMP		_sync
-
-; =============== S U B	R O U T	I N E =======================================
-;_ppu_title_tiles_ppu_sawp:
-;		LDA		_ppu_title_tiles_ppu_swap_flag_w
-;		EOR		#$01
-;		STA		_ppu_title_tiles_ppu_swap_flag_w
-;		LDA		#$70
-;		STA		_overlay_loaded_flag_w
-;		LDA		#$1C
-;		STA		_tmp20w+1
-;		LDA		#$00
-;		STA		_tmp20w
-;		LDA		#$2C
-;		STA		_tmp1Cw+1
-;		LDA		#$00
-;		STA		_tmp1Cw
-;		LDA		#$04
-;		STA		byte_1F
-;		LDA		#$00
-;		STA		byte_1E
-;		JSR		_ppu_load_ppu_swap
-;		LDA		#$17
-;		STA		_tmp20w+1
-;		LDA		#$00
-;		STA		_tmp20w
-;		LDA		#>[$BE00]
-;		STA		_tmp1Cw+1
-;		LDA		#<[$BE00]
-;		STA		_tmp1Cw
-;		LDA		#$05
-;		STA		byte_1F
-;		LDA		#$00
-;		STA		byte_1E
-;		JSR		_ppu_load_mem_swap
-;		LDA		#$00
-;		STA		_overlay_loaded_flag_w
-;		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_common_program_reload:
-		LDA		#$01
-		STA		_load_file_list_idx
-		JSR		_file_load
-;		LDA		#$00
-;		STA		_overlay_loaded_flag_w
-		LDA		#$00
-		STA		_main_sub_idx
-		STA		_main00_sub_idx
-		STA		byte_568
-		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_set_field_pal:
-		TYA
-		ASL
-		ASL
-		TAY
-		LDA		_field_pal_patch_lib,Y
-		STA		_pal1_pw
-		STA		_pal1_pw+4
-		STA		_pal1_pw+8
-		STA		_pal1_pw+$C
-		STA		_pal1_pw+$10
-		STA		_pal1_pw+$14
-		STA		_pal1_pw+$18
-		STA		_pal1_pw+$1C
-		STA		_pal2_p0_w
-		STA		_pal2_p1_w
-		STA		_pal3_p0_w
-		STA		_pal3_p1_w
-		LDA		_field_pal_patch_lib+1,Y
-		STA		_pal1_pw+5
-		STA		_pal1_pw+$D
-		STA		_pal1_pw+$1D
-		STA		_pal2_p1_w+1
-		STA		_pal3_p1_w+1
-		LDA		_field_pal_patch_lib+2,Y
-		STA		_pal1_pw+2
-		STA		_pal1_pw+6
-		LDA		_field_pal_patch_lib+3,Y
-		STA		_pal1_pw+$A
-		STA		_pal1_pw+$E
-		RTS
-; ---------------------------------------------------------------------------
-_field_pal_patch_lib:
-		.BYTE $17,$16,$1A,$27
-		.BYTE $3B,$16,$38,$2B
-		.BYTE $0F,$30,$21,$34
-		.BYTE $28,$16,$1A,$17
-		.BYTE $14,$15,$25,$34
-		.BYTE $10,$15,$1C,$3C
-		.BYTE $1A,$16,$18,$28
-		.BYTE $1A,$16,$28,$29
-		.BYTE $17,$15,$18,$28
-		.BYTE $1C,$16,$24,$3C
-		.BYTE $3B,$16,$24,$32
-		.BYTE $3C,$16,$35,$3A
-		.BYTE $38,$16,$24,$2B
-_tlm_title:
-		.BYTE $20,$82,$5D,$76,$20,$C2,$1D,$90,$91,$92,$2F,$94,$2F,$D0,$D1,$D2
-		.BYTE $96,$97,$98,$99,$9A,$2F,$94,$2F,$9B,$9C,$9D,$9B,$9C,$9D,$C8,$C9
-		.BYTE $CA,$9E,$9F,$E6,$20,$E2,$1D,$A0,$A1,$93,$2F,$A4,$2F,$E0,$2F,$E2
-		.BYTE $A1,$A7,$A8,$E9,$AA,$2F,$A4,$2F,$AB,$AC,$AD,$AB,$AC,$AD,$E0,$A0
-		.BYTE $A9,$AE,$2F,$E9,$21,$02,$1D,$A0,$A1,$A2,$B3,$B4,$B5,$F0,$2F,$A0
-		.BYTE $B6,$B7,$B8,$E9,$2F,$B3,$B4,$B5,$BB,$BC,$AD,$BB,$BC,$AD,$F0,$A0
-		.BYTE $B9,$BE,$BF,$E9,$21,$22,$1D,$A0,$B1,$B2,$C3,$C4,$C5,$F0,$2F,$A0
-		.BYTE $C6,$C7,$B8,$E9,$2F,$C3,$C4,$C5,$CB,$CC,$AD,$CB,$CC,$AD,$F0,$A0
-		.BYTE $B9,$CE,$CF,$E9,$21,$42,$1D,$A0,$A1,$B0,$D3,$D4,$D5,$F0,$2F,$A0
-		.BYTE $D6,$D7,$B8,$D9,$DA,$D3,$D4,$D5,$DB,$DC,$AD,$DB,$DC,$AD,$F0,$A0
-		.BYTE $B9,$DE,$DF,$E9,$21,$62,$1D,$A0,$A1,$93,$E3,$E4,$E5,$E1,$2F,$A3
-		.BYTE $A1,$E7,$E8,$E9,$EA,$E3,$E4,$E5,$EB,$EC,$AD,$EB,$EC,$AD,$E1,$A0
-		.BYTE $BD,$EE,$EF,$E9,$21,$82,$1D,$C0,$C1,$C2,$F3,$F4,$F5,$F1,$F2,$95
-		.BYTE $F6,$F7,$F8,$F9,$FA,$F3,$F4,$F5,$FB,$FC,$FD,$FB,$FC,$FD,$DD,$ED
-		.BYTE $CD,$FE,$FF,$E9,$21,$C2,$5D,$76,$22,$48,$10,$70,$71,$72,$73,$74
-		.BYTE $75,$A5,$77,$78,$79,$7A,$7B,$2F,$7C,$7D,$7E,$22,$68,$10,$80,$81
-		.BYTE $82,$83,$84,$85,$86,$87,$88,$89,$8A,$8B,$2F,$8C,$8D,$8E,$22,$EA
-		.BYTE $0C,$2C,$01,$09,$09,$00,$2F,$A6,$AF,$BA,$D8,$7F,$8F,$23,$E2,$04
-		.BYTE $50,$50,$50,$50,$23,$EA,$0C,$80,$A0,$A0,$20,$00,$00,$00,$00,$80
-		.BYTE $A0,$A0,$20,$FF
-_tlm_menu:
-		.BYTE $20,$E5,$01,$0A
-		.BYTE $20,$E6,$52,$0B
-		.BYTE $20,$F8,$01,$0C
-		.BYTE $21,$05,$01,$10
-		.BYTE $21,$06,$52,__
-		.BYTE $21,$18,$01,$2D
-		.BYTE $21,$25,$14,$10,__,__,__,_D,_E,_M,_O,_N,_S,_T,_R,_A,_T,_I,_O,_N,__,__,$2D
-		.BYTE $21,$45,$01,$10
-		.BYTE $21,$46,$52,__
-		.BYTE $21,$58,$01,$2D
-		.BYTE $21,$65,$14,$10,__,__,__,_T,_R,_A,_I,_N,_I,_N,_G,__,_P,_L,_A,_Y,__,__,$2D
-		.BYTE $21,$85,$01,$10
-		.BYTE $21,$86,$52,__
-		.BYTE $21,$98,$01,$2D
-		.BYTE $21,$A5,$14,$10,__,__,__,_M,_A,_T,_C,_H,__,_P,_L,_A,_Y,__,__,__,__,__,$2D
-		.BYTE $21,$C5,$01,$10
-		.BYTE $21,$C6,$52,__
-		.BYTE $21,$D8,$01,$2D
-		.BYTE $21,$E5,$14,$10,__,__,__,_T,_O,_U,_R,_N,_A,_M,_E,_N,_T,__,__,__,__,__,$2D
-		.BYTE $22,$05,$01,$10
-		.BYTE $22,$06,$52,__
-		.BYTE $22,$18,$01,$2D
-		.BYTE $22,$25,$14,$10,__,__,__,_2,__,_P,_L,_A,_Y,_E,_R,_S,__,_G,_A,_M,_E,__,$2D
-		.BYTE $22,$45,$01,$10
-		.BYTE $22,$46,$52,__
-		.BYTE $22,$58,$01,$2D
-		.BYTE $22,$65,$01,$0D
-		.BYTE $22,$66,$52,$0E
-		.BYTE $22,$78,$01,$0F
-		.BYTE $FF
-_tlm_res_match_menu6:
-		.BYTE $18
-		.BYTE $21,$E8,$01,$0A
-		.BYTE $21,$E9,$52,$0B
-		.BYTE $21,$FB,$01,$0C
-		.BYTE $22,$08,$01,$10
-		.BYTE $22,$09,$52,$2E
-		.BYTE $22,$1B,$01,$2D
-_tlm_res_match_menu5:
-		.BYTE $17
-		.BYTE $22,$28,$14,$10,__,__,__,_5,__,_P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H,__,$2D
-_tlm_res_match_menu4:
-		.BYTE $0C
-		.BYTE $22,$48,$01,$10
-		.BYTE $22,$49,$52,$2E
-		.BYTE $22,$5B,$01,$2D
-_tlm_res_match_menu3:
-		.BYTE $17
-		.BYTE $22,$68,$14,$10,__,__,_1,_1,__,_P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H,__,$2D
-_tlm_res_match_menu2:
-		.BYTE $0C
-		.BYTE $22,$88,$01,$10
-		.BYTE $22,$89,$52,__
-		.BYTE $22,$9B,$01,$2D
-_tlm_res_match_menu1:
-		.BYTE $17
-		.BYTE $22,$A8,$14,$10,__,__,__,_E,_N,_D,_L,_E,_S,_S,__,__,_M,_A,_T,_C,_H,__,$2D
-_tlm_res_match_menu0:
-		.BYTE $18
-		.BYTE $22,$C8,$01,$10
-		.BYTE $22,$C9,$52,__
-		.BYTE $22,$DB,$01,$2D
-		.BYTE $22,$E8,$01,$0D
-		.BYTE $22,$E9,$52,$0E
-		.BYTE $22,$FB,$01,$0F
-_tlm_res_main_menu_restore0:
-		.WORD $E821
-		.BYTE $14
-		.BYTE __,_T,_O,_U,_R,_N,_A,_M,_E,_N,_T,__,__,__,__,__,$2D,$2F,$2F,$2F
-		.WORD $0822
-		.BYTE $50
-		.BYTE __
-		.WORD $1822
-		.BYTE $04
-		.BYTE $2D,$2F,$2F,$2F
-		.BYTE $FF
-_tlm_res_main_menu_restore1:
-		.WORD $2822
-		.BYTE $14
-		.BYTE __,_2,__,_P,_L,_A,_Y,_E,_R,_S,__,_G,_A,_M,_E,__,$2D,$2F,$2F,$2F
-		.WORD $4822
-		.BYTE $50
-		.BYTE __
-		.WORD $5822
-		.BYTE $04
-		.BYTE $2D,$2F,$2F,$2F
-		.BYTE $FF
-_tlm_res_main_menu_restore2:
-		.WORD $6822
-		.BYTE $50
-		.BYTE $0E
-		.WORD $7822
-		.BYTE $04
-		.BYTE $0F,$2F,$2F,$2F
-		.WORD $8822
-		.BYTE $54
-		.BYTE $2F
-		.BYTE $FF
-_tlm_res_main_menu_restore3:
-		.WORD $A822
-		.BYTE $54
-		.BYTE $2F
-		.WORD $C822
-		.BYTE $54
-		.BYTE $2F
-		.BYTE $FF
-_tlm_res_main_menu_restore4:
-		.WORD $E822
-		.BYTE $54
-		.BYTE $2F
-		.BYTE $FF

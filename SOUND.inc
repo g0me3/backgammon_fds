@@ -1,10 +1,4 @@
 
-;		ORG $C300
-
-; =============== S U B	R O U T	I N E =======================================
-j__apu_play:
-		JMP		_apu_play
-
 off_C303:
 		.WORD sub_CDD6
 		.WORD sub_CDC3
@@ -133,6 +127,191 @@ byte_C3EF:
 		.BYTE $07,$7F,$3D,$08
 ;_unref_C3F3
 ;		.BYTE $07,$7F,$3D,$08
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set04:
+		LDA		#$04
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set10:
+		LDA		#$10
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set02_0:
+		LDA		#$20
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set40:
+		LDA		#$40
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set80:
+		LDA		#$80
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set_ex:
+		STA		_apu_ctrlA
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set04:
+		LDA		#$04
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set08:
+		LDA		#$08
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set10:
+		LDA		#$10
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set20:
+		LDA		#$20
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set40:
+		LDA		#$40
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set80:
+		LDA		#$80
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set_ex:
+		STA		_apu_ctrlB
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlC_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlC_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set40:
+		LDA		#$40
+		BNE		_apu_play_ctrlC_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set80:
+		LDA		#$80
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set_ex:
+		STA		_apu_ctrlC
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set04:
+		LDA		#$04
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set08:
+		LDA		#$08
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set10:
+		LDA		#$10
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set20:
+		LDA		#$20
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set40:
+		LDA		#$40
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set80:
+		LDA		#$80
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set_ex:
+		STA		_apu_play_ctrlD
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set04:
+		LDA		#$04
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set08:
+		LDA		#$08
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set10:
+		LDA		#$10
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set20:
+		LDA		#$20
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set_ex:
+		STA		_apu_play_ctrlE
+		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
 _apu_play:
