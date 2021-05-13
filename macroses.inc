@@ -82,6 +82,9 @@ _total_free	SET [_total_free+_bank{1}_free]
 	ENDM
 
 	MAC	LAST_BANK_END
+	#if {1}=$00
+_total_free	SET 0
+	#endif
 _bank{1}_free	SET	[{2}-.-LAST_STUB_SIZE]
 _total_free	SET [_total_free+_bank{1}_free]
 	#if .>[{2}-LAST_STUB_SIZE]

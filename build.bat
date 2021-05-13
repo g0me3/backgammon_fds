@@ -4,28 +4,29 @@ cd nas
 
 echo assemble...
 
-dasm BG-MAIN.nas -f3 -l!BG-MAIN.lst -oBG-MAIN.bin >> !err.log
+dasm bank0.nas -f3 -l!bank0.lst -obank0.bin >> !err.log
 
-for %%f in (*.nas) do call :dodasm %%f > NUL
-
-goto :build
-
-:dodasm
-dasm %1 -f3 -o%~n1.bin
-goto :eof
-
-dasm hdr.nas -f3 -o!game.hdr > NUL
-dasm chr.nas -f3 -o!game.chr > NUL
+dasm hdr.nas -f3 -ohdr.bin > NUL
+dasm chr.nas -f3 -ochr.bin > NUL
 
 :build
 echo build...
 
-rem nesimage j !game > NUL
+rename hdr.bin !backgmm.hdr > NUL
+rename chr.bin !backgmm.chr > NUL
+rename bank0.bin !backgmm.prg > NUL
+nesimage j !backgmm > NUL
 
 echo cleanup...
-rem rem for %%f in (*.bin) do del %%f
+for %%f in (*.bin) do del %%f > NUL
+del !backgmm.hdr > NUL
+del !backgmm.chr > NUL
+del !backgmm.prg > NUL
 
-rem copy /b !game.nes ..\!game.nes > NUL
+copy /b !backgmm.nes ..\!backgmm.nes > NUL
+
+del !backgmm.nes > NUL
+
 cd ..
 
 echo done.

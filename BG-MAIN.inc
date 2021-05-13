@@ -1,5 +1,5 @@
 
-		ORG $6000
+;		ORG $6000
 
 _cheat_flag1_w:
 		.BYTE $00
@@ -265,18 +265,18 @@ _tlm_6225_w:
 		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
-_FDS_RESET:
+RESET:
 		CLD
 		LDX		#$00
-		STX		$2000
-		STX		$2001
+		STX		_PPU_CTRL
+		STX		_PPU_MASK
 loc_623E:
-		LDA		$2002
+		LDA		_PPU_STATUS
 		BPL		loc_623E
 		DEX
 		TXS
 		LDX		_frames_counter
-		JSR		_first_boot_init
+;		JSR		_first_boot_init
 		LDY		#>[_ppu_queue_buf+$62]
 		STY		word_10+1
 		LDY		#$00
@@ -302,9 +302,11 @@ loc_6262:
 		LDA		#$AC
 		STA		byte_103
 		LDA		#$0F
-		STA		$4015
+		STA		_APU_STATUS
+		LDA		#$C0
+		STA		_PAD1_REG
 		LDA		#$B0
-		STA		$2000
+		STA		_PPU_CTRL
 		STA		_ppu_ctrl_shadow
 		LDA		#$06
 		STA		_ppu_mask_shadow
@@ -330,7 +332,7 @@ loc_6262:
 		TYA
 		JSR		_change_screen
 loc_62BD:
-		JSR		_integrity_test
+;		JSR		_integrity_test
 		JMP		_MAIN
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -403,13 +405,13 @@ loc_6345:
 		STA		_load_file_list_idx
 		JSR		_change_screen
 		JSR		_nmi_off
-		JMP		_FDS_RESET
+		JMP		RESET
 
 ; =============== S U B	R O U T	I N E =======================================
 _crc_sum_prog:
-		LDA		#>[_FDS_RESET]
+		LDA		#>[RESET]
 		STA		_tmp20w+1
-		LDA		#<[_FDS_RESET]
+		LDA		#<[RESET]
 		STA		_tmp20w
 		LDA		#>[$BBF3]
 		STA		_tmp1Cw+1
@@ -471,7 +473,7 @@ _main_subB:
 		JSR		_switch
 ; ---------------------------------------------------------------------------
 		.WORD _main00_setup
-		.WORD _j_demo
+		.WORD $0000; _j_demo
 		.WORD _main02_game
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -594,7 +596,7 @@ loc_647C:
 		LDA		_ppu_ctrl_shadow
 		AND		#$FC
 		STA		_ppu_ctrl_shadow
-		STA		$2000
+		STA		_PPU_CTRL
 		INC		_main02_sub_idx
 		JMP		sub_9C6D
 
@@ -1691,7 +1693,7 @@ _ending_screen:
 		JSR		_change_screen
 		LDA		#$70
 		STA		_overlay_loaded_flag_w
-		JSR		_ending
+		JSR		$0000 ; _ending
 		LDY		#$00
 		STY		_overlay_loaded_flag_w
 		INY
@@ -2773,7 +2775,7 @@ _main02_sub04_ingame:
 		LDA		_pads_held+1
 		CMP		#$CA
 		BNE		loc_7695
-		JMP		_FDS_RESET
+		JMP		RESET
 ; ---------------------------------------------------------------------------
 loc_7695:
 		LDA		#$FF
@@ -6762,8 +6764,8 @@ _nmi_tlmB3:
 ; =============== S U B	R O U T	I N E =======================================
 sub_96BC:
 		PHA
-		LDA		$4016
-		LDA		$4017
+		LDA		_PAD0_REG
+		LDA		_PAD1_REG
 		PLA
 		RTS
 
@@ -7309,7 +7311,7 @@ _ppu_render_off:
 
 ; =============== S U B	R O U T	I N E =======================================
 _ppu_status_set:
-		STA		$2001
+		STA		_PPU_MASK
 		STA		_ppu_mask_shadow
 		RTS
 
@@ -7323,7 +7325,7 @@ _ppu_render_on:
 
 ; =============== S U B	R O U T	I N E =======================================
 _nmi_on:
-		LDA		$2002
+		LDA		_PPU_STATUS
 		AND		#$80
 		BNE		_nmi_on
 		LDA		_ppu_ctrl_shadow
@@ -7337,12 +7339,12 @@ _nmi_off:
 
 ; =============== S U B	R O U T	I N E =======================================
 _ppu_ctrl_set:
-		STA		$2000
+		STA		_PPU_CTRL
 		STA		_ppu_ctrl_shadow
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_FDS_NMI:
+NMI:
 		CLI
 		PHA
 		TXA
@@ -7354,7 +7356,7 @@ _FDS_NMI:
 		LDA		#$00
 		STA		$2003
 		LDA		#$02
-		STA		$4014
+		STA		_PPU_OAM_DMA
 		LDA		_pause_mode_flag
 		BNE		loc_9A5B
 		LDA		_ppu_dequeue_req
@@ -7365,9 +7367,9 @@ _FDS_NMI:
 loc_9A5B:
 		JSR		sub_9C6D
 		LDA		_ppu_ctrl_shadow
-		STA		$2000
+		STA		_PPU_CTRL
 		LDA		_ppu_mask_shadow
-		STA		$2001
+		STA		_PPU_MASK
 		JSR		_read_pads
 		LDA		_pause_mode_flag
 		BNE		loc_9A7A
@@ -7393,7 +7395,7 @@ loc_9A8B:
 		PLA
 		TAX
 		PLA
-_FDS_IRQ:
+IRQ:
 		RTI
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -7420,10 +7422,10 @@ _ppu_fill:
 		STX		byte_12
 		STY		byte_13
 		STA		word_10+1
-		LDA		$2002
+		LDA		_PPU_STATUS
 		LDA		_ppu_ctrl_shadow
 		AND		#$FB
-		STA		$2000
+		STA		_PPU_CTRL
 		STA		_ppu_ctrl_shadow
 		LDA		word_10+1
 		STA		$2006
@@ -7505,10 +7507,10 @@ _nmi_tlm_lib_lo:
 ; =============== S U B	R O U T	I N E =======================================
 _read_pads:
 		LDX		#$01
-		STX		$4016
+		STX		_PAD0_REG
 		DEX
 		TXA
-		STA		$4016
+		STA		_PAD0_REG
 		JSR		_read_pad
 		INX
 
@@ -7517,7 +7519,7 @@ _read_pad:
 		LDY		#$08
 loc_9B42:
 		PHA
-		LDA		$4016,X
+		LDA		_PAD0_REG,X
 		STA		word_10
 		LSR
 		ORA		word_10
@@ -7618,9 +7620,9 @@ _nmi_ppu_dequeue:
 		STA		word_10+1
 		LDA		_ppu_ctrl_shadow
 		ORA		#$04
-		STA		$2000
+		STA		_PPU_CTRL
 		STA		_ppu_ctrl_shadow
-		LDX		$2002
+		LDX		_PPU_STATUS
 		LDY		#$00
 		BEQ		loc_9BF9
 loc_9BE0:
@@ -7687,7 +7689,7 @@ _ppu_tlm_unpack_loop:
 		BCS		loc_9C3C
 		AND		#$FB
 loc_9C3C:
-		STA		$2000
+		STA		_PPU_CTRL
 		STA		_ppu_ctrl_shadow
 		PLA
 		ASL
@@ -7716,7 +7718,7 @@ loc_9C4E:
 
 ; =============== S U B	R O U T	I N E =======================================
 _ppu_tlm_unpack_ex:
-		LDX		$2002
+		LDX		_PPU_STATUS
 		LDY		#$00
 		LDA		(word_10),Y
 		CMP		#$FF
@@ -7893,7 +7895,7 @@ _ppu_load_ex:
 		LDA		_ppu_ctrl_shadow
 		ORA		#$04
 		STA		_ppu_ctrl_shadow
-		STA		$2000
+		STA		_PPU_CTRL
 loc_9D68:
 		LDA		_tmp20w+1
 		STA		$2006
@@ -8012,12 +8014,12 @@ sub_9E73:
 		STA		$4022
 		STA		$4010
 		LDA		#$C0
-		STA		$4017
+		STA		_PAD1_REG
 		JSR		_nmi_off
 		LDA		_ppu_ctrl_shadow
 		AND		#$FB
 		STA		_ppu_ctrl_shadow
-		STA		$2000
+		STA		_PPU_CTRL
 		JSR		_load_file_by_idx
 		BNE		loc_9EC7
 		STA		_overlay_loaded_flag_w
@@ -8662,7 +8664,7 @@ _main00_sub00_title_idraw:
 		JSR		_ppu_tlm_unpack
 		LDA		_ppu_title_tiles_ppu_swap_flag_w
 		BNE		loc_A294
-		JSR		_ppu_title_tiles_ppu_sawp
+;		JSR		_ppu_title_tiles_ppu_sawp
 loc_A294:
 		LDA		#$00
 		STA		_nmi_disable_flush
@@ -8724,7 +8726,7 @@ loc_A2EC:
 		STA		_nmi_disable_flush
 		LDA		_ppu_title_tiles_ppu_swap_flag_w
 		BEQ		loc_A308
-		JSR		_ppu_title_tiles_ppu_sawp
+;		JSR		_ppu_title_tiles_ppu_sawp
 loc_A308:
 		LDA		#$00
 		STA		_nmi_disable_flush
@@ -9299,4 +9301,3 @@ _tlm_A96D:
 		.BYTE $54
 		.BYTE $2F
 		.BYTE $FF
-		.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF

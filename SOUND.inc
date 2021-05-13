@@ -1,5 +1,5 @@
 
-		ORG $C300
+;		ORG $C300
 
 ; =============== S U B	R O U T	I N E =======================================
 j__apu_play:
@@ -2861,8 +2861,3 @@ byte_DF5F:
 byte_DF91:
 		.BYTE $83,$E2,$1E,$22,$19,$22,$EF,$E2,$1B,$22,$16,$22,$EF,$20,$23,$1B
 		.BYTE $23,$19,$23,$20,$23,$82,$1E,$7F,$7F,$12,$FE
-		.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
-		.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
-		.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
-		.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
-		.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF

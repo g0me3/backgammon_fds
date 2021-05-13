@@ -4,4 +4,4 @@
 
 		INCLUDE	"..\macroses.inc"
 
-		INCBIN	"..\chr\!game.chr"
+		INCBIN	"..\chr\BG-CHR00.chr"
