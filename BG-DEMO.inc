@@ -39,7 +39,7 @@ _demo00:
 		JSR		_main02_sub00_game_init
 		JSR		_main02_sub01
 		JSR		_nmi_off
-		JSR		sub_6B42
+		JSR		_game_field_draw
 		JSR		_nmi_on
 		LDY		#$01
 		JSR		_pal_fade_outA
@@ -727,9 +727,9 @@ _demo08:
 ; =============== S U B	R O U T	I N E =======================================
 sub_270B6:
 		JSR		_spr_clear
-		JSR		sub_9AA9
-		LDX		#<[_tlm_95FA]
-		LDY		#>[_tlm_95FA]
+		JSR		_ppu_nt_clear
+		LDX		#<[_tlm_game_field]
+		LDY		#>[_tlm_game_field]
 		JSR		_ppu_tlm_unpack
 		JSR		sub_96C5
 		LDA		#$00

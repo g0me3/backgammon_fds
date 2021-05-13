@@ -440,7 +440,7 @@ sub_AC9B:
 		LDA		#$20
 		LDX		#$2F
 		LDY		#$00
-		JSR		_ppu_fill
+		JSR		_ppu_fill_ex
 		LDA		#$10
 		STA		_tmp4Bb
 		LDA		#$20

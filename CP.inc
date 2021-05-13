@@ -2,22 +2,6 @@
 ;		ORG $A980
 
 ; =============== S U B	R O U T	I N E =======================================
-_j_cp_sub00:
-		JMP		_cp_sub00
-
-; =============== S U B	R O U T	I N E =======================================
-_j_cp_sub01:
-		JMP		_cp_sub01
-
-; =============== S U B	R O U T	I N E =======================================
-_j_cp_sub02:
-		JMP		_cp_sub02
-
-; =============== S U B	R O U T	I N E =======================================
-_j_cp_sub03_field_and_dice_editor:
-		JMP		_cp_sub03_field_and_dice_editor
-
-; =============== S U B	R O U T	I N E =======================================
 _cp_sub04:
 		LDA		#$40
 		STA		byte_B6

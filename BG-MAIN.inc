@@ -28,7 +28,7 @@ _tlm_res_6012:
 		.BYTE $10
 		.WORD $521
 		.BYTE $12
-		.BYTE $2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E
+		.BYTE __,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__
 		.WORD $1721
 		.BYTE $01
 		.BYTE $2D
@@ -37,7 +37,7 @@ _tlm_res_6012:
 		.BYTE $10
 		.WORD $2521
 		.BYTE $52
-		.BYTE $2E
+		.BYTE __
 		.WORD $3721
 		.BYTE $01
 		.BYTE $2D
@@ -51,7 +51,7 @@ _tlm_res_6044:
 		.BYTE $10
 		.WORD $4521
 		.BYTE $52
-		.BYTE $2E
+		.BYTE __
 		.WORD $5721
 		.BYTE $01
 		.BYTE $2D
@@ -60,7 +60,7 @@ _tlm_res_6044:
 		.BYTE $10
 		.WORD $6521
 		.BYTE $12
-		.BYTE $2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E
+		.BYTE __,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__
 		.WORD $7721
 		.BYTE $01
 		.BYTE $2D
@@ -71,21 +71,21 @@ _tlm_res_606E:
 		.BYTE $10
 		.WORD $A521
 		.BYTE $47
-		.BYTE $2E
+		.BYTE __
 		.WORD $AA21
 		.BYTE $0E
-		.BYTE $2E,$2E,$2E,$2E,$2E,$20,$1F,$19,$1E,$24,$2E,$2E,$2E,$2D
+		.BYTE __,__,__,__,__,_P,_O,_I,_N,_T,__,__,__,$2D
 _tlm_res_6088:
 		.BYTE $23
 		.WORD $0622
 		.BYTE $14
-		.BYTE $10,$2E,$2E,$2E,$2E,$20,$1F,$19,$1E,$24,$23,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2D
+		.BYTE $10,__,__,__,__,_P,_O,_I,_N,_T,_S,__,__,__,__,__,__,__,__,$2D
 		.WORD $2622
 		.BYTE $01
 		.BYTE $10
 		.WORD $2722
 		.BYTE $52
-		.BYTE $2E
+		.BYTE __
 		.WORD $3922
 		.BYTE $01
 		.BYTE $2D
@@ -96,13 +96,13 @@ _tlm_res_60AC:
 		.BYTE $10
 		.WORD $4722
 		.BYTE $52
-		.BYTE $2E
+		.BYTE __
 		.WORD $5922
 		.BYTE $01
 		.BYTE $2D
 		.WORD $6622
 		.BYTE $14
-		.BYTE $10,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2D
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
 _tlm_res_60D0:
 		.BYTE $23
 		.WORD $8622
@@ -110,13 +110,13 @@ _tlm_res_60D0:
 		.BYTE $10
 		.WORD $8722
 		.BYTE $52
-		.BYTE $2E
+		.BYTE __
 		.WORD $9922
 		.BYTE $01
 		.BYTE $2D
 		.WORD $A622
 		.BYTE $14
-		.BYTE $10,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2D
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
 _tlm_60F4_w:
 		.WORD $8621
 		.BYTE $01
@@ -132,33 +132,33 @@ _tlm_60F4_w:
 		.BYTE $10
 		.WORD $A721
 		.BYTE $50
-		.BYTE $2E
+		.BYTE __
 		.WORD $B721
 		.BYTE $01
 		.BYTE $2D
 		.WORD $C621
 		.BYTE $12
 _tlm_60F4_p0_w:
-		.BYTE $10,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2D
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
 		.WORD $E621
 		.BYTE $01
 		.BYTE $10
 		.WORD $E721
 		.BYTE $50
-		.BYTE $2E
+		.BYTE __
 		.WORD $F721
 		.BYTE $01
 		.BYTE $2D
 		.WORD $0622
 		.BYTE $12
 _tlm_60F4_p1_w:
-		.BYTE $10,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2D
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
 		.WORD $2622
 		.BYTE $01
 		.BYTE $10
 		.WORD $2722
 		.BYTE $50
-		.BYTE $2E
+		.BYTE __
 		.WORD $3722
 		.BYTE $01
 		.BYTE $2D
@@ -176,13 +176,13 @@ _tlm_res_615B:
 		.BYTE $24
 		.WORD $C521
 		.BYTE $14
-		.BYTE $10,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2D
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
 		.WORD $E521
 		.BYTE $01
 		.BYTE $10
 		.WORD $E621
 		.BYTE $52
-		.BYTE $2E
+		.BYTE __
 		.WORD $F821
 		.BYTE $01
 		.BYTE $2D
@@ -191,13 +191,13 @@ _tlm_res_6180:
 		.BYTE $24
 		.WORD $522
 		.BYTE $14
-		.BYTE $10,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2D
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
 		.WORD $2522
 		.BYTE $01
 		.BYTE $10
 		.WORD $2622
 		.BYTE $52
-		.BYTE $2E
+		.BYTE __
 		.WORD $3822
 		.BYTE $01
 		.BYTE $2D
@@ -206,7 +206,7 @@ _tlm_res_61A5:
 		.BYTE $24
 		.WORD $4522
 		.BYTE $14
-		.BYTE $10,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2E,$2D
+		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
 		.WORD $6522
 		.BYTE $01
 		.BYTE $0D
@@ -251,10 +251,10 @@ _pal3_p0_w:
 _pal3_p1_w:
 		.BYTE $17,$16,$25,$0F
 		.BYTE $FF
-_tlm_6225_w:
+_tlm_points_match_w:
 		.WORD   0
 		.BYTE $0C
-		.BYTE $20,$1F,$19,$1E,$24,$23,$2E,$1D,$11,$24,$13,$18
+		.BYTE _P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H
 		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -303,7 +303,7 @@ loc_6262:
 		STA		_ppu_ctrl_shadow
 		LDA		#$06
 		STA		_ppu_mask_shadow
-		JSR		sub_9AA9
+		JSR		_ppu_nt_clear
 		JSR		_spr_clear
 		STY		$2005
 		STY		$2005
@@ -482,12 +482,12 @@ _main02_game:
 		.WORD _main02_sub05_player_gets_x_points_draw
 		.WORD _main02_sub06
 		.WORD _main02_sub07
-		.WORD _main02_sub08
-		.WORD _main02_sub09
+		.WORD _main02_sub08_draw_winner
+		.WORD _main02_sub09_win_animate
 		.WORD _main02_sub0A_stage_complete
 		.WORD _main02_sub0A_stage_complete
-		.WORD _main02_sub0C
-		.WORD _main02_sub0D
+		.WORD _main02_sub0C_tournament_name
+		.WORD _main02_sub0D_delay
 
 ; =============== S U B	R O U T	I N E =======================================
 _main02_sub00_game_init:
@@ -598,7 +598,7 @@ _main02_sub02:
 		JSR		_ppu_render_off
 		LDA		#$01
 		STA		_nmi_disable_flush
-		JSR		sub_6B42
+		JSR		_game_field_draw
 		LDX		#<[_tlm_96A6]
 		LDY		#>[_tlm_96A6]
 		JSR		_ppu_tlm_unpack
@@ -873,20 +873,20 @@ loc_667F:
 		LDA		byte_31B
 		CMP		#$01
 		BNE		loc_66B4
-		LDY		#>[_tlm_patch_6820]
-		LDA		#<[_tlm_patch_6820]
+		LDY		#>[_tlm_patch_regular_win]
+		LDA		#<[_tlm_patch_regular_win]
 		LDX		#$14
 		BNE		loc_66C6
 loc_66B4:
 		CMP		#$02
 		BNE		loc_66C0
-		LDY		#>[_tlm_patch_682C]
-		LDA		#<[_tlm_patch_682C]
+		LDY		#>[_tlm_patch_gammon]
+		LDA		#<[_tlm_patch_gammon]
 		LDX		#$12
 		BNE		loc_66C6
 loc_66C0:
-		LDY		#>[_tlm_patch_6834]
-		LDA		#<[_tlm_patch_6834]
+		LDY		#>[_tlm_patch_backgammon]
+		LDA		#<[_tlm_patch_backgammon]
 		LDX		#$14
 loc_66C6:
 		JSR		_tlm_B1_ram_patch_queue
@@ -902,8 +902,8 @@ loc_66C6:
 		LDA		word_5A2+1
 		LDX		#$21
 		JSR		_tlm_B1_ram_patch_queue
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$1A
 		JSR		_tlm_B1_ram_patch_queue
 		LDA		#$A5
@@ -921,15 +921,15 @@ loc_6701:
 		BNE		loc_672C
 		LDA		_cur_player_idx
 		BNE		loc_6716
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$1A
 		JSR		_tlm_B1_ram_patch_queue
 		LDX		#$1F
 		BNE		loc_6721
 loc_6716:
-		LDY		#>[_tlm_patch_6851]
-		LDA		#<[_tlm_patch_6851]
+		LDY		#>[_tlm_patch_computer]
+		LDA		#<[_tlm_patch_computer]
 		LDX		#$1C
 		JSR		_tlm_B1_ram_patch_queue
 		LDX		#$21
@@ -943,8 +943,8 @@ loc_672C:
 		LDA		word_5A2+1
 		LDX		#$21
 		JSR		_tlm_B1_ram_patch_queue
-		LDY		#>[_tlm_patch_6851]
-		LDA		#<[_tlm_patch_6851]
+		LDY		#>[_tlm_patch_computer]
+		LDA		#<[_tlm_patch_computer]
 		LDX		#$1C
 		JSR		_tlm_B1_ram_patch_queue
 loc_6740:
@@ -1083,27 +1083,27 @@ _tlm_res_6807:
 		.WORD $F721
 		.BYTE $01
 		.BYTE $0F
-_tlm_patch_6820:
+_tlm_patch_regular_win:
 		.BYTE $0B
-		.BYTE $22,$15,$17,$25,$1C,$11,$22,$2E,$27,$19,$1E
-_tlm_patch_682C:
+		.BYTE _R,_E,_G,_U,_L,_A,_R,__,_W,_I,_N
+_tlm_patch_gammon:
 		.BYTE $07
-		.BYTE $17,$11,$1D,$1D,$1F,$1E,$2A
-_tlm_patch_6834:
+		.BYTE _G,_A,_M,_M,_O,_N,_ex
+_tlm_patch_backgammon:
 		.BYTE $0B
-		.BYTE $12,$11,$13,$1B,$17,$11,$1D,$1D,$1F,$1E,$2A
+		.BYTE _B,_A,_C,_K,_G,_A,_M,_M,_O,_N,_ex
 _tlm_patch_gets:
 		.BYTE $04
-		.BYTE $17,$15,$24,$23
-_unref_tlm_get:
-		.BYTE $04
-		.BYTE $17,$15,$24,$2E
-_tlm_patch_684A:
+		.BYTE _G,_E,_T,_S
+;_unref_tlm_get:
+;		.BYTE $04
+;		.BYTE _G,_E,_T,__
+_tlm_patch_player:
 		.BYTE $06
-		.BYTE $20,$1C,$11,$29,$15,$22
-_tlm_patch_6851:
+		.BYTE _P,_L,_A,_Y,_E,_R
+_tlm_patch_computer:
 		.BYTE $08
-		.BYTE $13,$1F,$1D,$20,$25,$24,$15,$22
+		.BYTE _C,_O,_M,_P,_U,_T,_E,_R
 
 ; =============== S U B	R O U T	I N E =======================================
 _main02_sub06:
@@ -1142,21 +1142,21 @@ loc_6888:
 		LDA		#$03
 		STA		byte_3D,Y
 loc_689F:
-		LDY		#>[_tlm_res_6A12]
-		LDX		#<[_tlm_res_6A12]
+		LDY		#>[_tlm_res_frameA]
+		LDX		#<[_tlm_res_frameA]
 		JSR		_tlm_B1_ram_queue
 		JSR		_sync
 		LDY		#>[_tlm_res_6088]
 		LDX		#<[_tlm_res_6088]
 		JSR		_tlm_B1_ram_queue
-		LDY		#>[_tlm_patch_6A0B]
-		LDA		#<[_tlm_patch_6A0B]
+		LDY		#>[_tlm_patch_matchB]
+		LDA		#<[_tlm_patch_matchB]
 		LDX		byte_554
 		BEQ		loc_68CA
 		LDX		#$12
 		JSR		_tlm_B1_ram_patch_queue
-		LDY		#>[_tlm_patch_6A03]
-		LDA		#<[_tlm_patch_6A03]
+		LDY		#>[_tlm_patch_endless]
+		LDA		#<[_tlm_patch_endless]
 		LDX		#$0C
 		JSR		_tlm_B1_ram_patch_queue
 		JMP		loc_68F4
@@ -1191,8 +1191,8 @@ loc_68F4:
 		ASL
 		ORA		_2p_cpu_ctrl_flag
 		BNE		loc_691A
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$18
 		JSR		_tlm_B1_ram_patch_queue
 		LDA		#$A5
@@ -1203,14 +1203,14 @@ loc_68F4:
 loc_691A:
 		CMP		#$01
 		BNE		loc_6929
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$19
 		JSR		_tlm_B1_ram_patch_queue
 		BEQ		loc_6932
 loc_6929:
-		LDY		#>[_tlm_patch_6851]
-		LDA		#<[_tlm_patch_6851]
+		LDY		#>[_tlm_patch_computer]
+		LDA		#<[_tlm_patch_computer]
 		LDX		#$18
 		JSR		_tlm_B1_ram_patch_queue
 loc_6932:
@@ -1251,8 +1251,8 @@ loc_6973:
 		ASL
 		ORA		_2p_cpu_ctrl_flag
 		BNE		loc_699E
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$18
 		JSR		_tlm_B1_ram_patch_queue
 		LDA		#$A5
@@ -1263,14 +1263,14 @@ loc_6973:
 loc_699E:
 		CMP		#$01
 		BNE		loc_69AD
-		LDY		#>[_tlm_patch_6851]
-		LDA		#<[_tlm_patch_6851]
+		LDY		#>[_tlm_patch_computer]
+		LDA		#<[_tlm_patch_computer]
 		LDX		#$1A
 		JSR		_tlm_B1_ram_patch_queue
 		BEQ		loc_69B6
 loc_69AD:
-		LDY		#>[_tlm_patch_6851]
-		LDA		#<[_tlm_patch_6851]
+		LDY		#>[_tlm_patch_computer]
+		LDA		#<[_tlm_patch_computer]
 		LDX		#$18
 		JSR		_tlm_B1_ram_patch_queue
 loc_69B6:
@@ -1280,8 +1280,8 @@ loc_69B6:
 		STA		byte_5B
 		JSR		sub_69D0
 		JSR		_sync
-		LDY		#>[_tlm_res_6A2B]
-		LDX		#<[_tlm_res_6A2B]
+		LDY		#>[_tlm_res_frameB]
+		LDX		#<[_tlm_res_frameB]
 		JSR		_tlm_B1_ram_queue
 		LDA		#$B4
 		JMP		_wait_for_nmi
@@ -1313,13 +1313,13 @@ loc_69FA:
 		STA		_nmi_tlmB1_ram+$1E
 		RTS
 ; ---------------------------------------------------------------------------
-_tlm_patch_6A03:
+_tlm_patch_endless:
 		.BYTE $07
-		.BYTE $15,$1E,$14,$1C,$15,$23,$23
-_tlm_patch_6A0B:
+		.BYTE _E,_N,_D,_L,_E,_S,_S
+_tlm_patch_matchB:
 		.BYTE $06
-		.BYTE $2E,$1D,$11,$24,$13,$18
-_tlm_res_6A12:
+		.BYTE __,_M,_A,_T,_C,_H
+_tlm_res_frameA:
 		.BYTE $18
 		.WORD $C621
 		.BYTE $01
@@ -1339,7 +1339,7 @@ _tlm_res_6A12:
 		.WORD $F921
 		.BYTE $01
 		.BYTE $2D
-_tlm_res_6A2B:
+_tlm_res_frameB:
 		.BYTE $18
 		.WORD $C622
 		.BYTE $01
@@ -1399,7 +1399,7 @@ loc_6A7B:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_main02_sub08:
+_main02_sub08_draw_winner:
 		LDA		#$00
 		STA		byte_539
 		LDA		_game_mode_idx
@@ -1415,7 +1415,7 @@ loc_6A9D:
 		JSR		_ppu_render_off
 		LDA		#$01
 		STA		_nmi_disable_flush
-		JSR		sub_6B42
+		JSR		_game_field_draw
 		LDA		#$00
 		STA		_nmi_disable_flush
 		LDY		#$0F
@@ -1429,13 +1429,13 @@ loc_6AAF:
 		ASL
 		ORA		_2p_cpu_ctrl_flag
 		BNE		loc_6AE4
-		LDY		#>[_tlm_patch_6B7A]
-		LDA		#<[_tlm_patch_6B7A]
-		LDX		#$28
-		JSR		_tlm_60F4_patch_write
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$23
+		JSR		_tlm_60F4_patch_write
+		LDY		#>[_tlm_patch_is]
+		LDA		#<[_tlm_patch_is]
+		LDX		#$28
 		JSR		_tlm_60F4_patch_write
 		LDA		#$A5
 		STA		_tlm_60F4_p0_w+9
@@ -1450,34 +1450,34 @@ loc_6ADE:
 loc_6AE4:
 		CMP		#$01
 		BNE		loc_6B0C
-		LDY		#>[_tlm_patch_6B7A]
-		LDA		#<[_tlm_patch_6B7A]
-		LDX		#$26
-		JSR		_tlm_60F4_patch_write
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$23
+		JSR		_tlm_60F4_patch_write
+		LDY		#>[_tlm_patch_is]
+		LDA		#<[_tlm_patch_is]
+		LDX		#$26
 		JSR		_tlm_60F4_patch_write
 		LDA		_cur_player_idx
 		BEQ		loc_6B1E
 		STA		byte_539
-		LDY		#>[_tlm_patch_6B88]
-		LDA		#<[_tlm_patch_6B88]
+		LDY		#>[_tlm_patch_the_loser]
+		LDA		#<[_tlm_patch_the_loser]
 		LDX		#$4A
 		JSR		_tlm_60F4_patch_write
 		BEQ		loc_6B27
 loc_6B0C:
-		LDY		#>[_tlm_patch_6B7A]
-		LDA		#<[_tlm_patch_6B7A]
-		LDX		#$28
-		JSR		_tlm_60F4_patch_write
-		LDY		#>[_tlm_patch_6851]
-		LDA		#<[_tlm_patch_6851]
+		LDY		#>[_tlm_patch_computer]
+		LDA		#<[_tlm_patch_computer]
 		LDX		#$25
 		JSR		_tlm_60F4_patch_write
+		LDY		#>[_tlm_patch_is]
+		LDA		#<[_tlm_patch_is]
+		LDX		#$28
+		JSR		_tlm_60F4_patch_write
 loc_6B1E:
-		LDY		#>[_tlm_patch_6B7D]
-		LDA		#<[_tlm_patch_6B7D]
+		LDY		#>[_tlm_patch_the_winner]
+		LDA		#<[_tlm_patch_the_winner]
 		LDX		#$4A
 		JSR		_tlm_60F4_patch_write
 loc_6B27:
@@ -1496,11 +1496,11 @@ loc_6B27:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_6B42:
-		JSR		sub_9AA9
+_game_field_draw:
+		JSR		_ppu_nt_clear
 		JSR		_spr_clear
-		LDX		#<[_tlm_95FA]
-		LDY		#>[_tlm_95FA]
+		LDX		#<[_tlm_game_field]
+		LDY		#>[_tlm_game_field]
 		JSR		_ppu_tlm_unpack
 		JSR		sub_6B92
 		JSR		sub_96C5
@@ -1531,15 +1531,15 @@ loc_6B70:
 		BNE		loc_6B70
 		RTS
 ; ---------------------------------------------------------------------------
-_tlm_patch_6B7A:
+_tlm_patch_is:
 		.BYTE $02
-		.BYTE $19,$23
-_tlm_patch_6B7D:
+		.BYTE _I,_S
+_tlm_patch_the_winner:
 		.BYTE $0A
-		.BYTE $24,$18,$15,$2E,$27,$19,$1E,$1E,$15,$22
-_tlm_patch_6B88:
+		.BYTE _T,_H,_E,__,_W,_I,_N,_N,_E,_R
+_tlm_patch_the_loser:
 		.BYTE $09
-		.BYTE $24,$18,$15,$2E,$1C,$1F,$23,$15,$22
+		.BYTE _T,_H,_E,__,_L,_O,_S,_E,_R
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_6B92:
@@ -1563,7 +1563,7 @@ byte_6BAD:
 		.BYTE $00,$CC,$88,$88,$AA,$22,$22,$66,$AA,$88,$CC,$88,$33,$22,$22
 
 ; =============== S U B	R O U T	I N E =======================================
-_main02_sub09:
+_main02_sub09_win_animate:
 		LDA		_nmi_counter
 		BNE		loc_6BC7
 		DEC		_tmp4Bb
@@ -1694,15 +1694,15 @@ _ending_screen:
 		JMP		_file_load
 
 ; =============== S U B	R O U T	I N E =======================================
-_main02_sub0C:
+_main02_sub0C_tournament_name:
 		JSR		_ppu_render_off
 		LDA		#$01
 		STA		_nmi_disable_flush
 		JSR		sub_7A91
-		JSR		sub_9AA9
+		JSR		_ppu_nt_clear
 		JSR		_spr_clear
-		LDX		#<[_tlm_6D3E]
-		LDY		#>[_tlm_6D3E]
+		LDX		#<[_tlm_tournament_name_frame]
+		LDY		#>[_tlm_tournament_name_frame]
 		JSR		_ppu_tlm_unpack
 		LDY		#$21
 		LDX		#$CB
@@ -1712,15 +1712,15 @@ _main02_sub0C:
 		LDY		#$21
 		LDX		#$CC
 loc_6CF5:
-		STY		_tlm_6225_w
-		STX		_tlm_6225_w+1
-		LDX		#<[_tlm_6225_w]
-		LDY		#>[_tlm_6225_w]
+		STY		_tlm_points_match_w
+		STX		_tlm_points_match_w+1
+		LDX		#<[_tlm_points_match_w]
+		LDY		#>[_tlm_points_match_w]
 		JSR		_ppu_tlm_unpack
 		LDY		_match_idx
-		LDA		off_6DC3,Y
+		LDA		_game_name_tlm_li_lo,Y
 		TAX
-		LDA		off_6DC7,Y
+		LDA		_game_name_tlm_li_hi,Y
 		TAY
 		JSR		_ppu_tlm_unpack
 		LDA		#$00
@@ -1743,7 +1743,7 @@ loc_6CF5:
 		INY
 		JMP		_pal_fade_outA
 ; ---------------------------------------------------------------------------
-_tlm_6D3E:
+_tlm_tournament_name_frame:
 		.WORD $2521
 		.BYTE $01
 		.BYTE $0A
@@ -1849,40 +1849,39 @@ _tlm_6DBD:
 		.BYTE $02
 		.BYTE $01,$05
 		.BYTE $FF
-off_6DC3:
-		.BYTE <[_tlm_6DCB]
-		.BYTE <[_tlm_6DDD]
-		.BYTE <[_tlm_6DF0]
-		.BYTE <[_tlm_6E06]
-off_6DC7:
-		.BYTE >[_tlm_6DCB]
-		.BYTE >[_tlm_6DDD]
-		.BYTE >[_tlm_6DF0]
-		.BYTE >[_tlm_6E06]
-_tlm_6DCB:
+_game_name_tlm_li_lo:
+		.BYTE <[_tlm_first_game]
+		.BYTE <[_tlm_second_game]
+		.BYTE <[_tlm_semifinal_game]
+		.BYTE <[_tlm_final_game]
+_game_name_tlm_li_hi:
+		.BYTE >[_tlm_first_game]
+		.BYTE >[_tlm_second_game]
+		.BYTE >[_tlm_semifinal_game]
+		.BYTE >[_tlm_final_game]
+_tlm_first_game:
 		.WORD $6921
 		.BYTE $0E
-		.BYTE $24,$18,$15,$2E,$16,$19,$22,$23,$24,$2E,$17,$11,$1D,$15
+		.BYTE _T,_H,_E,__,_F,_I,_R,_S,_T,__,_G,_A,_M,_E
 		.BYTE $FF
-_tlm_6DDD:
+_tlm_second_game:
 		.WORD $6821
 		.BYTE $0F
-		.BYTE $24,$18,$15,$2E,$23,$15,$13,$1F,$1E,$14,$2E,$17,$11,$1D,$15
+		.BYTE _T,_H,_E,__,_S,_E,_C,_O,_N,_D,__,_G,_A,_M,_E
 		.BYTE $FF
-_tlm_6DF0:
+_tlm_semifinal_game:
 		.WORD $6721
 		.BYTE $12
-		.BYTE $24,$18,$15,$2E,$23,$15,$1D,$19,$16,$19,$1E,$11,$1C,$2E,$17,$11
-		.BYTE $1D,$15
+		.BYTE _T,_H,_E,__,_S,_E,_M,_I,_F,_I,_N,_A,_L,__,_G,_A,_M,_E
 		.BYTE $FF
-_tlm_6E06:
+_tlm_final_game:
 		.WORD $6921
 		.BYTE $0E
-		.BYTE $24,$18,$15,$2E,$16,$19,$1E,$11,$1C,$2E,$17,$11,$1D,$15
+		.BYTE _T,_H,_E,__,_F,_I,_N,_A,_L,__,_G,_A,_M,_E
 		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
-_main02_sub0D:
+_main02_sub0D_delay:
 		DEC		byte_55B
 		BNE		nullsub_3
 		LDY		#$01
@@ -1919,8 +1918,8 @@ _main_subD:
 		JSR		_tlm_B1_ram_queue
 		LDA		byte_554
 		BEQ		loc_6E6F
-		LDY		#>[_tlm_patch_6A03]
-		LDA		#<[_tlm_patch_6A03]
+		LDY		#>[_tlm_patch_endless]
+		LDA		#<[_tlm_patch_endless]
 		LDX		#$0C
 		JSR		_tlm_B1_ram_patch_queue
 		LDX		#$12
@@ -1944,14 +1943,14 @@ loc_6E6F:
 loc_6E8E:
 		STY		_nmi_tlmB1_ram+5
 		STX		_nmi_tlmB1_ram+6
-		LDY		#>[byte_6FD9]
-		LDA		#<[byte_6FD9]
+		LDY		#>[_tlm_patch_points]
+		LDA		#<[_tlm_patch_points]
 		LDX		#$0D
 		JSR		_tlm_B1_ram_patch_queue
 		LDX		#$13
 loc_6E9F:
-		LDY		#>[byte_6FE0]
-		LDA		#<[byte_6FE0]
+		LDY		#>[_tlm_patch_matchA]
+		LDA		#<[_tlm_patch_matchA]
 		JSR		_tlm_B1_ram_patch_queue
 		JSR		_sync
 		LDA		byte_3C
@@ -1978,8 +1977,8 @@ loc_6E9F:
 		ASL
 		ORA		_2p_cpu_ctrl_flag
 		BNE		loc_6EF7
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$0C
 		JSR		_tlm_B1_ram_patch_queue
 		LDA		#$A5
@@ -1990,14 +1989,14 @@ loc_6E9F:
 loc_6EF7:
 		CMP		#$01
 		BNE		loc_6F06
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$0D
 		JSR		_tlm_B1_ram_patch_queue
 		BEQ		loc_6F0F
 loc_6F06:
-		LDY		#>[_tlm_patch_6851]
-		LDA		#<[_tlm_patch_6851]
+		LDY		#>[_tlm_patch_computer]
+		LDA		#<[_tlm_patch_computer]
 		LDX		#$0E
 		JSR		_tlm_B1_ram_patch_queue
 loc_6F0F:
@@ -2026,8 +2025,8 @@ loc_6F0F:
 		ASL
 		ORA		_2p_cpu_ctrl_flag
 		BNE		loc_6F60
-		LDY		#>[_tlm_patch_684A]
-		LDA		#<[_tlm_patch_684A]
+		LDY		#>[_tlm_patch_player]
+		LDA		#<[_tlm_patch_player]
 		LDX		#$0C
 		JSR		_tlm_B1_ram_patch_queue
 		LDA		#$A5
@@ -2038,14 +2037,14 @@ loc_6F0F:
 loc_6F60:
 		CMP		#$01
 		BNE		loc_6F6F
-		LDY		#>[_tlm_patch_6851]
-		LDA		#<[_tlm_patch_6851]
+		LDY		#>[_tlm_patch_computer]
+		LDA		#<[_tlm_patch_computer]
 		LDX		#$0E
 		JSR		_tlm_B1_ram_patch_queue
 		BEQ		loc_6F78
 loc_6F6F:
-		LDY		#>[_tlm_patch_6851]
-		LDA		#<[_tlm_patch_6851]
+		LDY		#>[_tlm_patch_computer]
+		LDA		#<[_tlm_patch_computer]
 		LDX		#$0E
 		JSR		_tlm_B1_ram_patch_queue
 loc_6F78:
@@ -2092,13 +2091,21 @@ byte_6FC9:
 		.BYTE $22,$22,$22,$22,$21,$21,$21,$21
 byte_6FD1:
 		.BYTE $65,$45,$25,$05,$E5,$C5,$A5,$85
-byte_6FD9:
-		.BYTE $06,$20,$1F,$19,$1E,$24,$23
-byte_6FE0:
-		.BYTE $05,$1D,$11,$24,$13,$18
+_tlm_patch_points:
+		.BYTE $06
+		.BYTE _P,_O,_I,_N,_T,_S
+_tlm_patch_matchA:
+		.BYTE $05
+		.BYTE _M,_A,_T,_C,_H
 _tlm_res_6FE6:
-		.BYTE $19,$21,$85,$01,$0A,$21,$86,$52,$0B,$21,$98,$01,$0C,$21,$A5,$01
-		.BYTE $10,$21,$A6,$52,$2E,$21,$B8,$01,$2D,$FF
+		.BYTE $19
+		.BYTE $21,$85,$01,$0A
+		.BYTE $21,$86,$52,$0B
+		.BYTE $21,$98,$01,$0C
+		.BYTE $21,$A5,$01,$10
+		.BYTE $21,$A6,$52,$2E
+		.BYTE $21,$B8,$01,$2D
+		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
 _main_subA_dice_roll_editor:
@@ -3424,7 +3431,7 @@ loc_7D74:
 		JMP		loc_7D82
 ; ---------------------------------------------------------------------------
 loc_7D7F:
-		JSR		_j_cp_sub01
+		JSR		_cp_sub01
 loc_7D82:
 		BEQ		loc_7D6F
 		LDY		#$00
@@ -3973,7 +3980,7 @@ loc_8183:
 		LDA		_pads_held
 		CMP		#$0A
 		BNE		loc_81A6
-		JSR		_j_cp_sub03_field_and_dice_editor
+		JSR		_cp_sub03_field_and_dice_editor
 loc_81A6:
 		LDA		byte_568
 		ORA		byte_57B
@@ -4064,7 +4071,7 @@ _ingame_sub05:
 		STA		byte_321
 		LDA		byte_568
 		BNE		loc_8264
-		JSR		_j_cp_sub00
+		JSR		_cp_sub00
 loc_8264:
 		LDY		byte_321
 		LDA		byte_A2,Y
@@ -5701,7 +5708,7 @@ _ingame_sub10:
 		BEQ		loc_8DC2
 		LDA		_cur_player_idx
 		STA		byte_325
-		JSR		_j_cp_sub02
+		JSR		_cp_sub02
 		BNE		loc_8DE8
 		BEQ		loc_8DD4
 loc_8DC2:
@@ -6396,8 +6403,8 @@ off_9280:
 		.BYTE <[byte_9341]
 		.BYTE <[byte_9361]
 		.BYTE <[byte_9381]
-		.BYTE <[byte_9395]
-		.BYTE <[byte_939F]
+		.BYTE <[_tlm_accept]
+		.BYTE <[_tlm_drop]
 off_928C:
 		.BYTE >[byte_9298]
 		.BYTE >[byte_9299]
@@ -6409,8 +6416,8 @@ off_928C:
 		.BYTE >[byte_9341]
 		.BYTE >[byte_9361]
 		.BYTE >[byte_9381]
-		.BYTE >[byte_9395]
-		.BYTE >[byte_939F]
+		.BYTE >[_tlm_accept]
+		.BYTE >[_tlm_drop]
 byte_9298:
 		.BYTE $FF
 byte_9299:
@@ -6440,10 +6447,16 @@ byte_9361:
 byte_9381:
 		.BYTE $01,$1A,$08,$A6,$2E,$11,$13,$13,$15,$20,$24,$32,$06,$A7,$2E,$14
 		.BYTE $22,$1F,$20,$FF
-byte_9395:
-		.BYTE $02,$27,$06,$11,$13,$13,$15,$20,$24,$FF
-byte_939F:
-		.BYTE $02,$28,$04,$14,$22,$1F,$20,$FF
+_tlm_accept:
+		.WORD $2702
+		.BYTE $06
+		.BYTE _A,_C,_C,_E,_P,_T
+		.BYTE $FF
+_tlm_drop:
+		.WORD $2802
+		.BYTE $04
+		.BYTE _D,_R,_O,_P
+		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_93A7:
@@ -6723,7 +6736,7 @@ _ppu_pal7:
 		.BYTE $3F,$00,$20,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F
 		.BYTE $0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F
 		.BYTE $0F,$0F,$0F,$FF
-_tlm_95FA:
+_tlm_game_field:
 		.BYTE $20,$40,$4E,$46,$20,$4E,$02,$43,$44,$20,$50,$4E,$46,$20,$5E,$02
 		.BYTE $45,$47,$20,$60,$02,$40,$41,$20,$62,$4C,$52,$20,$6E,$02,$42,$54
 		.BYTE $20,$70,$4C,$52,$20,$7C,$04,$55,$56,$57,$83,$20,$80,$D8,$2F,$20
@@ -6764,11 +6777,11 @@ sub_96BC:
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_96C5:
-		LDX		#$03
-		LDY		#$C0
+		LDX		#>[byte_3C0]
+		LDY		#<[byte_3C0]
 		LDA		_cur_player_idx
 		BEQ		loc_96CF
-		LDY		#$E0
+		LDY		#<[byte_3E0]
 loc_96CF:
 		STX		byte_91
 		STY		byte_90
@@ -6779,10 +6792,10 @@ loc_96D5:
 		INY
 		CPY		#$1A
 		BNE		loc_96D5
-		LDY		#$E0
+		LDY		#<[byte_3E0]
 		LDA		_cur_player_idx
 		BEQ		loc_96E7
-		LDY		#$C0
+		LDY		#<[byte_3C0]
 loc_96E7:
 		STY		byte_90
 		LDY		#$00
@@ -7405,13 +7418,15 @@ loc_9A96:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_9AA9:
+_ppu_nt_clear:
 		LDA		#$20
 		LDX		#$2F
 		LDY		#$00
 
+; !FALLTHROUGH!
+
 ; =============== S U B	R O U T	I N E =======================================
-_ppu_fill:
+_ppu_fill_ex:
 		STX		byte_12
 		STY		byte_13
 		STA		word_10+1
@@ -7966,7 +7981,7 @@ _file_load:
 		LDA		#$20
 		LDX		#$2F
 		LDY		#$00
-		JSR		_ppu_fill
+		JSR		_ppu_fill_ex
 ;		LDX		#<[_tlm_9E36]
 ;		LDY		#>[_tlm_9E36]
 ;		JSR		_ppu_tlm_unpack
@@ -8075,7 +8090,7 @@ _fds_file_load:
 ;		JSR		_nmi_on
 ;		JSR		_ppu_render_off
 ;		JSR		_nmi_off
-;		JSR		sub_9AA9
+;		JSR		_ppu_nt_clear
 ;		LDX		#<[_tlm_9E36]
 ;		LDY		#>[_tlm_9E36]
 ;		JSR		_ppu_tlm_unpack
@@ -8632,17 +8647,17 @@ _main00_setup:
 		LDA		_main00_sub_idx
 		JSR		_switch
 ; ---------------------------------------------------------------------------
-		.WORD _main00_sub00_title_idraw
+		.WORD _main00_sub00_title_draw
 		.WORD _main00_sub01_title_init
 		.WORD _main00_sub02_title_input
 		.WORD _main00_sub03_menu_draw
 		.WORD _main00_sub04_menu_input
 		.WORD _main00_sub05_match_menu_draw
 		.WORD _main00_sub06_match_menu_input
-		.WORD _main00_sub07_menu_return
+		.WORD _main00_sub07_menu_restore
 
 ; =============== S U B	R O U T	I N E =======================================
-_main00_sub00_title_idraw:
+_main00_sub00_title_draw:
 		JSR		_randA
 		LDY		#$00
 		STY		byte_FC
@@ -8660,12 +8675,12 @@ _main00_sub00_title_idraw:
 		LDA		#$20
 		LDX		#$2F
 		LDY		#$00
-		JSR		_ppu_fill
+		JSR		_ppu_fill_ex
 		JSR		_spr_clear
 		LDA		#$01
 		STA		_nmi_disable_flush
-		LDX		#<[_tlm_A672]
-		LDY		#>[_tlm_A672]
+		LDX		#<[_tlm_title]
+		LDY		#>[_tlm_title]
 		JSR		_ppu_tlm_unpack
 ;		LDA		_ppu_title_tiles_ppu_swap_flag_w
 ;		BNE		loc_A294
@@ -8822,11 +8837,11 @@ _main00_sub03_menu_draw:
 		LDA		#$20
 		LDX		#$2F
 		LDY		#$00
-		JSR		_ppu_fill
+		JSR		_ppu_fill_ex
 		LDA		#$01
 		STA		_nmi_disable_flush
-		LDX		#<[_tlm_A7A6]
-		LDY		#>[_tlm_A7A6]
+		LDX		#<[_tlm_menu]
+		LDY		#>[_tlm_menu]
 		JSR		_ppu_tlm_unpack
 		LDA		#$00
 		STA		_nmi_disable_flush
@@ -8959,8 +8974,8 @@ _main00_sub05_match_menu_draw:
 		LDY		#$06
 loc_A4A1:
 		STY		_tmp4Bb
-		LDX		off_A4BF,Y
-		LDA		off_A4B8,Y
+		LDX		_tlm_res_match_menu_lib_hi,Y
+		LDA		_tlm_res_match_menu_lib_lo,Y
 		TAY
 		JSR		_tlm_B1_ram_queue
 		JSR		_sync
@@ -8970,22 +8985,22 @@ loc_A4A1:
 		INC		_main00_sub_idx
 		RTS
 ; ---------------------------------------------------------------------------
-off_A4B8:
-		.BYTE >[_tlm_res_A8F5]
-		.BYTE >[_tlm_res_A8DD]
-		.BYTE >[_tlm_res_A8D0]
-		.BYTE >[_tlm_res_A8B8]
-		.BYTE >[_tlm_res_A8AB]
-		.BYTE >[_tlm_res_A893]
-		.BYTE >[_tlm_res_A87A]
-off_A4BF:
-		.BYTE <[_tlm_res_A8F5]
-		.BYTE <[_tlm_res_A8DD]
-		.BYTE <[_tlm_res_A8D0]
-		.BYTE <[_tlm_res_A8B8]
-		.BYTE <[_tlm_res_A8AB]
-		.BYTE <[_tlm_res_A893]
-		.BYTE <[_tlm_res_A87A]
+_tlm_res_match_menu_lib_lo:
+		.BYTE >[_tlm_res_match_menu0]
+		.BYTE >[_tlm_res_match_menu1]
+		.BYTE >[_tlm_res_match_menu2]
+		.BYTE >[_tlm_res_match_menu3]
+		.BYTE >[_tlm_res_match_menu4]
+		.BYTE >[_tlm_res_match_menu5]
+		.BYTE >[_tlm_res_match_menu6]
+_tlm_res_match_menu_lib_hi:
+		.BYTE <[_tlm_res_match_menu0]
+		.BYTE <[_tlm_res_match_menu1]
+		.BYTE <[_tlm_res_match_menu2]
+		.BYTE <[_tlm_res_match_menu3]
+		.BYTE <[_tlm_res_match_menu4]
+		.BYTE <[_tlm_res_match_menu5]
+		.BYTE <[_tlm_res_match_menu6]
 
 ; =============== S U B	R O U T	I N E =======================================
 _main00_sub06_match_menu_input:
@@ -9062,7 +9077,7 @@ byte_A549:
 		.BYTE $00,$00,$09
 
 ; =============== S U B	R O U T	I N E =======================================
-_main00_sub07_menu_return:
+_main00_sub07_menu_restore:
 		LDA		#$F4
 		STA		_spr_buf+4
 		LDY		#$04
@@ -9084,17 +9099,17 @@ loc_A553:
 		RTS
 ; ---------------------------------------------------------------------------
 off_A572:
-		.BYTE >[_tlm_A90E]
-		.BYTE >[_tlm_A931]
-		.BYTE >[_tlm_A954]
-		.BYTE >[_tlm_A964]
-		.BYTE >[_tlm_A96D]
+		.BYTE >[_tlm_res_main_menu_restore0]
+		.BYTE >[_tlm_res_main_menu_restore1]
+		.BYTE >[_tlm_res_main_menu_restore2]
+		.BYTE >[_tlm_res_main_menu_restore3]
+		.BYTE >[_tlm_res_main_menu_restore4]
 off_A577:
-		.BYTE <[_tlm_A90E]
-		.BYTE <[_tlm_A931]
-		.BYTE <[_tlm_A954]
-		.BYTE <[_tlm_A964]
-		.BYTE <[_tlm_A96D]
+		.BYTE <[_tlm_res_main_menu_restore0]
+		.BYTE <[_tlm_res_main_menu_restore1]
+		.BYTE <[_tlm_res_main_menu_restore2]
+		.BYTE <[_tlm_res_main_menu_restore3]
+		.BYTE <[_tlm_res_main_menu_restore4]
 
 ; =============== S U B	R O U T	I N E =======================================
 _tlm_ram_queue22:
@@ -9205,7 +9220,7 @@ _field_pal_patch_lib:
 		.BYTE $3B,$16,$24,$32
 		.BYTE $3C,$16,$35,$3A
 		.BYTE $38,$16,$24,$2B
-_tlm_A672:
+_tlm_title:
 		.BYTE $20,$82,$5D,$76,$20,$C2,$1D,$90,$91,$92,$2F,$94,$2F,$D0,$D1,$D2
 		.BYTE $96,$97,$98,$99,$9A,$2F,$94,$2F,$9B,$9C,$9D,$9B,$9C,$9D,$C8,$C9
 		.BYTE $CA,$9E,$9F,$E6,$20,$E2,$1D,$A0,$A1,$93,$2F,$A4,$2F,$E0,$2F,$E2
@@ -9226,63 +9241,95 @@ _tlm_A672:
 		.BYTE $0C,$2C,$01,$09,$09,$00,$2F,$A6,$AF,$BA,$D8,$7F,$8F,$23,$E2,$04
 		.BYTE $50,$50,$50,$50,$23,$EA,$0C,$80,$A0,$A0,$20,$00,$00,$00,$00,$80
 		.BYTE $A0,$A0,$20,$FF
-_tlm_A7A6:
-		.BYTE $20,$E5,$01,$0A,$20,$E6,$52,$0B,$20,$F8,$01,$0C,$21,$05,$01,$10
-		.BYTE $21,$06,$52,$2E,$21,$18,$01,$2D,$21,$25,$14,$10,$2E,$2E,$2E,$14
-		.BYTE $15,$1D,$1F,$1E,$23,$24,$22,$11,$24,$19,$1F,$1E,$2E,$2E,$2D,$21
-		.BYTE $45,$01,$10,$21,$46,$52,$2E,$21,$58,$01,$2D,$21,$65,$14,$10,$2E
-		.BYTE $2E,$2E,$24,$22,$11,$19,$1E,$19,$1E,$17,$2E,$20,$1C,$11,$29,$2E
-		.BYTE $2E,$2D,$21,$85,$01,$10,$21,$86,$52,$2E,$21,$98,$01,$2D,$21,$A5
-		.BYTE $14,$10,$2E,$2E,$2E,$1D,$11,$24,$13,$18,$2E,$20,$1C,$11,$29,$2E
-		.BYTE $2E,$2E,$2E,$2E,$2D,$21,$C5,$01,$10,$21,$C6,$52,$2E,$21,$D8,$01
-		.BYTE $2D,$21,$E5,$14,$10,$2E,$2E,$2E,$24,$1F,$25,$22,$1E,$11,$1D,$15
-		.BYTE $1E,$24,$2E,$2E,$2E,$2E,$2E,$2D,$22,$05,$01,$10,$22,$06,$52,$2E
-		.BYTE $22,$18,$01,$2D,$22,$25,$14,$10,$2E,$2E,$2E,$02,$2E,$20,$1C,$11
-		.BYTE $29,$15,$22,$23,$2E,$17,$11,$1D,$15,$2E,$2D,$22,$45,$01,$10,$22
-		.BYTE $46,$52,$2E,$22,$58,$01,$2D,$22,$65,$01,$0D,$22,$66,$52,$0E,$22
-		.BYTE $78,$01,$0F,$FF
-_tlm_res_A87A:
-		.BYTE $18,$21,$E8,$01,$0A,$21,$E9,$52,$0B,$21,$FB,$01,$0C,$22,$08,$01
-		.BYTE $10,$22,$09,$52,$2E,$22,$1B,$01,$2D
-_tlm_res_A893:
-		.BYTE $17,$22,$28,$14,$10,$2E,$2E,$2E,$05,$2E,$20,$1F,$19,$1E,$24,$23
-		.BYTE $2E,$1D,$11,$24,$13,$18,$2E,$2D
-_tlm_res_A8AB:
-		.BYTE $0C,$22,$48,$01,$10,$22,$49,$52,$2E,$22,$5B,$01,$2D
-_tlm_res_A8B8:
-		.BYTE $17,$22,$68,$14,$10,$2E,$2E,$01,$01,$2E,$20,$1F,$19,$1E,$24,$23
-		.BYTE $2E,$1D,$11,$24,$13,$18,$2E,$2D
-_tlm_res_A8D0:
-		.BYTE $0C,$22,$88,$01,$10,$22,$89,$52,$2E,$22,$9B,$01,$2D
-_tlm_res_A8DD:
-		.BYTE $17,$22,$A8,$14,$10,$2E,$2E,$2E,$15,$1E,$14,$1C,$15,$23,$23,$2E
-		.BYTE $2E,$1D,$11,$24,$13,$18,$2E,$2D
-_tlm_res_A8F5:
-		.BYTE $18,$22,$C8,$01,$10,$22,$C9,$52,$2E,$22,$DB,$01,$2D,$22,$E8,$01
-		.BYTE $0D,$22,$E9,$52,$0E,$22,$FB,$01,$0F
-_tlm_A90E:
+_tlm_menu:
+		.BYTE $20,$E5,$01,$0A
+		.BYTE $20,$E6,$52,$0B
+		.BYTE $20,$F8,$01,$0C
+		.BYTE $21,$05,$01,$10
+		.BYTE $21,$06,$52,__
+		.BYTE $21,$18,$01,$2D
+		.BYTE $21,$25,$14,$10,__,__,__,_D,_E,_M,_O,_N,_S,_T,_R,_A,_T,_I,_O,_N,__,__,$2D
+		.BYTE $21,$45,$01,$10
+		.BYTE $21,$46,$52,__
+		.BYTE $21,$58,$01,$2D
+		.BYTE $21,$65,$14,$10,__,__,__,_T,_R,_A,_I,_N,_I,_N,_G,__,_P,_L,_A,_Y,__,__,$2D
+		.BYTE $21,$85,$01,$10
+		.BYTE $21,$86,$52,__
+		.BYTE $21,$98,$01,$2D
+		.BYTE $21,$A5,$14,$10,__,__,__,_M,_A,_T,_C,_H,__,_P,_L,_A,_Y,__,__,__,__,__,$2D
+		.BYTE $21,$C5,$01,$10
+		.BYTE $21,$C6,$52,__
+		.BYTE $21,$D8,$01,$2D
+		.BYTE $21,$E5,$14,$10,__,__,__,_T,_O,_U,_R,_N,_A,_M,_E,_N,_T,__,__,__,__,__,$2D
+		.BYTE $22,$05,$01,$10
+		.BYTE $22,$06,$52,__
+		.BYTE $22,$18,$01,$2D
+		.BYTE $22,$25,$14,$10,__,__,__,_2,__,_P,_L,_A,_Y,_E,_R,_S,__,_G,_A,_M,_E,__,$2D
+		.BYTE $22,$45,$01,$10
+		.BYTE $22,$46,$52,__
+		.BYTE $22,$58,$01,$2D
+		.BYTE $22,$65,$01,$0D
+		.BYTE $22,$66,$52,$0E
+		.BYTE $22,$78,$01,$0F
+		.BYTE $FF
+_tlm_res_match_menu6:
+		.BYTE $18
+		.BYTE $21,$E8,$01,$0A
+		.BYTE $21,$E9,$52,$0B
+		.BYTE $21,$FB,$01,$0C
+		.BYTE $22,$08,$01,$10
+		.BYTE $22,$09,$52,$2E
+		.BYTE $22,$1B,$01,$2D
+_tlm_res_match_menu5:
+		.BYTE $17
+		.BYTE $22,$28,$14,$10,__,__,__,_5,__,_P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H,__,$2D
+_tlm_res_match_menu4:
+		.BYTE $0C
+		.BYTE $22,$48,$01,$10
+		.BYTE $22,$49,$52,$2E
+		.BYTE $22,$5B,$01,$2D
+_tlm_res_match_menu3:
+		.BYTE $17
+		.BYTE $22,$68,$14,$10,__,__,_1,_1,__,_P,_O,_I,_N,_T,_S,__,_M,_A,_T,_C,_H,__,$2D
+_tlm_res_match_menu2:
+		.BYTE $0C
+		.BYTE $22,$88,$01,$10
+		.BYTE $22,$89,$52,__
+		.BYTE $22,$9B,$01,$2D
+_tlm_res_match_menu1:
+		.BYTE $17
+		.BYTE $22,$A8,$14,$10,__,__,__,_E,_N,_D,_L,_E,_S,_S,__,__,_M,_A,_T,_C,_H,__,$2D
+_tlm_res_match_menu0:
+		.BYTE $18
+		.BYTE $22,$C8,$01,$10
+		.BYTE $22,$C9,$52,__
+		.BYTE $22,$DB,$01,$2D
+		.BYTE $22,$E8,$01,$0D
+		.BYTE $22,$E9,$52,$0E
+		.BYTE $22,$FB,$01,$0F
+_tlm_res_main_menu_restore0:
 		.WORD $E821
 		.BYTE $14
-		.BYTE $2E,$24,$1F,$25,$22,$1E,$11,$1D,$15,$1E,$24,$2E,$2E,$2E,$2E,$2E,$2D,$2F,$2F,$2F
+		.BYTE __,_T,_O,_U,_R,_N,_A,_M,_E,_N,_T,__,__,__,__,__,$2D,$2F,$2F,$2F
 		.WORD $0822
 		.BYTE $50
-		.BYTE $2E
+		.BYTE __
 		.WORD $1822
 		.BYTE $04
 		.BYTE $2D,$2F,$2F,$2F
 		.BYTE $FF
-_tlm_A931:
+_tlm_res_main_menu_restore1:
 		.WORD $2822
 		.BYTE $14
-		.BYTE $2E,$02,$2E,$20,$1C,$11,$29,$15,$22,$23,$2E,$17,$11,$1D,$15,$2E,$2D,$2F,$2F,$2F
+		.BYTE __,_2,__,_P,_L,_A,_Y,_E,_R,_S,__,_G,_A,_M,_E,__,$2D,$2F,$2F,$2F
 		.WORD $4822
 		.BYTE $50
-		.BYTE $2E
+		.BYTE __
 		.WORD $5822
 		.BYTE $04
 		.BYTE $2D,$2F,$2F,$2F
 		.BYTE $FF
-_tlm_A954:
+_tlm_res_main_menu_restore2:
 		.WORD $6822
 		.BYTE $50
 		.BYTE $0E
@@ -9293,7 +9340,7 @@ _tlm_A954:
 		.BYTE $54
 		.BYTE $2F
 		.BYTE $FF
-_tlm_A964:
+_tlm_res_main_menu_restore3:
 		.WORD $A822
 		.BYTE $54
 		.BYTE $2F
@@ -9301,7 +9348,7 @@ _tlm_A964:
 		.BYTE $54
 		.BYTE $2F
 		.BYTE $FF
-_tlm_A96D:
+_tlm_res_main_menu_restore4:
 		.WORD $E822
 		.BYTE $54
 		.BYTE $2F
