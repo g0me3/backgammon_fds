@@ -48,12 +48,17 @@ loc_6262:
 		STA		_ppu_ctrl_shadow
 		LDA		#$06
 		STA		_ppu_mask_shadow
-		JSR		_ppu_nt_clear
+		JSR		_ppu_nt_clear0
+		JSR		_ppu_nt_clear1
 		JSR		_spr_clear
 		STY		$2005
 		STY		$2005
-;		LDA		#$2F
-;		JSR		sub_9C7F
+		LDX		#[_pal_end-_pal1+1]
+.set_field_loop:
+		LDA		_pal1,X
+		STA		_pal_buf1,X
+		DEX
+		BPL		.set_field_loop
 		JSR		_main_programm_load
 
 ; !FALLTHROUGH!
@@ -167,7 +172,7 @@ _main00_sub00_title_draw:
 		JSR		_ppu_render_off
 ;		LDA		#$2F
 ;		JSR		sub_9C7F
-		JSR		_ppu_nt_clear
+		JSR		_ppu_nt_clear0
 		JSR		_spr_clear
 		LDA		#$01
 		STA		_nmi_disable_flush
@@ -321,7 +326,7 @@ _main00_sub03_menu_draw:
 		JSR		_ppu_render_off
 ;		LDA		#$2F
 ;		JSR		sub_9C7F
-		JSR		_ppu_nt_clear
+		JSR		_ppu_nt_clear0
 		LDA		#$01
 		STA		_nmi_disable_flush
 		LDX		#<[_tlm_menu]
@@ -407,8 +412,6 @@ _demo_play_start:
 		LDY		#$06
 		JSR		_pal_fade_outB
 		JSR		_wait_for_70_frames
-		LDA		#$01
-		JSR		_unrom_prg_set
 		LDA		#$03
 		JSR		_chr_load
 		JSR		_apu_play_ctrlA_set01
@@ -582,14 +585,6 @@ _set_field_pal:
 		TYA
 		ASL
 		ASL
-		PHA
-		LDX		#[_pal_end-_pal1-1]
-.set_field_loop:
-		LDA		_pal1,X
-		STA		_pal_buf1,X
-		DEX
-		BNE		.set_field_loop
-		PLA
 		TAY
 		LDA		_field_pal_patch_lib,Y
 		STA		[_pal_buf1+[_pal1_p0_w-_pal1]]
@@ -1066,10 +1061,22 @@ IRQ:
 		RTI
 
 ; =============== S U B	R O U T	I N E =======================================
-_ppu_nt_clear:
+_ppu_nt_clear0:
 		LDA		#$20
 		LDX		#$2F
 		LDY		#$00
+		BEQ		_ppu_nt_clear_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_ppu_nt_clear1:
+		LDA		#$28
+		LDX		#$2F
+		LDY		#$00
+
+; !FALLTHROUGH!
+
+; =============== S U B	R O U T	I N E =======================================
+_ppu_nt_clear_ex:
 		STX		byte_12
 		STY		byte_13
 		STA		word_10+1

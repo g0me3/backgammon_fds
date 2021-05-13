@@ -1025,7 +1025,7 @@ loc_6B27:
 ; =============== S U B	R O U T	I N E =======================================
 _game_field_draw:
 		JSR		_spr_clear
-		JSR		_ppu_nt_clear
+		JSR		_ppu_nt_clear0
 		LDX		#<[_tlm_game_field]
 		LDY		#>[_tlm_game_field]
 		JMP		_ppu_tlm_unpack
@@ -1177,7 +1177,7 @@ _main02_sub0C_tournament_name:
 		LDA		#$01
 		STA		_nmi_disable_flush
 		JSR		sub_7A91
-		JSR		_ppu_nt_clear
+		JSR		_ppu_nt_clear0
 		JSR		_spr_clear
 		LDX		#<[_tlm_tournament_name_frame]
 		LDY		#>[_tlm_tournament_name_frame]

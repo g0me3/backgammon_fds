@@ -31,12 +31,10 @@ _ending00:
 		LDY		#$00
 		STY		byte_FC
 		STY		byte_FD
-		JSR		_apu_play_ctrlA_set01
+		JSR		_apu_play_se_reqA_set01
 		LDA		#$98
 		STA		_ppu_ctrl_shadow
 		JSR		_ppu_render_off
-;		LDA		#_pad_tmp1+1
-;		JSR		sub_9C7F
 		JSR		_spr_clear
 		JSR		_nmi_off
 		JSR		sub_AC9B
@@ -47,7 +45,7 @@ _ending00:
 		INC		_ending_sub_idx
 		LDY		#$08
 		JSR		_pal_fade_outA
-		JMP		_apu_play_ctrlE_set10
+		JMP		_apu_play_mus_reqA_set10
 
 ; =============== S U B	R O U T	I N E =======================================
 _ending01:
@@ -206,7 +204,7 @@ _ending07:
 		LDA		#$10
 		STA		_nmi_counter
 loc_AAF3:
-		JSR		sub_ABB3
+		JSR		_ending_stamp_animate
 		JSR		_sync
 		LDA		_nmi_counter
 		BNE		loc_AAF3
@@ -222,11 +220,11 @@ loc_AAF3:
 
 ; =============== S U B	R O U T	I N E =======================================
 _ending09:
-		JSR		_apu_play_ctrlA_set10
+		JSR		_apu_play_se_reqA_set10
 		LDA		#$30
 		STA		_nmi_counter
 loc_AB1A:
-		JSR		sub_ABB3
+		JSR		_ending_stamp_animate
 		JSR		_sync
 		LDA		_nmi_counter
 		BNE		loc_AB1A
@@ -254,7 +252,7 @@ loc_AB26:
 
 ; =============== S U B	R O U T	I N E =======================================
 _ending06:
-		JSR		sub_ABB3
+		JSR		_ending_stamp_animate
 		LDY		#$00
 loc_AB56:
 		LDA		byte_53C,Y
@@ -310,7 +308,7 @@ nullsub_9:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_ABB3:
+_ending_stamp_animate:
 		JSR		sub_AC08
 		LDY		#$00
 		STY		_cur_player_idx
@@ -392,7 +390,7 @@ loc_AC27:
 _skip:
 		LDA		_pads_held
 		BEQ		locret_AC5E
-		JSR		_apu_play_ctrlA_set04
+		JSR		_apu_play_se_reqA_set04
 		PLA
 		PLA
 		LDY		#$08
@@ -423,7 +421,7 @@ _ending0A_secret_staff:
 		LDA		#<[_tlm_staff]
 		STA		_tmp53w
 		INC		_ending_sub_idx
-		JSR		_apu_play_ctrlD_set02
+		JSR		_apu_play_mus_reqB_set02
 		LDY		#$08
 		JMP		_pal_fade_outA
 
@@ -435,7 +433,7 @@ _ending0E:
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_AC9B:
-		JSR		_ppu_nt_clear
+		JSR		_ppu_nt_clear0
 		LDA		#$10
 		STA		_tmp4Bb
 		LDA		#$20
