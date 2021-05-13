@@ -1,8 +1,6 @@
 
-		ORG $A980
-
 ; =============== S U B	R O U T	I N E =======================================
-_demo:
+_main01_demo:
 		LDA		_demo_sub_idx
 		JSR		_switch
 ; ---------------------------------------------------------------------------
@@ -20,8 +18,7 @@ _demo:
 _demo00:
 		LDA		#$27
 		STA		byte_FA
-		JSR		_main02_sub00_game_init
-		JSR		_main02_sub01
+		JSR		_far_main02_init
 		JSR		_nmi_off
 		JSR		_regular_game_field_draw
 		JSR		_nmi_on
@@ -413,7 +410,7 @@ loc_26DDC:
 		STA		_main02_sub_idx
 		LDA		#$06
 		STA		byte_55C
-		JMP		_main_chr_patch_hanler
+		JMP		_main_chr_patch_handler
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_26E01:
@@ -611,7 +608,7 @@ loc_26FD1:
 		STA		_tmp1Cw
 		LDA		byte_27002,Y
 		TAY
-		JSR		sub_A11B
+		JSR		_chr_patch_load_lib
 		LDY		byte_57
 		LDA		_tmp20w
 		CLC
@@ -647,7 +644,7 @@ _demo07:
 		INY
 		STY		byte_55C
 		STY		byte_5D
-		JSR		_main_chr_patch_hanler
+		JSR		_main_chr_patch_handler
 		JSR		_sync
 		JSR		sub_8E47
 		LDY		#$01
@@ -684,7 +681,7 @@ _demo08:
 		LDA		#$03
 		STA		byte_55C
 		STA		byte_5D
-		JSR		_main_chr_patch_hanler
+		JSR		_main_chr_patch_handler
 		JSR		_sync
 		JSR		sub_8E47
 		LDY		#$01
@@ -706,7 +703,7 @@ _demo08:
 		JSR		_wait_for_nmi
 		LDY		#$01
 		JSR		_pal_fade_outB
-		JMP		_common_program_reload
+		JMP		_main_programm_load
 
 ; =============== S U B	R O U T	I N E =======================================
 _demo_game_field_draw:
@@ -759,12 +756,12 @@ loc_27127:
 		LDA		_main02_sub_idx
 		CMP		#$05
 		BCS		loc_2713C
-		JSR		_main02_game
+		JSR		_far_main02_game
 		RTS
 ; ---------------------------------------------------------------------------
 loc_27136:
 		JSR		sub_27282
-		JMP		_demo
+		JMP		_main01_demo
 ; ---------------------------------------------------------------------------
 loc_2713C:
 		INC		_demo_sub_idx

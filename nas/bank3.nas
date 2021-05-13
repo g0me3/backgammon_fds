@@ -4,7 +4,7 @@
 		SEG.u RAM
 		INCLUDE "..\ram.inc"
 
-		SEG   BANK0
+		SEG.u BANK0
 		INCLUDE "..\bank0.inc"
 
 		SEG.u BANK1
@@ -13,5 +13,5 @@
 		SEG.u BANK2
 		INCLUDE "..\bank2.inc"
 
-		SEG.u BANK3
+		SEG   BANK3
 		INCLUDE "..\bank3.inc"

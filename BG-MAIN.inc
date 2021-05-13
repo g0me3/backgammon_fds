@@ -52,13 +52,9 @@ loc_6262:
 		JSR		_spr_clear
 		STY		$2005
 		STY		$2005
-		LDA		#$2F
-		JSR		sub_9C7F
-		LDA		#$00
-		STA		_main_sub_idx
-		STA		_main00_sub_idx
-		STA		byte_567
-		STA		_main02_sub_idx
+;		LDA		#$2F
+;		JSR		sub_9C7F
+		JSR		_main_programm_load
 
 ; !FALLTHROUGH!
 
@@ -67,7 +63,7 @@ _MAIN:
 		JSR		_main_cheat_dice_roll_editor
 		JSR		_main_sub_exec
 		JSR		_main_chr_patch_handler
-		JSR		_main_ingame_points_wnd_draw
+		JSR		_far_ingame_points_wnd_draw
 		JSR		_sync
 		BEQ		_MAIN
 
@@ -85,8 +81,8 @@ _main_cheat_dice_roll_editor:
 		STA		_1p_first_dice_roll_override
 		STA		_2p_first_dice_roll_override
 loc_701A:
-		JSR		_main_ingame_points_wnd_draw
-		JSR		sub_9202
+		JSR		_far_ingame_points_wnd_draw
+		JSR		_far_ingame_message_draw
 		JSR		_sync
 		LDY		_cur_player_idx
 		LDA		_pads_press,Y
@@ -138,7 +134,7 @@ _main_sub_exec:
 		JSR		_switch
 ; ---------------------------------------------------------------------------
 		.WORD _main00_setup
-		.WORD $0000; _demo
+		.WORD _main01_demo
 		.WORD _main02_game
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -169,8 +165,8 @@ _main00_sub00_title_draw:
 		STA		_nmi_tlm_lib_idx
 		JSR		_sync
 		JSR		_ppu_render_off
-		LDA		#$2F
-		JSR		sub_9C7F
+;		LDA		#$2F
+;		JSR		sub_9C7F
 		JSR		_ppu_nt_clear
 		JSR		_spr_clear
 		LDA		#$01
@@ -178,7 +174,8 @@ _main00_sub00_title_draw:
 		LDX		#<[_tlm_title]
 		LDY		#>[_tlm_title]
 		JSR		_ppu_tlm_unpack
-loc_A294:
+		LDA		#$01
+		JSR		_chr_load
 		LDA		#$00
 		STA		_nmi_disable_flush
 		LDY		#$05
@@ -237,7 +234,8 @@ loc_A2EC:
 		JSR		_pal_fade_outB
 		LDA		#$01
 		STA		_nmi_disable_flush
-loc_A308:
+		LDA		#$04
+		JSR		_chr_load
 		LDA		#$00
 		STA		_nmi_disable_flush
 locret_A30C:
@@ -321,8 +319,8 @@ _main00_sub03_menu_draw:
 		LDY		#$04
 		STY		byte_FD
 		JSR		_ppu_render_off
-		LDA		#$2F
-		JSR		sub_9C7F
+;		LDA		#$2F
+;		JSR		sub_9C7F
 		JSR		_ppu_nt_clear
 		LDA		#$01
 		STA		_nmi_disable_flush
@@ -409,11 +407,10 @@ _demo_play_start:
 		LDY		#$06
 		JSR		_pal_fade_outB
 		JSR		_wait_for_70_frames
-		LDA		#$00
-		STA		_load_file_list_idx
-		JSR		_file_load
-;		LDA		#$70
-;		STA		_overlay_loaded_flag_w
+		LDA		#$01
+		JSR		_unrom_prg_set
+		LDA		#$03
+		JSR		_chr_load
 		LDY		#$00
 		STY		_demo_sub_idx
 		INC		_main_sub_idx
@@ -1432,11 +1429,11 @@ sub_9C6D:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_9C7F:
-		STA		byte_FA
-		STA		$4025
-		STA		byte_FA
-		RTS
+;sub_9C7F:
+;		STA		byte_FA
+;		STA		$4025
+;		STA		byte_FA
+;		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
 _increment_rand_seed:
@@ -1551,6 +1548,20 @@ locret_9D53:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
+_main_programm_load:
+		LDA		#$00
+		JSR		_chr_load
+		LDA		#$00
+		JSR		_unrom_prg_set
+		LDA		#$00
+		STA		_main_sub_idx
+		STA		_main00_sub_idx
+		STA		byte_567
+		STA		byte_568
+		STA		_main02_sub_idx
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
 _ending_screen:
 		LDY		#$00
 		STY		_main_sub_idx
@@ -1559,32 +1570,82 @@ _ending_screen:
 		INY
 		JSR		_pal_fade_outB
 		LDA		#$02
-		STA		_load_file_list_idx
-		JSR		_file_load
-;		LDA		#$70
-;		STA		_overlay_loaded_flag_w
+		JSR		_chr_load
 		JSR		_ending
-;		LDY		#$00
-;		STY		_overlay_loaded_flag_w
-		INY
-		STY		_load_file_list_idx
-		JMP		_file_load
+		LDA		#$00
 
 ; =============== S U B	R O U T	I N E =======================================
-_file_load:
-		JSR		_apu_play_ctrlA_set01
-		JSR		_spr_clear
-		LDA		#$06
-		STA		_nmi_tlm_lib_idx
-		JSR		_sync
-		JSR		_ppu_render_off
-		JSR		_nmi_off
-		JSR		_ppu_nt_clear
-		JSR		_nmi_on
-		JSR		_ppu_render_on
-		LDA		#$07
-		STA		_nmi_tlm_lib_idx
-		JMP		_nmi_on
+_chr_load:
+		STA		_chr_data_idx
+;		JSR		_apu_play_ctrlA_set01
+;		JSR		_spr_clear
+;		LDA		#$06
+;		STA		_nmi_tlm_lib_idx
+;		JSR		_sync
+;		JSR		_ppu_render_off
+;		JSR		_nmi_off
+;		JSR		_ppu_nt_clear
+		LDA		_cur_prg_bank
+		PHA
+		LDA		#$02
+		JSR		_unrom_prg_set
+		LDX		_chr_data_idx
+		LDA		_chr_data_list_lo,X
+		STA		_tmp20w
+		LDA		_chr_data_list_hi,X
+		STA		_tmp20w+1
+		LDA		_chr_ofs_list,X
+		TAY
+		LDA		_chr_size_list,X
+		TAX
+		JSR		_chr_copy
+		PLA
+		JMP		_unrom_prg_set
+;		JSR		_nmi_on
+;		JSR		_ppu_render_on
+;		LDA		#$07
+;		STA		_nmi_tlm_lib_idx
+;		JMP		_nmi_on
+_chr_data_list_lo:
+		.BYTE <[_chr00]
+		.BYTE <[_chr10]
+		.BYTE <[_chr30]
+		.BYTE <[_chr20]
+		.BYTE <[_chr00+$1700]
+_chr_data_list_hi:
+		.BYTE >[_chr00]
+		.BYTE >[_chr10]
+		.BYTE >[_chr30]
+		.BYTE >[_chr20]
+		.BYTE >[_chr00+$1700]
+_chr_ofs_list:
+		.BYTE $00
+		.BYTE $17
+		.BYTE $14
+		.BYTE $1B
+		.BYTE $17
+_chr_size_list:
+		.BYTE $17
+		.BYTE $09
+		.BYTE $06
+		.BYTE $05
+		.BYTE $09
+
+; =============== S U B	R O U T	I N E =======================================
+_chr_copy:
+		STY		$2006
+		LDA		#$00
+		STA		$2006
+		LDY		#$00
+.1:
+		LDA		(_tmp20w),Y
+		STA		$2007
+		INY
+		BNE		.1
+		INC		_tmp20w+1
+		DEX
+		BNE		.1
+		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
 _pal_fade_outA:
@@ -1751,3 +1812,239 @@ loc_A21E:
 		JMP		loc_A21E
 locret_A23E:
 		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_unrom_prg_set:
+		TAX
+		STA		_cur_prg_bank
+		STA		_unrom_prg_cmd,X
+		RTS
+_unrom_prg_cmd:
+		.BYTE $00,$01,$02,$03
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set04:
+		LDA		#$04
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set10:
+		LDA		#$10
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set02_0:
+		LDA		#$20
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set40:
+		LDA		#$40
+		BNE		_apu_play_ctrlA_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set80:
+		LDA		#$80
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlA_set_ex:
+		STA		_apu_play_ctrlA
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set04:
+		LDA		#$04
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set08:
+		LDA		#$08
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set10:
+		LDA		#$10
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set20:
+		LDA		#$20
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set40:
+		LDA		#$40
+		BNE		_apu_play_ctrlB_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set80:
+		LDA		#$80
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlB_set_ex:
+		STA		_apu_play_ctrlB
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlC_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlC_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set40:
+		LDA		#$40
+		BNE		_apu_play_ctrlC_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set80:
+		LDA		#$80
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlC_set_ex:
+		STA		_apu_play_ctrlC
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set04:
+		LDA		#$04
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set08:
+		LDA		#$08
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set10:
+		LDA		#$10
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set20:
+		LDA		#$20
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set40:
+		LDA		#$40
+		BNE		_apu_play_ctrlD_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set80:
+		LDA		#$80
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlD_set_ex:
+		STA		_apu_play_ctrlD
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set01:
+		LDA		#$01
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set02:
+		LDA		#$02
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set04:
+		LDA		#$04
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set08:
+		LDA		#$08
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set10:
+		LDA		#$10
+		BNE		_apu_play_ctrlE_set_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set20:
+		LDA		#$20
+
+; =============== S U B	R O U T	I N E =======================================
+_apu_play_ctrlE_set_ex:
+		STA		_apu_play_ctrlE
+		RTS
+
+; =============== S U B	R O U T	I N E =======================================
+_far_main02_init:
+		LDA		_cur_prg_bank
+		PHA
+		LDA		#00
+		JSR		_unrom_prg_set
+		JSR		_main02_sub00_game_init
+		JSR		_main02_sub01
+		PLA
+		JMP		_unrom_prg_set
+
+; =============== S U B	R O U T	I N E =======================================
+_far_main02_game:
+		LDA		_cur_prg_bank
+		PHA
+		LDA		#00
+		JSR		_unrom_prg_set
+		JSR		_main02_game
+		PLA
+		JMP		_unrom_prg_set
+
+; =============== S U B	R O U T	I N E =======================================
+_far_ingame_points_wnd_draw:
+		LDA		_cur_prg_bank
+		PHA
+		LDA		#00
+		JSR		_unrom_prg_set
+		JSR		_ingame_points_wnd_draw
+		PLA
+		JMP		_unrom_prg_set
+
+; =============== S U B	R O U T	I N E =======================================
+_far_ingame_message_draw:
+		LDA		_cur_prg_bank
+		PHA
+		LDA		#00
+		JSR		_unrom_prg_set
+		JSR		_ingame_message_draw
+		PLA
+		JMP		_unrom_prg_set
+

@@ -1593,7 +1593,7 @@ byte_574:
 		.BYTE 0
 byte_575:
 		.BYTE 0
-_load_file_list_idx:
+_chr_data_idx:
 		.BYTE 0
 byte_577:
 		.BYTE 0
@@ -1807,7 +1807,9 @@ _menu_pos_idx_w:
 		.BYTE 0
 _match_menu_pos:
 		.BYTE 0
-		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+_cur_prg_bank:
+		.BYTE 0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0
 byte_720:
 		.BYTE 0

@@ -116,8 +116,8 @@ loc_646E:
 loc_647C:
 		JSR		_set_field_pal
 		JSR		_ppu_render_off
-		LDA		#$27
-		JSR		sub_9C7F
+;		LDA		#$27
+;		JSR		sub_9C7F
 		LDA		#$04
 		STA		byte_FC
 		LDA		_ppu_ctrl_shadow
@@ -337,15 +337,6 @@ loc_6615:
 		BNE		loc_6615
 loc_6619:
 		STA		byte_31C
-;		LDY		#>[_tlm_patch_gets]
-;		LDX		#<[_tlm_patch_gets]
-;		CMP		#$01
-;		BNE		loc_6628
-;		LDY		#>[_tlm_patch_gets]
-;		LDX		#<[_tlm_patch_gets]
-;loc_6628:
-;		STY		word_5A2
-;		STX		word_5A2+1
 		JSR		_spr_clear
 		LDA		_cur_player_idx
 		BNE		loc_664F
@@ -1372,7 +1363,7 @@ nullsub_3:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_main_ingame_points_wnd_draw:
+_ingame_points_wnd_draw:
 		LDA		_main02_sub_idx
 		CMP		#$04
 		BNE		nullsub_3
@@ -1593,6 +1584,7 @@ _tlm_res_615B:
 		.BYTE $2D
 		.BYTE $FF
 
+
 byte_6FC9:
 		.BYTE $22,$22,$22,$22,$21,$21,$21,$21
 byte_6FD1:
@@ -1790,6 +1782,16 @@ _tlm_res_61CA:
 		.BYTE $14
 		.BYTE $2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$63,$64,$2F,$2F,$2F,$2F,$2F
 		.BYTE $2F,$2F,$2F,$2F
+		.BYTE $FF
+_tlm_res_96A5:
+		.BYTE $0B
+_tlm_96A6:
+		.WORD $EE21
+		.BYTE $02
+		.BYTE $A8,$A9
+		.WORD $0E22
+		.BYTE $02
+		.BYTE $AA,$AB
 		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -2416,7 +2418,7 @@ loc_76A9:
 		JSR		sub_7711
 		JSR		sub_7797
 		JSR		sub_77B6
-		JSR		sub_9202
+		JSR		_ingame_message_draw
 		LDA		byte_45
 		CMP		#$FF
 		BEQ		locret_76C7
@@ -5942,7 +5944,7 @@ locret_9201:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_9202:
+_ingame_message_draw:
 		LDA		byte_62
 		BEQ		loc_9228
 		CMP		#$02
@@ -5967,12 +5969,12 @@ loc_921E:
 		ORA		byte_62
 		STA		byte_62
 loc_9228:
-		JSR		sub_922F
+		JSR		_ingame_message_select
 		JSR		sub_93A7
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_922F:
+_ingame_message_select:
 		LDA		byte_32
 		ORA		_ppu_queue_req
 		ORA		_nmi_tlm_lib_idx
@@ -6017,7 +6019,7 @@ loc_9264:
 		RTS
 ; ---------------------------------------------------------------------------
 off_9280:
-		.BYTE <[byte_9298]
+		.BYTE <[_tlm_player_cannot_move]
 		.BYTE <[byte_9299]
 		.BYTE <[byte_92B2]
 		.BYTE <[byte_92CD]
@@ -6030,7 +6032,7 @@ off_9280:
 		.BYTE <[_tlm_accept]
 		.BYTE <[_tlm_drop]
 off_928C:
-		.BYTE >[byte_9298]
+		.BYTE >[_tlm_player_cannot_move]
 		.BYTE >[byte_9299]
 		.BYTE >[byte_92B2]
 		.BYTE >[byte_92CD]
@@ -6042,35 +6044,41 @@ off_928C:
 		.BYTE >[byte_9381]
 		.BYTE >[_tlm_accept]
 		.BYTE >[_tlm_drop]
-byte_9298:
+_tlm_player_cannot_move:
 		.BYTE $FF
 byte_9299:
-		.BYTE $01,$0F,$06,$20,$1C,$11,$29,$15,$22,$26,$07,$13
-		.BYTE $11,$1E,$2E,$1E,$1F,$24,$40,$04,$1D,$1F,$26,$15,$FF
+		.BYTE $01
+		.BYTE $0F,$06
+		.BYTE _P,_L,_A,_Y,_E,_R
+		.BYTE $26,$07
+		.BYTE _C,_A,_N,__,_N,_O,_T
+		.BYTE $40,$04
+		.BYTE _M,_O,_V,_E
+		.BYTE $FF
 byte_92B2:
-		.BYTE $01,$0E,$08,$13,$1F,$1D,$20,$25,$24,$15,$22,$26,$07,$13,$11,$1E
-		.BYTE $2E,$1E,$1F,$24,$40,$04,$1D,$1F,$26,$15,$FF
+		.BYTE $01,$0E,$08,_C,$1F,$1D,_P,$25,$24,_E,_R,$26,$07,_C,_A,$1E
+		.BYTE $2E,$1E,$1F,$24,$40,$04,$1D,$1F,$26,_E,$FF
 byte_92CD:
-		.BYTE $01,$0E,$08,$20,$1C,$11,$29,$15,$22,$A5,$01,$26,$07,$13,$11,$1E
-		.BYTE $2E,$1E,$1F,$24,$40,$04,$1D,$1F,$26,$15,$FF
+		.BYTE $01,$0E,$08,_P,_L,_A,_Y,_E,_R,$A5,$01,$26,$07,_C,_A,$1E
+		.BYTE $2E,$1E,$1F,$24,$40,$04,$1D,$1F,$26,_E,$FF
 byte_92E8:
-		.BYTE $01,$0E,$08,$20,$1C,$11,$29,$15,$22,$A5,$02,$26,$07,$13,$11,$1E
-		.BYTE $2E,$1E,$1F,$24,$40,$04,$1D,$1F,$26,$15,$FF
+		.BYTE $01,$0E,$08,_P,_L,_A,_Y,_E,_R,$A5,$02,$26,$07,_C,_A,$1E
+		.BYTE $2E,$1E,$1F,$24,$40,$04,$1D,$1F,$26,_E,$FF
 byte_9303:
-		.BYTE $01,$0F,$06,$20,$1C,$11,$29,$15,$22,$26,$07,$13,$11,$1E,$2E,$1E
-		.BYTE $1F,$24,$3E,$09,$22,$1F,$1C,$1C,$2E,$14,$19,$13,$15,$FF
+		.BYTE $01,$0F,$06,_P,_L,_A,_Y,_E,_R,$26,$07,_C,_A,$1E,$2E,$1E
+		.BYTE $1F,$24,$3E,$09,_R,$1F,_L,_L,$2E,_D,_I,_C,_E,$FF
 byte_9321:
-		.BYTE $01,$0E,$08,$13,$1F,$1D,$20,$25,$24,$15,$22,$26,$07,$13,$11,$1E
-		.BYTE $2E,$1E,$1F,$24,$3E,$09,$22,$1F,$1C,$1C,$2E,$14,$19,$13,$15,$FF
+		.BYTE $01,$0E,$08,_C,$1F,$1D,_P,$25,$24,_E,_R,$26,$07,_C,_A,$1E
+		.BYTE $2E,$1E,$1F,$24,$3E,$09,_R,$1F,_L,_L,$2E,_D,_I,_C,_E,$FF
 byte_9341:
-		.BYTE $01,$0E,$08,$20,$1C,$11,$29,$15,$22,$A5,$01,$26,$07,$13,$11,$1E
-		.BYTE $2E,$1E,$1F,$24,$3E,$09,$22,$1F,$1C,$1C,$2E,$14,$19,$13,$15,$FF
+		.BYTE $01,$0E,$08,_P,_L,_A,_Y,_E,_R,$A5,$01,$26,$07,_C,_A,$1E
+		.BYTE $2E,$1E,$1F,$24,$3E,$09,_R,$1F,_L,_L,$2E,_D,_I,_C,_E,$FF
 byte_9361:
-		.BYTE $01,$0E,$08,$20,$1C,$11,$29,$15,$22,$A5,$02,$26,$07,$13,$11,$1E
-		.BYTE $2E,$1E,$1F,$24,$3E,$09,$22,$1F,$1C,$1C,$2E,$14,$19,$13,$15,$FF
+		.BYTE $01,$0E,$08,_P,_L,_A,_Y,_E,_R,$A5,$02,$26,$07,_C,_A,$1E
+		.BYTE $2E,$1E,$1F,$24,$3E,$09,_R,$1F,_L,_L,$2E,_D,_I,_C,_E,$FF
 byte_9381:
-		.BYTE $01,$1A,$08,$A6,$2E,$11,$13,$13,$15,$20,$24,$32,$06,$A7,$2E,$14
-		.BYTE $22,$1F,$20,$FF
+		.BYTE $01,_J,$08,$A6,$2E,_A,_C,_C,_E,_P,$24,$32,$06,$A7,$2E,_D
+		.BYTE _R,$1F,_P,$FF
 _tlm_accept:
 		.WORD $2702
 		.BYTE $06
@@ -6356,16 +6364,6 @@ _tlm_game_field:
 		.BYTE $9C,$04,$75,$76,$77,$62,$23,$A0,$5E,$72,$23,$BE,$01,$87,$23,$C0
 		.BYTE $60,$AA,$23,$E0,$60,$AA,$23,$C7,$01,$FF,$23,$CF,$01,$FF,$23,$D7
 		.BYTE $01,$FF,$23,$DF,$01,$FF,$23,$AE,$01,$87,$FF
-_tlm_res_96A5:
-		.BYTE $0B
-_tlm_96A6:
-		.WORD $EE21
-		.BYTE $02
-		.BYTE $A8,$A9
-		.WORD $0E22
-		.BYTE $02
-		.BYTE $AA,$AB
-		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_96BC:

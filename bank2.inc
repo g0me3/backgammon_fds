@@ -1,0 +1,19 @@
+
+		ORG $8000
+
+		BANK_START $02
+
+		SECTION_START
+_chr00:
+		INCBIN "..\CHR\BG-CHR00.chr"
+_chr10:
+		INCBIN "..\CHR\BG-CHR10.chr"
+		INCBIN "..\CHR\BG-CHR11.chr"
+		INCBIN "..\CHR\BG-CHR12.chr"
+_chr20:
+		INCBIN "..\CHR\BG-CHR20.chr"
+_chr30:
+		INCBIN "..\CHR\BG-CHR30.chr"
+		SECTION_END "BG-CHR"
+
+		BANK_END 2,$C000

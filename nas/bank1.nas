@@ -4,10 +4,10 @@
 		SEG.u RAM
 		INCLUDE "..\ram.inc"
 
-		SEG   BANK0
+		SEG.u BANK0
 		INCLUDE "..\bank0.inc"
 
-		SEG.u BANK1
+		SEG   BANK1
 		INCLUDE "..\bank1.inc"
 
 		SEG.u BANK2

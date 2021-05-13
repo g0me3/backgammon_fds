@@ -1,6 +1,4 @@
 
-;		ORG $A980
-
 ; =============== S U B	R O U T	I N E =======================================
 _ending:
 		JSR		_ending_sub_exec
@@ -37,8 +35,8 @@ _ending00:
 		LDA		#$98
 		STA		_ppu_ctrl_shadow
 		JSR		_ppu_render_off
-		LDA		#_pad_tmp1+1
-		JSR		sub_9C7F
+;		LDA		#_pad_tmp1+1
+;		JSR		sub_9C7F
 		JSR		_spr_clear
 		JSR		_nmi_off
 		JSR		sub_AC9B
