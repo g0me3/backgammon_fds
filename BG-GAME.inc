@@ -45,7 +45,7 @@ loc_63E9:
 		LDA		_game_mode_idx
 		CMP		#$03
 		BNE		locret_643F
-		LDA		_cheat_flag1_w
+		LDA		_cheat_flag1
 		BEQ		loc_641B
 		LDA		_pads_held+1
 		AND		#$80
@@ -116,8 +116,6 @@ loc_646E:
 loc_647C:
 		JSR		_set_field_pal
 		JSR		_ppu_render_off
-;		LDA		#$27
-;		JSR		sub_9C7F
 		LDA		#$04
 		STA		byte_FC
 		LDA		_ppu_ctrl_shadow
@@ -132,7 +130,7 @@ _main02_sub02:
 		JSR		_ppu_render_off
 		LDA		#$01
 		STA		_nmi_disable_flush
-		JSR		_regular_game_field_draw
+		JSR		_ingame_game_field_draw
 		LDX		#<[_tlm_96A6]
 		LDY		#>[_tlm_96A6]
 		JSR		_ppu_tlm_unpack
@@ -161,7 +159,7 @@ loc_64CD:
 		LDA		_match_pts_val+1
 		SBC		byte_3D
 		STA		byte_58
-		JSR		sub_656F
+		JSR		_prg0_sub_656F
 		STY		byte_557
 		LDA		_match_pts_val
 		SEC
@@ -171,7 +169,7 @@ loc_64CD:
 		LDA		_match_pts_val+1
 		SBC		byte_3F
 		STA		byte_58
-		JSR		sub_656F
+		JSR		_prg0_sub_656F
 		STY		byte_558
 		LDA		byte_555
 		BMI		loc_6568
@@ -236,7 +234,7 @@ loc_6568:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_656F:
+_prg0_sub_656F:
 		LDY		#$06
 		LDA		byte_58
 		BNE		locret_6580
@@ -290,7 +288,7 @@ loc_65BD:
 		STA		_timer_minutes
 		LDA		byte_65D1,Y
 		STA		_tmp4Bb
-		JSR		sub_65D9
+		JSR		_prg0_sub_65D9
 		DEC		byte_4D
 		BPL		loc_65BD
 		RTS
@@ -301,7 +299,7 @@ byte_65D5:
 		.BYTE $01,$13,$11,$0C
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_65D9:
+_prg0_sub_65D9:
 		LDX		_timer_minutes
 		INC		byte_3C0,X
 		INC		byte_3E0,X
@@ -320,7 +318,7 @@ sub_65D9:
 loc_65FD:
 		JSR		_wait_for_nmi
 		DEC		_tmp4Bb
-		BNE		sub_65D9
+		BNE		_prg0_sub_65D9
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -747,7 +745,7 @@ loc_6932:
 		STA		byte_5C
 		LDA		byte_3D
 		STA		byte_5B
-		JSR		sub_69D0
+		JSR		_prg0_sub_69D0
 		JSR		_sync
 		LDA		#$23
 		STA		_nmi_tlmB1_ram
@@ -807,7 +805,7 @@ loc_69B6:
 		STA		byte_5C
 		LDA		byte_3F
 		STA		byte_5B
-		JSR		sub_69D0
+		JSR		_prg0_sub_69D0
 		JSR		_sync
 		LDY		#>[_tlm_res_frameB]
 		LDX		#<[_tlm_res_frameB]
@@ -816,7 +814,7 @@ loc_69B6:
 		JMP		_wait_for_nmi
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_69D0:
+_prg0_sub_69D0:
 		LDA		#$00
 		STA		byte_5A4
 		LDA		#$64
@@ -944,7 +942,7 @@ loc_6A9D:
 		JSR		_ppu_render_off
 		LDA		#$01
 		STA		_nmi_disable_flush
-		JSR		_regular_game_field_draw
+		JSR		_ingame_game_field_draw
 		LDA		#$00
 		STA		_nmi_disable_flush
 		LDY		#$0F
@@ -1021,17 +1019,31 @@ loc_6B27:
 		LDA		#$06
 		STA		byte_4D
 		LDA		#$00
-		STA		_tpp_idx
+		STA		_tmp_idx
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_regular_game_field_draw:
-		JSR		_ppu_nt_clear
+_game_field_draw:
 		JSR		_spr_clear
+		JSR		_ppu_nt_clear
 		LDX		#<[_tlm_game_field]
 		LDY		#>[_tlm_game_field]
-		JSR		_ppu_tlm_unpack
+		JMP		_ppu_tlm_unpack
+
+; =============== S U B	R O U T	I N E =======================================
+_demo_game_field_draw:
+		JSR		_game_field_draw
+		JMP		_game_field_draw_ex
+
+; =============== S U B	R O U T	I N E =======================================
+_ingame_game_field_draw:
+		JSR		_game_field_draw
 		JSR		sub_6B92
+
+; !FALLTHROUGH!
+
+; =============== S U B	R O U T	I N E =======================================
+_game_field_draw_ex:
 		JSR		sub_96C5
 		LDA		#$00
 loc_6B57:
@@ -1108,16 +1120,16 @@ loc_6BC7:
 		BNE		locret_6BE7
 		LDA		#$06
 		STA		byte_4D
-		LDA		_tpp_idx
+		LDA		_tmp_idx
 		CMP		#$03
 		BCC		loc_6BE0
 		LDA		#$00
-		STA		_tpp_idx
+		STA		_tmp_idx
 loc_6BE0:
 		CLC
 		ADC		#$04
 		STA		byte_32
-		INC		_tpp_idx
+		INC		_tmp_idx
 locret_6BE7:
 		RTS
 
@@ -1128,7 +1140,7 @@ _main02_sub0A_stage_complete:
 		BNE		loc_6C9A
 		LDA		_cur_player_idx
 		BEQ		loc_6C7C
-		LDA		_cheat_flag1_w
+		LDA		_cheat_flag1
 		BEQ		loc_6C9A
 		LDA		_pads_held+1
 		BEQ		loc_6C9A
@@ -1429,7 +1441,7 @@ loc_6E9F:
 		STA		byte_5C
 		LDA		byte_3D
 		STA		byte_5B
-		JSR		sub_69D0
+		JSR		_prg0_sub_69D0
 		LDA		_nmi_tlmB1_ram+$1C
 		STA		byte_57
 		LDA		_nmi_tlmB1_ram+$1D
@@ -1477,7 +1489,7 @@ loc_6F0F:
 		STA		byte_5C
 		LDA		byte_3F
 		STA		byte_5B
-		JSR		sub_69D0
+		JSR		_prg0_sub_69D0
 		LDA		_nmi_tlmB1_ram+$1C
 		STA		byte_57
 		LDA		_nmi_tlmB1_ram+$1D
@@ -1583,8 +1595,16 @@ _tlm_res_615B:
 		.BYTE $01
 		.BYTE $2D
 		.BYTE $FF
-
-
+_tlm_res_96A5:
+		.BYTE $0B
+_tlm_96A6:
+		.WORD $EE21
+		.BYTE $02
+		.BYTE $A8,$A9
+		.WORD $0E22
+		.BYTE $02
+		.BYTE $AA,$AB
+		.BYTE $FF
 byte_6FC9:
 		.BYTE $22,$22,$22,$22,$21,$21,$21,$21
 byte_6FD1:
@@ -1782,16 +1802,6 @@ _tlm_res_61CA:
 		.BYTE $14
 		.BYTE $2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$63,$64,$2F,$2F,$2F,$2F,$2F
 		.BYTE $2F,$2F,$2F,$2F
-		.BYTE $FF
-_tlm_res_96A5:
-		.BYTE $0B
-_tlm_96A6:
-		.WORD $EE21
-		.BYTE $02
-		.BYTE $A8,$A9
-		.WORD $0E22
-		.BYTE $02
-		.BYTE $AA,$AB
 		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -2396,7 +2406,7 @@ _spr28:
 
 ; =============== S U B	R O U T	I N E =======================================
 _main02_sub04_ingame:
-		LDA		_cheat_flag1_w
+		LDA		_cheat_flag1
 		BEQ		loc_7695
 		LDA		_pads_held+1
 		CMP		#$CA
@@ -2414,7 +2424,7 @@ loc_7695:
 		LDA		#$13
 		STA		byte_45
 loc_76A9:
-		JSR		sub_8E47
+		JSR		_prg0_sub_8E47
 		JSR		sub_7711
 		JSR		sub_7797
 		JSR		sub_77B6
@@ -3601,7 +3611,7 @@ loc_8183:
 		STA		byte_47
 		LDA		byte_568
 		BNE		loc_81A6
-		LDA		_cheat_flag1_w
+		LDA		_cheat_flag1
 		BEQ		loc_81A6
 		LDA		_pads_held
 		CMP		#$0A
@@ -4878,7 +4888,7 @@ _ingame_sub0C_next_turn_player_switch:
 		LDA		_cur_player_idx
 		EOR		#$01
 		STA		_cur_player_idx
-		LDA		_cheat_flag1_w
+		LDA		_cheat_flag1
 		BEQ		loc_8AB9
 		LDA		_pads_held
 		CMP		#$01
@@ -5411,7 +5421,7 @@ loc_8E2C:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_8E47:
+_prg0_sub_8E47:
 		LDA		byte_6B
 		PHA
 		LDA		byte_31E

@@ -63,7 +63,7 @@ _MAIN:
 		JSR		_main_cheat_dice_roll_editor
 		JSR		_main_sub_exec
 		JSR		_main_chr_patch_handler
-		JSR		_far_ingame_points_wnd_draw
+		JSR		_ingame_points_wnd_draw
 		JSR		_sync
 		BEQ		_MAIN
 
@@ -71,7 +71,7 @@ _MAIN:
 _main_cheat_dice_roll_editor:
 		LDA		_ingame_sub_idx
 		BNE		locret_7066
-		LDA		_cheat_flag1_w
+		LDA		_cheat_flag1
 		BEQ		locret_7066
 		LDY		_cur_player_idx
 		LDA		_pads_held,Y
@@ -81,8 +81,8 @@ _main_cheat_dice_roll_editor:
 		STA		_1p_first_dice_roll_override
 		STA		_2p_first_dice_roll_override
 loc_701A:
-		JSR		_far_ingame_points_wnd_draw
-		JSR		_far_ingame_message_draw
+		JSR		_ingame_points_wnd_draw
+		JSR		_ingame_message_draw
 		JSR		_sync
 		LDY		_cur_player_idx
 		LDA		_pads_press,Y
@@ -194,7 +194,7 @@ _main00_sub01_title_init:
 		LDA		#$0B
 		STA		_tmp4Bb
 		LDY		#$00
-		STY		_tpp_idx
+		STY		_tmp_idx
 		STY		_cheat_flag0
 		RTS
 
@@ -221,7 +221,7 @@ loc_A2D0:
 		STY		_tmp4Bb
 loc_A2E2:
 		LDA		_title_pal_anim_list,Y
-		STA		_ppu_pal_buf4+4
+		STA		_pal_buf4+4
 		LDA		#$04
 		STA		_nmi_tlm_lib_idx
 loc_A2EC:
@@ -291,10 +291,10 @@ _txt_blank:
 _cheat_seq_test:
 		LDA		_pads_press+1
 		BEQ		loc_A374
-		LDY		_tpp_idx
+		LDY		_tmp_idx
 		CMP		(_tmp20w),Y
 		BNE		loc_A376
-		INC		_tpp_idx
+		INC		_tmp_idx
 		CPY		#$07
 		BCS		loc_A377
 loc_A374:
@@ -304,7 +304,7 @@ loc_A376:
 		CLC
 loc_A377:
 		LDA		#$00
-		STA		_tpp_idx
+		STA		_tmp_idx
 		RTS
 ; ---------------------------------------------------------------------------
 _cheat_seq0:
@@ -350,9 +350,9 @@ _main00_sub04_menu_input:
 		LDA		_cheat_flag0
 		BEQ		loc_A3DD
 		LDA		#$01
-		STA		_cheat_flag1_w
+		STA		_cheat_flag1
 loc_A3DD:
-		LDY		_menu_pos_idx_w
+		LDY		_menu_pos_idx
 		LDA		_pads_press
 		AND		#$08
 		BEQ		loc_A3ED
@@ -376,10 +376,10 @@ loc_A3FF:
 		LDA		_pads_press
 		AND		#$90
 		BEQ		loc_A477
-		STY		_menu_pos_idx_w
+		STY		_menu_pos_idx
 		STY		_game_mode_idx
 		JSR		_apu_play_ctrlB_set02
-		LDA		_cheat_flag1_w
+		LDA		_cheat_flag1
 		BEQ		loc_A419
 		LDA		_pads_held
 		AND		#$01
@@ -411,6 +411,7 @@ _demo_play_start:
 		JSR		_unrom_prg_set
 		LDA		#$03
 		JSR		_chr_load
+		JSR		_apu_play_ctrlA_set01
 		LDY		#$00
 		STY		_demo_sub_idx
 		INC		_main_sub_idx
@@ -442,7 +443,7 @@ loc_A477:
 		STA		_spr_buf+2
 		LDA		#$34
 		STA		_spr_buf+3
-		STY		_menu_pos_idx_w
+		STY		_menu_pos_idx
 		RTS
 ; ---------------------------------------------------------------------------
 _menu_pos_list:
@@ -581,32 +582,40 @@ _set_field_pal:
 		TYA
 		ASL
 		ASL
+		PHA
+		LDX		#[_pal_end-_pal1-1]
+.set_field_loop:
+		LDA		_pal1,X
+		STA		_pal_buf1,X
+		DEX
+		BNE		.set_field_loop
+		PLA
 		TAY
 		LDA		_field_pal_patch_lib,Y
-		STA		_pal1_pw
-		STA		_pal1_pw+4
-		STA		_pal1_pw+8
-		STA		_pal1_pw+$C
-		STA		_pal1_pw+$10
-		STA		_pal1_pw+$14
-		STA		_pal1_pw+$18
-		STA		_pal1_pw+$1C
-		STA		_pal2_p0_w
-		STA		_pal2_p1_w
-		STA		_pal3_p0_w
-		STA		_pal3_p1_w
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+4]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+8]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$C]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$10]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$14]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$18]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$1C]
+		STA		[_pal_buf2+[_pal2_p0_w-_pal2]]
+		STA		[_pal_buf2+[_pal2_p1_w-_pal2]]
+		STA		[_pal_buf3+[_pal3_p0_w-_pal3]]
+		STA		[_pal_buf3+[_pal3_p1_w-_pal3]]
 		LDA		_field_pal_patch_lib+1,Y
-		STA		_pal1_pw+5
-		STA		_pal1_pw+$D
-		STA		_pal1_pw+$1D
-		STA		_pal2_p1_w+1
-		STA		_pal3_p1_w+1
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+5]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$D]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$1D]
+		STA		[_pal_buf2+[_pal2_p1_w-_pal2]+1]
+		STA		[_pal_buf3+[_pal3_p1_w-_pal3]+1]
 		LDA		_field_pal_patch_lib+2,Y
-		STA		_pal1_pw+2
-		STA		_pal1_pw+6
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+2]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+6]
 		LDA		_field_pal_patch_lib+3,Y
-		STA		_pal1_pw+$A
-		STA		_pal1_pw+$E
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$A]
+		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$E]
 		RTS
 ; ---------------------------------------------------------------------------
 _field_pal_patch_lib:
@@ -623,6 +632,41 @@ _field_pal_patch_lib:
 		.BYTE $3B,$16,$24,$32
 		.BYTE $3C,$16,$35,$3A
 		.BYTE $38,$16,$24,$2B
+_pal1:
+		.WORD $003F
+		.BYTE $20
+_pal1_p0_w:
+		.BYTE $17,$30,$1A,$0F
+		.BYTE $17,$16,$1A,$0F
+		.BYTE $17,$30,$27,$0F
+		.BYTE $17,$16,$27,$0F
+		.BYTE $17,$37,$2C,$0F
+		.BYTE $17,$12,$2C,$0F
+		.BYTE $17,$30,$30,$0F
+		.BYTE $17,$16,$0F,$0F
+		.BYTE $FF
+_pal2:
+		.WORD $103F
+		.BYTE $04
+_pal2_p0_w:
+		.BYTE $17,$36,$2C,$0F
+		.WORD $1C3F
+		.BYTE $04
+_pal2_p1_w:
+		.BYTE $17,$16,$10,$0F
+		.BYTE $FF
+_pal3:
+		.WORD $103F
+		.BYTE $04
+_pal3_p0_w:
+		.BYTE $17,$37,$2C,$0F
+		.WORD $1C3F
+		.BYTE $04
+_pal3_p1_w:
+		.BYTE $17,$16,$25,$0F
+		.BYTE $FF
+_pal_end:
+
 _tlm_title:
 		.BYTE $20,$82,$5D,$76,$20,$C2,$1D,$90,$91,$92,$2F,$94,$2F,$D0,$D1,$D2
 		.BYTE $96,$97,$98,$99,$9A,$2F,$94,$2F,$9B,$9C,$9D,$9B,$9C,$9D,$C8,$C9
@@ -1000,7 +1044,13 @@ loc_9A96:
 loc_9A7D:
 		LDA		#$01
 		STA		byte_533
+		LDA		_cur_prg_bank
+		PHA
+		LDA		#$01
+		JSR		_unrom_prg_set
 		JSR		_apu_play
+		PLA
+		JSR		_unrom_prg_set
 		LDY		_nmi_counter
 		BNE		loc_9A8B
 		LDY		#$3C
@@ -1087,63 +1137,36 @@ _nmi_tlm_libA_send:
 		RTS
 ; ---------------------------------------------------------------------------
 _nmi_tlm_lib_hi:
-		.BYTE >[_pal1_w]
-		.BYTE >[_pal2_w]
-		.BYTE >[_pal3_w]
-		.BYTE >[_ppu_pal_buf4]
-		.BYTE >[_ppu_pal5]
-		.BYTE >[_ppu_pal6]
-		.BYTE >[_ppu_pal7]
-		.BYTE >[_ppu_pal8]
+		.BYTE >[_pal_buf1]
+		.BYTE >[_pal_buf2]
+		.BYTE >[_pal_buf3]
+		.BYTE >[_pal_buf4]
+		.BYTE >[_pal5]
+		.BYTE >[_pal6]
+		.BYTE >[_pal7]
+		.BYTE >[_pal8]
 _nmi_tlm_lib_lo:
-		.BYTE <[_pal1_w]
-		.BYTE <[_pal2_w]
-		.BYTE <[_pal3_w]
-		.BYTE <[_ppu_pal_buf4]
-		.BYTE <[_ppu_pal5]
-		.BYTE <[_ppu_pal6]
-		.BYTE <[_ppu_pal7]
-		.BYTE <[_ppu_pal8]
-_pal1_w:
-		.WORD $003F
-		.BYTE $20
-_pal1_pw:
-		.BYTE $17,$30,$1A,$0F,$17,$16,$1A,$0F,$17,$30,$27,$0F,$17,$16,$27,$0F
-		.BYTE $17,$37,$2C,$0F,$17,$12,$2C,$0F,$17,$30,$30,$0F,$17,$16,$0F,$0F
-		.BYTE $FF
-_pal2_w:
-		.WORD $103F
-		.BYTE $04
-_pal2_p0_w:
-		.BYTE $17,$36,$2C,$0F
-		.WORD $1C3F
-		.BYTE $04
-_pal2_p1_w:
-		.BYTE $17,$16,$10,$0F
-		.BYTE $FF
-_pal3_w:
-		.WORD $103F
-		.BYTE $04
-_pal3_p0_w:
-		.BYTE $17,$37,$2C,$0F
-		.WORD $1C3F
-		.BYTE $04
-_pal3_p1_w:
-		.BYTE $17,$16,$25,$0F
-		.BYTE $FF
-_ppu_pal5:
+		.BYTE <[_pal_buf1]
+		.BYTE <[_pal_buf2]
+		.BYTE <[_pal_buf3]
+		.BYTE <[_pal_buf4]
+		.BYTE <[_pal5]
+		.BYTE <[_pal6]
+		.BYTE <[_pal7]
+		.BYTE <[_pal8]
+_pal5:
 		.BYTE $3F,$00,$20,$0F,$30,$16,$0F,$0F,$30,$14,$0F,$0F,$0F,$28,$30,$0F
 		.BYTE $30,$1A,$0F,$0F,$30,$16,$0F,$0F,$30,$14,$0F,$0F,$0F,$28,$30,$0F
 		.BYTE $30,$1A,$0F,$FF
-_ppu_pal6:
+_pal6:
 		.BYTE $3F,$00,$20,$0F,$30,$21,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F
 		.BYTE $0F,$0F,$0F,$0F,$30,$26,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F
 		.BYTE $0F,$0F,$0F,$FF
-_ppu_pal7:
+_pal7:
 		.BYTE $3F,$00,$20,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F
 		.BYTE $0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F,$0F
 		.BYTE $0F,$0F,$0F,$FF
-_ppu_pal8:
+_pal8:
 		.BYTE $3F,$00,$20,$0F,$30,$16,$0F,$0F,$39,$1A,$0F,$0F,$30,$38,$0F,$0F
 		.BYTE $30,$35,$16,$0F,$30,$16,$0F,$0F,$39,$1A,$0F,$0F,$30,$38,$0F,$0F
 		.BYTE $30,$35,$16,$FF
@@ -1577,14 +1600,6 @@ _ending_screen:
 ; =============== S U B	R O U T	I N E =======================================
 _chr_load:
 		STA		_chr_data_idx
-;		JSR		_apu_play_ctrlA_set01
-;		JSR		_spr_clear
-;		LDA		#$06
-;		STA		_nmi_tlm_lib_idx
-;		JSR		_sync
-;		JSR		_ppu_render_off
-;		JSR		_nmi_off
-;		JSR		_ppu_nt_clear
 		LDA		_cur_prg_bank
 		PHA
 		LDA		#$02
@@ -1601,11 +1616,7 @@ _chr_load:
 		JSR		_chr_copy
 		PLA
 		JMP		_unrom_prg_set
-;		JSR		_nmi_on
-;		JSR		_ppu_render_on
-;		LDA		#$07
-;		STA		_nmi_tlm_lib_idx
-;		JMP		_nmi_on
+
 _chr_data_list_lo:
 		.BYTE <[_chr00]
 		.BYTE <[_chr10]
@@ -1654,7 +1665,7 @@ _pal_fade_outA:
 		STA		_nmi_tlm_lib_idx
 		JSR		_ppu_render_on
 		LDA		#$04
-		STA		_tpp_idx
+		STA		_tmp_idx
 		LDA		#$40
 		STA		byte_4D
 loc_A152:
@@ -1665,7 +1676,7 @@ loc_A152:
 		STA		byte_4D
 		JSR		_pal_buf_dec
 		JSR		_pal_buf_flush
-		DEC		_tpp_idx
+		DEC		_tmp_idx
 		BNE		loc_A152
 		JSR		_pal_buf4_load_lib
 		JMP		_pal_buf_flush
@@ -1675,23 +1686,23 @@ _pal_fade_outB:
 		STY		byte_553
 		JSR		_pal_buf4_load_lib
 		LDA		#$04
-		STA		_tpp_idx
+		STA		_tmp_idx
 loc_A176:
 		LDA		#$10
 		JSR		_pal_buf_dec
 		JSR		_pal_buf_flush
-		DEC		_tpp_idx
+		DEC		_tmp_idx
 		BNE		loc_A176
 		JMP		_ppu_render_off
 
 ; =============== S U B	R O U T	I N E =======================================
 _pal_buf4_load_lib:
 		LDA		#$3F
-		STA		_ppu_pal_buf4
+		STA		_pal_buf4
 		LDA		#$00
-		STA		_ppu_pal_buf4+1
+		STA		_pal_buf4+1
 		LDA		#$20
-		STA		_ppu_pal_buf4+2
+		STA		_pal_buf4+2
 		LDA		#$FF
 		STA		byte_59F
 		LDY		byte_553
@@ -1703,7 +1714,7 @@ _pal_buf4_load_lib:
 		LDY		#$22
 loc_A1A9:
 		LDA		(_tmp20w),Y
-		STA		_ppu_pal_buf4,Y
+		STA		_pal_buf4,Y
 		DEY
 		CPY		#$02
 		BNE		loc_A1A9
@@ -1714,13 +1725,13 @@ _pal_buf_dec:
 		STA		byte_57
 		LDY		#$1F
 loc_A1B8:
-		LDA		_ppu_pal_buf4+3,Y
+		LDA		_pal_buf4+3,Y
 		SEC
 		SBC		byte_57
 		BCS		loc_A1C2
 		LDA		#$0F
 loc_A1C2:
-		STA		_ppu_pal_buf4+3,Y
+		STA		_pal_buf4+3,Y
 		DEY
 		BPL		loc_A1B8
 		RTS
@@ -2006,45 +2017,3 @@ _apu_play_ctrlE_set20:
 _apu_play_ctrlE_set_ex:
 		STA		_apu_play_ctrlE
 		RTS
-
-; =============== S U B	R O U T	I N E =======================================
-_far_main02_init:
-		LDA		_cur_prg_bank
-		PHA
-		LDA		#00
-		JSR		_unrom_prg_set
-		JSR		_main02_sub00_game_init
-		JSR		_main02_sub01
-		PLA
-		JMP		_unrom_prg_set
-
-; =============== S U B	R O U T	I N E =======================================
-_far_main02_game:
-		LDA		_cur_prg_bank
-		PHA
-		LDA		#00
-		JSR		_unrom_prg_set
-		JSR		_main02_game
-		PLA
-		JMP		_unrom_prg_set
-
-; =============== S U B	R O U T	I N E =======================================
-_far_ingame_points_wnd_draw:
-		LDA		_cur_prg_bank
-		PHA
-		LDA		#00
-		JSR		_unrom_prg_set
-		JSR		_ingame_points_wnd_draw
-		PLA
-		JMP		_unrom_prg_set
-
-; =============== S U B	R O U T	I N E =======================================
-_far_ingame_message_draw:
-		LDA		_cur_prg_bank
-		PHA
-		LDA		#00
-		JSR		_unrom_prg_set
-		JSR		_ingame_message_draw
-		PLA
-		JMP		_unrom_prg_set
-

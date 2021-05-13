@@ -377,7 +377,7 @@ loc_AC27:
 		LDA		_tmp4Bb
 		CMP		#$1E
 		BCS		_skip
-		LDA		_cheat_flag1_w
+		LDA		_cheat_flag1
 		BEQ		_skip
 		LDA		_pads_held
 		CMP		#$A6

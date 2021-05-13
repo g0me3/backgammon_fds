@@ -18,9 +18,10 @@ _main01_demo:
 _demo00:
 		LDA		#$27
 		STA		byte_FA
-		JSR		_far_main02_init
+		JSR		_main02_sub00_game_init
+		JSR		_main02_sub01
 		JSR		_nmi_off
-		JSR		_regular_game_field_draw
+		JSR		_ingame_game_field_draw
 		JSR		_nmi_on
 		LDY		#$01
 		JSR		_pal_fade_outA
@@ -163,9 +164,15 @@ byte_26B8B:
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_26BA8:
-		LDA		#>[byte_26C0F]
+		LDY		#$3C
+loc_26BD6:
+		LDA		byte_26C0F,Y
+		STA		_nmi_tlmB1_ram,Y
+		DEY
+		BPL		loc_26BD6
+		LDA		#>[_nmi_tlmB1_ram]
 		STA		_tmp1Cw+1
-		LDA		#<[byte_26C0F]
+		LDA		#<[_nmi_tlmB1_ram]
 		STA		_tmp1Cw
 		LDX		#$04
 loc_26BB2:
@@ -189,12 +196,6 @@ loc_26BB2:
 loc_26BD1:
 		DEX
 		BNE		loc_26BB2
-		LDY		#$3C
-loc_26BD6:
-		LDA		byte_26C0F,Y
-		STA		_nmi_tlmB1_ram,Y
-		DEY
-		BPL		loc_26BD6
 		LDA		#$01
 		STA		byte_32
 		JMP		_sync
@@ -350,7 +351,7 @@ loc_26D6A:
 		STA		_timer_minutes
 		LDA		byte_65D1,Y
 		STA		_tmp4Bb
-		JSR		sub_65D9
+		JSR		_prg0_sub_65D9
 		DEC		byte_4D
 		BPL		loc_26D6A
 		LDY		#$04
@@ -646,7 +647,7 @@ _demo07:
 		STY		byte_5D
 		JSR		_main_chr_patch_handler
 		JSR		_sync
-		JSR		sub_8E47
+		JSR		_prg0_sub_8E47
 		LDY		#$01
 		JSR		_pal_fade_outA
 		LDY		#$00
@@ -683,7 +684,7 @@ _demo08:
 		STA		byte_5D
 		JSR		_main_chr_patch_handler
 		JSR		_sync
-		JSR		sub_8E47
+		JSR		_prg0_sub_8E47
 		LDY		#$01
 		JSR		_pal_fade_outA
 		LDY		#$00
@@ -704,28 +705,6 @@ _demo08:
 		LDY		#$01
 		JSR		_pal_fade_outB
 		JMP		_main_programm_load
-
-; =============== S U B	R O U T	I N E =======================================
-_demo_game_field_draw:
-		JSR		_spr_clear
-		JSR		_ppu_nt_clear
-		LDX		#<[_tlm_game_field]
-		LDY		#>[_tlm_game_field]
-		JSR		_ppu_tlm_unpack
-		JSR		sub_96C5
-; TODO: same as _regular_game_field_draw but without this function
-;		JSR		sub_96C5
-		LDA		#$00
-loc_270C8:
-		PHA
-		JSR		sub_77DA
-		JSR		_nmi_ppu_dequeue
-		PLA
-		CLC
-		ADC		#$01
-		CMP		#$1A
-		BNE		loc_270C8
-		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_270D8:
@@ -756,7 +735,7 @@ loc_27127:
 		LDA		_main02_sub_idx
 		CMP		#$05
 		BCS		loc_2713C
-		JSR		_far_main02_game
+		JSR		_main02_game
 		RTS
 ; ---------------------------------------------------------------------------
 loc_27136:

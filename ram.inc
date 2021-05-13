@@ -45,10 +45,10 @@ byte_14:
 		.BYTE 0
 byte_15:
 		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
+;		.BYTE 0
+;		.BYTE 0
+;		.BYTE 0
+;		.BYTE 0
 byte_1A:
 		.BYTE 0
 byte_1B:
@@ -91,10 +91,10 @@ _nmi_counter:
 		.BYTE 0
 _ppu_dequeue_req:
 		.BYTE 0
-		.BYTE 0
+;		.BYTE 0
 _nmi_tlm_lib_idx:
 		.BYTE 0
-		.BYTE 0
+;		.BYTE 0
 _main02_sub_idx:
 		.BYTE 0
 byte_3C:
@@ -133,7 +133,7 @@ _timer_minutes:
 		.BYTE 0
 byte_4D:
 		.BYTE 0
-_tpp_idx:
+_tmp_idx:
 		.BYTE 0
 byte_4F:
 		.BYTE 0
@@ -525,14 +525,7 @@ byte_11B:
 byte_11C:
 		.BYTE 0
 byte_11D:
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
+		.BYTE 0,0,0,0,0,0,0,0
 byte_125:
 		.BYTE 0
 byte_126:
@@ -542,229 +535,38 @@ byte_127:
 byte_128:
 		.BYTE 0
 byte_129:
-		.BYTE 0
-		.BYTE 0
+		.BYTE 0,0
 byte_12B:
 		.BYTE 0
 byte_12C:
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
+		.BYTE 0,0,0,0,0,0
 byte_132:
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
+		.BYTE 0,0,0,0,0,0
 byte_138:
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
+		.BYTE 0,0,0
 byte_13B:
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0
 byte_148:
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0
 byte_154:
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 byte_184:
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
-		.BYTE 0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0
+_pal_buf1:
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		.BYTE 0,0,0,0,0
+_pal_buf2:
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+_pal_buf3:
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+_stack;
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+		.BYTE 0,0
 
 		ORG $0200
 
@@ -1604,7 +1406,7 @@ byte_579:
 		.BYTE 0
 byte_57B:
 		.BYTE 0
-_ppu_pal_buf4:
+_pal_buf4:
 		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 		.BYTE 0,0,0
@@ -1801,9 +1603,9 @@ _ppu_queue_buf:
 		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 		.BYTE 0,0
 byte_700:
-_cheat_flag1_w:
+_cheat_flag1:
 		.BYTE 0
-_menu_pos_idx_w:
+_menu_pos_idx:
 		.BYTE 0
 _match_menu_pos:
 		.BYTE 0
