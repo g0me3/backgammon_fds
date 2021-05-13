@@ -162,7 +162,7 @@ _main00_sub00_title_draw:
 		LDY		#$00
 		STY		byte_FC
 		STY		byte_FD
-		JSR		_apu_play_ctrlA_set01
+		JSR		_apu_play_se_reqA_set01
 		LDA		_ppu_ctrl_shadow
 		AND		#$F4
 		STA		_ppu_ctrl_shadow
@@ -194,7 +194,7 @@ _main00_sub00_title_draw:
 
 ; =============== S U B	R O U T	I N E =======================================
 _main00_sub01_title_init:
-		JSR		_apu_play_ctrlD_set04
+		JSR		_apu_play_mus_reqB_set04
 		INC		_main00_sub_idx
 		LDA		#$0B
 		STA		_tmp4Bb
@@ -233,7 +233,7 @@ loc_A2EC:
 		LDA		_pads_held
 		AND		#$90
 		BEQ		loc_A30D
-		JSR		_apu_play_ctrlB_set02
+		JSR		_apu_play_se_reqB_set02
 		INC		_main00_sub_idx
 		LDY		#$05
 		JSR		_pal_fade_outB
@@ -383,7 +383,7 @@ loc_A3FF:
 		BEQ		loc_A477
 		STY		_menu_pos_idx
 		STY		_game_mode_idx
-		JSR		_apu_play_ctrlB_set02
+		JSR		_apu_play_se_reqB_set02
 		LDA		_cheat_flag1
 		BEQ		loc_A419
 		LDA		_pads_held
@@ -408,13 +408,13 @@ _demo_play_start:
 		BNE		_other_game_start
 		LDA		#$1E
 		JSR		_wait_for_nmi
-		JSR		_apu_play_ctrlA_set04
+		JSR		_apu_play_se_reqA_set04
 		LDY		#$06
 		JSR		_pal_fade_outB
 		JSR		_wait_for_70_frames
 		LDA		#$03
 		JSR		_chr_load
-		JSR		_apu_play_ctrlA_set01
+		JSR		_apu_play_se_reqA_set01
 		LDY		#$00
 		STY		_demo_sub_idx
 		INC		_main_sub_idx
@@ -430,13 +430,13 @@ _other_game_start:
 		AND		#$F7
 		ORA		#$20
 		STA		_ppu_ctrl_shadow
-		JSR		_apu_play_ctrlA_set04
+		JSR		_apu_play_se_reqA_set04
 		LDY		#$06
 		JSR		_pal_fade_outB
 		JMP		_wait_for_70_frames
 ; ---------------------------------------------------------------------------
 loc_A474:
-		JSR		_apu_play_ctrlB_set01
+		JSR		_apu_play_se_reqB_set01
 loc_A477:
 		LDA		_menu_pos_list,Y
 		STA		_spr_buf
@@ -503,7 +503,7 @@ loc_A4F0:
 		LDA		_pads_press
 		AND		#$90
 		BEQ		loc_A52A
-		JSR		_apu_play_ctrlB_set02
+		JSR		_apu_play_se_reqB_set02
 		LDA		_match_menu_pts_list_lo,Y
 		STA		_match_pts_val
 		LDA		_match_menu_pts_list_hi,Y
@@ -520,13 +520,13 @@ loc_A50C:
 		AND		#$F7
 		ORA		#$20
 		STA		_ppu_ctrl_shadow
-		JSR		_apu_play_ctrlA_set04
+		JSR		_apu_play_se_reqA_set04
 		LDY		#$06
 		JSR		_pal_fade_outB
 		JMP		_wait_for_70_frames
 ; ---------------------------------------------------------------------------
 loc_A527:
-		JSR		_apu_play_ctrlB_set01
+		JSR		_apu_play_se_reqB_set01
 loc_A52A:
 		LDA		_match_menu_pos_list,Y
 		STA		_spr_buf+4
@@ -587,30 +587,30 @@ _set_field_pal:
 		ASL
 		TAY
 		LDA		_field_pal_patch_lib,Y
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+4]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+8]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$C]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$10]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$14]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$18]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$1C]
-		STA		[_pal_buf2+[_pal2_p0_w-_pal2]]
-		STA		[_pal_buf2+[_pal2_p1_w-_pal2]]
-		STA		[_pal_buf3+[_pal3_p0_w-_pal3]]
-		STA		[_pal_buf3+[_pal3_p1_w-_pal3]]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+4]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+8]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+$C]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+$10]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+$14]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+$18]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+$1C]
+		STA		[_pal_buf2+[_pal2_p0-_pal2]]
+		STA		[_pal_buf2+[_pal2_p1-_pal2]]
+		STA		[_pal_buf3+[_pal3_p0-_pal3]]
+		STA		[_pal_buf3+[_pal3_p1-_pal3]]
 		LDA		_field_pal_patch_lib+1,Y
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+5]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$D]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$1D]
-		STA		[_pal_buf2+[_pal2_p1_w-_pal2]+1]
-		STA		[_pal_buf3+[_pal3_p1_w-_pal3]+1]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+5]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+$D]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+$1D]
+		STA		[_pal_buf2+[_pal2_p1-_pal2]+1]
+		STA		[_pal_buf3+[_pal3_p1-_pal3]+1]
 		LDA		_field_pal_patch_lib+2,Y
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+2]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+6]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+2]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+6]
 		LDA		_field_pal_patch_lib+3,Y
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$A]
-		STA		[_pal_buf1+[_pal1_p0_w-_pal1]+$E]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+$A]
+		STA		[_pal_buf1+[_pal1_p0-_pal1]+$E]
 		RTS
 ; ---------------------------------------------------------------------------
 _field_pal_patch_lib:
@@ -630,7 +630,7 @@ _field_pal_patch_lib:
 _pal1:
 		.WORD $003F
 		.BYTE $20
-_pal1_p0_w:
+_pal1_p0:
 		.BYTE $17,$30,$1A,$0F
 		.BYTE $17,$16,$1A,$0F
 		.BYTE $17,$30,$27,$0F
@@ -643,21 +643,21 @@ _pal1_p0_w:
 _pal2:
 		.WORD $103F
 		.BYTE $04
-_pal2_p0_w:
+_pal2_p0:
 		.BYTE $17,$36,$2C,$0F
 		.WORD $1C3F
 		.BYTE $04
-_pal2_p1_w:
+_pal2_p1:
 		.BYTE $17,$16,$10,$0F
 		.BYTE $FF
 _pal3:
 		.WORD $103F
 		.BYTE $04
-_pal3_p0_w:
+_pal3_p0:
 		.BYTE $17,$37,$2C,$0F
 		.WORD $1C3F
 		.BYTE $04
-_pal3_p1_w:
+_pal3_p1:
 		.BYTE $17,$16,$25,$0F
 		.BYTE $FF
 _pal_end:
@@ -932,13 +932,13 @@ _sync:
 		LDA		_pads_press
 		AND		#$20
 		BEQ		_wait_for_flush
-		JSR		_apu_play_ctrlC_set80
+		JSR		_apu_play_se_reqC_set80
 loc_99F9:
 		JSR		_wait_for_flush
 		LDA		_pads_press
 		AND		#$20
 		BEQ		loc_99F9
-		JSR		_apu_play_ctrlC_set40
+		JSR		_apu_play_se_reqC_set40
 _wait_for_flush:
 		LDA		#$01
 		STA		_ppu_dequeue_req
@@ -1601,6 +1601,8 @@ _ending_screen:
 		JSR		_pal_fade_outB
 		LDA		#$02
 		JSR		_chr_load
+		LDA		#$03
+		JSR		_chr_load
 		JSR		_ending
 		LDA		#$00
 
@@ -1841,186 +1843,186 @@ _unrom_prg_cmd:
 		.BYTE $00,$01,$02,$03
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set01:
+_apu_play_se_reqA_set01:
 		LDA		#$01
-		BNE		_apu_play_ctrlA_set_ex
+		BNE		_apu_play_se_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set02:
+_apu_play_se_reqA_set02:
 		LDA		#$02
-		BNE		_apu_play_ctrlA_set_ex
+		BNE		_apu_play_se_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set04:
+_apu_play_se_reqA_set04:
 		LDA		#$04
-		BNE		_apu_play_ctrlA_set_ex
+		BNE		_apu_play_se_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set10:
+_apu_play_se_reqA_set10:
 		LDA		#$10
-		BNE		_apu_play_ctrlA_set_ex
+		BNE		_apu_play_se_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set02_0:
+_apu_play_se_reqA_set02_0:
 		LDA		#$20
-		BNE		_apu_play_ctrlA_set_ex
+		BNE		_apu_play_se_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set40:
+_apu_play_se_reqA_set40:
 		LDA		#$40
-		BNE		_apu_play_ctrlA_set_ex
+		BNE		_apu_play_se_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set80:
+_apu_play_se_reqA_set80:
 		LDA		#$80
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlA_set_ex:
-		STA		_apu_play_ctrlA
+_apu_play_se_reqA_set_ex:
+		STA		_apu_play_se_reqA
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set01:
+_apu_play_se_reqB_set01:
 		LDA		#$01
-		BNE		_apu_play_ctrlB_set_ex
+		BNE		_apu_play_se_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set02:
+_apu_play_se_reqB_set02:
 		LDA		#$02
-		BNE		_apu_play_ctrlB_set_ex
+		BNE		_apu_play_se_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set04:
+_apu_play_se_reqB_set04:
 		LDA		#$04
-		BNE		_apu_play_ctrlB_set_ex
+		BNE		_apu_play_se_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set08:
+_apu_play_se_reqB_set08:
 		LDA		#$08
-		BNE		_apu_play_ctrlB_set_ex
+		BNE		_apu_play_se_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set10:
+_apu_play_se_reqB_set10:
 		LDA		#$10
-		BNE		_apu_play_ctrlB_set_ex
+		BNE		_apu_play_se_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set20:
+_apu_play_se_reqB_set20:
 		LDA		#$20
-		BNE		_apu_play_ctrlB_set_ex
+		BNE		_apu_play_se_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set40:
+_apu_play_se_reqB_set40:
 		LDA		#$40
-		BNE		_apu_play_ctrlB_set_ex
+		BNE		_apu_play_se_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set80:
+_apu_play_se_reqB_set80:
 		LDA		#$80
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlB_set_ex:
-		STA		_apu_play_ctrlB
+_apu_play_se_reqB_set_ex:
+		STA		_apu_play_se_reqB
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set01:
+_apu_play_se_reqC_set01:
 		LDA		#$01
-		BNE		_apu_play_ctrlC_set_ex
+		BNE		_apu_play_se_reqC_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set02:
+_apu_play_se_reqC_set02:
 		LDA		#$02
-		BNE		_apu_play_ctrlC_set_ex
+		BNE		_apu_play_se_reqC_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set40:
+_apu_play_se_reqC_set40:
 		LDA		#$40
-		BNE		_apu_play_ctrlC_set_ex
+		BNE		_apu_play_se_reqC_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set80:
+_apu_play_se_reqC_set80:
 		LDA		#$80
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlC_set_ex:
-		STA		_apu_play_ctrlC
+_apu_play_se_reqC_set_ex:
+		STA		_apu_play_se_reqC
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set01:
+_apu_play_mus_reqB_set01:
 		LDA		#$01
-		BNE		_apu_play_ctrlD_set_ex
+		BNE		_apu_play_mus_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set02:
+_apu_play_mus_reqB_set02:
 		LDA		#$02
-		BNE		_apu_play_ctrlD_set_ex
+		BNE		_apu_play_mus_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set04:
+_apu_play_mus_reqB_set04:
 		LDA		#$04
-		BNE		_apu_play_ctrlD_set_ex
+		BNE		_apu_play_mus_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set08:
+_apu_play_mus_reqB_set08:
 		LDA		#$08
-		BNE		_apu_play_ctrlD_set_ex
+		BNE		_apu_play_mus_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set10:
+_apu_play_mus_reqB_set10:
 		LDA		#$10
-		BNE		_apu_play_ctrlD_set_ex
+		BNE		_apu_play_mus_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set20:
+_apu_play_mus_reqB_set20:
 		LDA		#$20
-		BNE		_apu_play_ctrlD_set_ex
+		BNE		_apu_play_mus_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set40:
+_apu_play_mus_reqB_set40:
 		LDA		#$40
-		BNE		_apu_play_ctrlD_set_ex
+		BNE		_apu_play_mus_reqB_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set80:
+_apu_play_mus_reqB_set80:
 		LDA		#$80
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlD_set_ex:
-		STA		_apu_play_ctrlD
+_apu_play_mus_reqB_set_ex:
+		STA		_apu_play_mus_reqB
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set01:
+_apu_play_mus_reqA_set01:
 		LDA		#$01
-		BNE		_apu_play_ctrlE_set_ex
+		BNE		_apu_play_mus_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set02:
+_apu_play_mus_reqA_set02:
 		LDA		#$02
-		BNE		_apu_play_ctrlE_set_ex
+		BNE		_apu_play_mus_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set04:
+_apu_play_mus_reqA_set04:
 		LDA		#$04
-		BNE		_apu_play_ctrlE_set_ex
+		BNE		_apu_play_mus_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set08:
+_apu_play_mus_reqA_set08:
 		LDA		#$08
-		BNE		_apu_play_ctrlE_set_ex
+		BNE		_apu_play_mus_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set10:
+_apu_play_mus_reqA_set10:
 		LDA		#$10
-		BNE		_apu_play_ctrlE_set_ex
+		BNE		_apu_play_mus_reqA_set_ex
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set20:
+_apu_play_mus_reqA_set20:
 		LDA		#$20
 
 ; =============== S U B	R O U T	I N E =======================================
-_apu_play_ctrlE_set_ex:
-		STA		_apu_play_ctrlE
+_apu_play_mus_reqA_set_ex:
+		STA		_apu_play_mus_reqA
 		RTS

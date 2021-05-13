@@ -12,18 +12,18 @@ _ending_sub_exec:
 ; ---------------------------------------------------------------------------
 		.WORD _ending00
 		.WORD _ending01
-		.WORD _ending02
+		.WORD _ending_msg_type_out
 		.WORD _ending03
-		.WORD _ending02
+		.WORD _ending_msg_type_out
 		.WORD _ending05
 		.WORD _ending06
 		.WORD _ending07
 		.WORD _ending06
 		.WORD _ending09
 		.WORD _ending06
-		.WORD _ending09_final_screen
-		.WORD _ending0A_secret_staff
-		.WORD _ending02
+		.WORD _ending0B_final_screen
+		.WORD _ending0C_secret_staff
+		.WORD _ending_msg_type_out
 		.WORD _ending0E
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -34,12 +34,9 @@ _ending00:
 		JSR		_apu_play_se_reqA_set01
 		LDA		#$98
 		STA		_ppu_ctrl_shadow
-		JSR		_ppu_render_off
-		JSR		_spr_clear
-		JSR		_nmi_off
-		JSR		sub_AC9B
-		LDX		#<[_tlm_AEDB]
-		LDY		#>[_tlm_AEDB]
+		JSR		_clear_frame_field
+		LDX		#<[_tlm_ending_frame]
+		LDY		#>[_tlm_ending_frame]
 		JSR		_ppu_tlm_unpack
 		JSR		_nmi_on
 		INC		_ending_sub_idx
@@ -55,9 +52,9 @@ _ending01:
 		STA		_tmp51w+1
 		LDA		#$47
 		STA		_tmp51w
-		LDA		#>[byte_AE09]
+		LDA		#>[_txt_ending_msgA]
 		STA		_tmp53w+1
-		LDA		#<[byte_AE09]
+		LDA		#<[_txt_ending_msgA]
 		STA		_tmp53w
 		INC		_ending_sub_idx
 		RTS
@@ -70,15 +67,15 @@ _ending03:
 		STA		_tmp51w+1
 		LDA		#$8E
 		STA		_tmp51w
-		LDA		#>[byte_AE4C]
+		LDA		#>[_txt_ending_msgB]
 		STA		_tmp53w+1
-		LDA		#<[byte_AE4C]
+		LDA		#<[_txt_ending_msgB]
 		STA		_tmp53w
 		INC		_ending_sub_idx
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_ending02:
+_ending_msg_type_out:
 		LDA		_nmi_counter
 		BNE		locret_AA1F
 		LDA		byte_32
@@ -190,14 +187,14 @@ _ending05:
 		INC		_ending_sub_idx
 		LDA		#$78
 		JSR		_wait_for_nmi
-		LDA		#>[byte_ACCF]
+		LDA		#>[_spr_anim_data0]
 		STA		_tmp53w+1
-		LDA		#<[byte_ACCF]
+		LDA		#<[_spr_anim_data0]
 		STA		_tmp53w
 		LDY		#$00
 		STY		byte_54F
 		STY		_title_push_start_toggle
-		JMP		sub_AB98
+		JMP		_ending_spr_anim_data_fetch
 
 ; =============== S U B	R O U T	I N E =======================================
 _ending07:
@@ -209,14 +206,14 @@ loc_AAF3:
 		LDA		_nmi_counter
 		BNE		loc_AAF3
 		INC		_ending_sub_idx
-		LDA		#>[byte_AD4E]
+		LDA		#>[_spr_anim_data1]
 		STA		_tmp53w+1
-		LDA		#<[byte_AD4E]
+		LDA		#<[_spr_anim_data1]
 		STA		_tmp53w
 		LDY		#$00
 		STY		byte_54F
 		STY		_title_push_start_toggle
-		JMP		sub_AB98
+		JMP		_ending_spr_anim_data_fetch
 
 ; =============== S U B	R O U T	I N E =======================================
 _ending09:
@@ -230,7 +227,7 @@ loc_AB1A:
 		BNE		loc_AB1A
 		LDY		#$30
 loc_AB26:
-		LDA		byte_AFAD,Y
+		LDA		_tlm_stamp,Y
 		STA		_nmi_tlmB1_ram,Y
 		DEY
 		BPL		loc_AB26
@@ -239,16 +236,16 @@ loc_AB26:
 		LDA		#$3C
 		STA		_nmi_counter
 		INC		_ending_sub_idx
-		LDA		#>[byte_AD79]
+		LDA		#>[_spr_anim_data2]
 		STA		_tmp53w+1
-		LDA		#<[byte_AD79]
+		LDA		#<[_spr_anim_data2]
 		STA		_tmp53w
 		LDY		#$00
 		STY		byte_54F
 		STY		_title_push_start_toggle
 		STY		_tmp4Bb
 		STY		_timer_minutes
-		JMP		sub_AB98
+		JMP		_ending_spr_anim_data_fetch
 
 ; =============== S U B	R O U T	I N E =======================================
 _ending06:
@@ -281,14 +278,14 @@ loc_AB6B:
 		DEC		byte_54E
 		LDA		byte_54E
 		BPL		locret_AB97
-		JSR		sub_AB98
+		JSR		_ending_spr_anim_data_fetch
 		BCC		locret_AB97
 		INC		_ending_sub_idx
 locret_AB97:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_AB98:
+_ending_spr_anim_data_fetch:
 		LDY		byte_54F
 		LDX		#$00
 		LDA		(_tmp53w),Y
@@ -309,7 +306,7 @@ nullsub_9:
 
 ; =============== S U B	R O U T	I N E =======================================
 _ending_stamp_animate:
-		JSR		sub_AC08
+		JSR		_ending_spr_clear
 		LDY		#$00
 		STY		_cur_player_idx
 		STY		byte_60
@@ -347,7 +344,7 @@ _ending_stamp_animate:
 		JMP		_spr_lib_insert
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_AC08:
+_ending_spr_clear:
 		LDY		#$AF
 		LDA		#$F4
 loc_AC0C:
@@ -358,7 +355,7 @@ loc_AC0C:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_ending09_final_screen:
+_ending0B_final_screen:
 		LDA		_nmi_counter
 		BNE		loc_AC27
 		INC		_tmp4Bb
@@ -401,13 +398,10 @@ locret_AC5E:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_ending0A_secret_staff:
-		JSR		_spr_clear
-		JSR		_ppu_render_off
-		JSR		_nmi_off
-		JSR		sub_AC9B
-		LDX		#<[_tlm_AFD6]
-		LDY		#>[_tlm_AFD6]
+_ending0C_secret_staff:
+		JSR		_clear_frame_field
+		LDX		#<[_tlm_secret_staff_wnd]
+		LDY		#>[_tlm_secret_staff_wnd]
 		JSR		_ppu_tlm_unpack
 		JSR		_nmi_on
 		LDA		#$00
@@ -432,32 +426,16 @@ _ending0E:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_AC9B:
+_clear_frame_field:
+		JSR		_ppu_render_off
+		JSR		_spr_clear
+		JSR		_nmi_off
 		JSR		_ppu_nt_clear0
-		LDA		#$10
-		STA		_tmp4Bb
-		LDA		#$20
-		STA		_timer_minutes
-		LDA		#$C6
-		STA		byte_4D
-loc_ACB0:
-		LDA		byte_4D
-		STA		_tlm_AED6_w+1
-		CLC
-		ADC		#$20
-		STA		byte_4D
-		LDA		_timer_minutes
-		STA		_tlm_AED6_w
-		ADC		#$00
-		STA		_timer_minutes
-		LDX		#<[_tlm_AED6_w]
-		LDY		#>[_tlm_AED6_w]
-		JSR		_ppu_tlm_unpack
-		DEC		_tmp4Bb
-		BNE		loc_ACB0
-		RTS
+		LDX		#<[_tlm_blank_field]
+		LDY		#>[_tlm_blank_field]
+		JMP		_ppu_tlm_unpack
 ; ---------------------------------------------------------------------------
-byte_ACCF:
+_spr_anim_data0:
 		.BYTE $00,$2A,$00,$00,$AA,$01,$08,$00,$FC,$00,$00,$4A,$00,$00,$AA,$01
 		.BYTE $18,$00,$FC,$00,$05,$00,$2E,$00,$01,$00,$00,$F0,$00,$FC,$00,$00
 		.BYTE $4E,$00,$01,$00,$01,$00,$00,$FC,$00,$03,$00,$32,$00,$02,$00,$00
@@ -466,11 +444,11 @@ byte_ACCF:
 		.BYTE $00,$FC,$00,$03,$00,$46,$00,$04,$00,$00,$C0,$00,$FC,$AB,$00,$66
 		.BYTE $00,$04,$00,$00,$D0,$00,$FC,$AB,$05,$00,$5E,$00,$05,$00,$00,$AC
 		.BYTE $00,$FD,$00,$00,$7E,$00,$05,$00,$00,$BC,$00,$FD,$00,$03,$80
-byte_AD4E:
+_spr_anim_data1:
 		.BYTE $00,$72,$00,$FE,$00,$00,$A0,$00,$00,$00,$00,$92,$00,$02,$00,$00
 		.BYTE $B0,$00,$01,$99,$0A,$00,$5E,$00,$04,$00,$00,$A0,$00,$00,$00,$00
 		.BYTE $A6,$00,$FB,$80,$00,$C0,$00,$FC,$80,$07,$80
-byte_AD79:
+_spr_anim_data2:
 		.BYTE $00,$7E,$00,$FC,$00,$00,$A0,$00,$02,$00,$00,$82,$00,$FE,$00,$00
 		.BYTE $A4,$00,$03,$00,$03,$00,$6E,$00,$FC,$00,$00,$A8,$00,$02,$AA,$00
 		.BYTE $7A,$00,$FD,$56,$00,$B0,$00,$04,$71,$08,$00,$4A,$00,$FC,$00,$00
@@ -479,29 +457,45 @@ byte_AD79:
 		.BYTE $00,$04,$00,$03,$00,$32,$00,$FF,$00,$00,$E0,$00,$04,$00,$00,$52
 		.BYTE $00,$FF,$00,$01,$00,$00,$04,$00,$03,$00,$2E,$00,$FF,$56,$00,$F0
 		.BYTE $00,$04,$00,$00,$4E,$00,$FF,$56,$01,$10,$00,$04,$00,$05,$80
-_unref_txt_tadashi_inu:
-		.BYTE $24,$11,$14,$11,$23,$18,$19,$2E,$19,$1E,$25,$19,$2E,$0E,$E4,$E7
-		.BYTE $FF
-byte_AE09:
+;_unref_txt_tadashi_inu:
+;		.BYTE $24,$11,$14,$11,$23,$18,$19,$2E,$19,$1E,$25,$19,$2E,$0E,$E4,$E7
+;		.BYTE $FF
+_txt_ending_msgA:
 		.BYTE $D1,$E5,$E0,$EA,$2E,$0E,$B3,$B9,$BA,$0E,$E9,$C2,$F1,$CE,$B2,$D0
 		.BYTE $CF,$9B,$CE,$B2,$E6,$D5,$D2,$E3,$2E,$E8,$D3,$DC,$C8,$D3,$E5,$2E
 		.BYTE $DE,$D2,$DE,$D7,$FE,$2E,$D5,$DB,$F2,$2E,$E8,$D3,$DC,$C5,$D3,$2E
 		.BYTE $DB,$FA,$EF,$DC,$E0,$DA,$E4,$FE,$DA,$DA,$E6,$2E,$DC,$C5,$D3,$DC
 		.BYTE $EF,$DD,$FF
-byte_AE4C:
+_txt_ending_msgB:
 		.BYTE $9C,$9D,$0E,$B3,$B9,$BA,$0E,$E9,$C2,$F1,$CE,$9E,$9F,$FF
 _tlm_staff:
-		.BYTE $2E,$2E,$2E,$2E,$A5,$2E,$23,$24,$11,$16,$16,$2E,$A5,$2E,$2E,$2E
-		.BYTE $2E,$2E,$24,$1F,$23,$18,$19,$29,$25,$1B,$19,$2E,$1E,$11,$1B,$11
-		.BYTE $1D,$25,$22,$11,$2E,$2E,$24,$11,$14,$11,$23,$18,$19,$2E,$19,$1E
-		.BYTE $25,$19,$2E,$2E,$2E,$2E,$2E,$2E,$1E,$1F,$22,$19,$11,$1B,$19,$2E
-		.BYTE $24,$15,$22,$11,$1D,$1F,$24,$1F,$2E,$2E,$2E,$1D,$11,$1B,$1F,$24
-		.BYTE $1F,$2E,$1E,$11,$1B,$11,$29,$11,$1D,$11,$2E,$2E,$2E,$1D,$11,$29
-		.BYTE $25,$1D,$19,$2E,$1D,$1F,$22,$19,$24,$11,$2E,$2E,$2E,$2E,$2E,$2E
-		.BYTE $2E,$29,$25,$1B,$11,$2E,$12,$11,$1E,$12,$11,$FF
-_tlm_AED6_w:
-		.BYTE $00,$00,$54,$2E,$FF
-_tlm_AEDB:
+		.BYTE __,__,__,__,_ds,__,_S,_T,_A,_F,_F,__,_ds,__,__,__,__,__
+		.BYTE _T,_O,_S,_H,_I,_Y,_U,_K,_I,__,_N,_A,_K,_A,_M,_U,_R,_A
+		.BYTE __,__,_T,_A,_D,_A,_S,_H,_I,__,_I,_N,_U,_I,__,__,__,__
+		.BYTE __,__,_N,_O,_R,_I,_A,_K,_I,__,_T,_E,_R,_A,_M,_O,_T,_O
+		.BYTE __,__,__,_M,_A,_K,_O,_T,_O,__,_N,_A,_K,_A,_Y,_A,_M,_A
+		.BYTE __,__,__,_M,_A,_Y,_U,_M,_I,__,_M,_O,_R,_I,_T,_A,__,__
+		.BYTE __,__,__,__,__,_Y,_U,_K,_A,__,_B,_A,_N,_B,_A
+		.BYTE $FF
+_tlm_blank_field:
+		.BYTE $20,$C6,$54,$2E
+		.BYTE $20,$E6,$54,$2E
+		.BYTE $21,$06,$54,$2E
+		.BYTE $21,$26,$54,$2E
+		.BYTE $21,$46,$54,$2E
+		.BYTE $21,$66,$54,$2E
+		.BYTE $21,$86,$54,$2E
+		.BYTE $21,$A6,$54,$2E
+		.BYTE $21,$C6,$54,$2E
+		.BYTE $21,$E6,$54,$2E
+		.BYTE $22,$06,$54,$2E
+		.BYTE $22,$26,$54,$2E
+		.BYTE $22,$46,$54,$2E
+		.BYTE $22,$66,$54,$2E
+		.BYTE $22,$86,$54,$2E
+		.BYTE $22,$A6,$54,$2E
+		.BYTE $FF
+_tlm_ending_frame:
 		.BYTE $20,$84,$18,$82,$83,$84,$85,$82,$83,$84,$85,$2E,$2E,$2E,$2E,$2E
 		.BYTE $2E,$2E,$2E,$40,$41,$42,$43,$40,$41,$42,$43,$20,$A4,$18,$92,$93
 		.BYTE $94,$95,$92,$93,$94,$95,$44,$45,$2E,$62,$63,$2E,$64,$65,$50,$51
@@ -516,14 +510,14 @@ _tlm_AEDB:
 		.BYTE $93,$94,$95,$92,$93,$94,$95,$50,$51,$52,$53,$50,$51,$52,$53,$50
 		.BYTE $51,$52,$53,$23,$C9,$66,$AA,$23,$E5,$02,$FF,$BB,$23,$ED,$02,$A0
 		.BYTE $A8,$FF
-byte_AFAD:
+_tlm_stamp:
 		.BYTE $22,$14,$05,$46,$47,$48,$49,$4A
 		.BYTE $22,$34,$05,$56,$57,$58,$59,$5A
 		.BYTE $22,$54,$05,$66,$67,$68,$69,$6A
 		.BYTE $22,$74,$05,$76,$77,$78,$79,$7A
 		.BYTE $22,$94,$05,$86,$87,$88,$89,$8A
 		.BYTE $FF
-_tlm_AFD6:
+_tlm_secret_staff_wnd:
 		.BYTE $20,$A5,$01,$0A,$20,$A6,$54,$0B,$20,$BA,$01,$0C,$20,$C5,$D0,$10
 		.BYTE $20,$DA,$D0,$2D,$22,$C5,$01,$0D,$22,$C6,$54,$0E,$22,$DA,$01,$0F
 		.BYTE $FF

@@ -249,7 +249,7 @@ byte_26C92:
 
 ; =============== S U B	R O U T	I N E =======================================
 _demo01:
-		JSR		_apu_play_ctrlD_set02
+		JSR		_apu_play_mus_reqB_set02
 		LDY		#$00
 		STY		byte_570
 		STY		byte_55
@@ -670,10 +670,11 @@ _demo07:
 _demo08:
 		LDY		#$01
 		STY		_nmi_disable_flush
-		STY		_byte_270E4_w+$25
-		DEY
-		STY		_byte_270E4_w+$2C
 		JSR		sub_270D8
+		LDY		#$01
+		STY		byte_3C0+$25
+		DEY
+		STY		byte_3C0+$2C
 		JSR		_demo_game_field_draw
 		LDY		#$00
 		STY		_nmi_disable_flush
@@ -699,7 +700,7 @@ _demo08:
 		JSR		sub_277ED
 		LDA		#$64
 		JSR		_wait_for_nmi
-		JSR		_apu_play_ctrlA_set04
+		JSR		_apu_play_se_reqA_set04
 		LDA		#$78
 		JSR		_wait_for_nmi
 		LDY		#$01
@@ -710,13 +711,13 @@ _demo08:
 sub_270D8:
 		LDY		#$39
 loc_270DA:
-		LDA		_byte_270E4_w,Y
+		LDA		_byte_270E4,Y
 		STA		byte_3C0,Y
 		DEY
 		BPL		loc_270DA
 		RTS
 ; ---------------------------------------------------------------------------
-_byte_270E4_w:
+_byte_270E4:
 		.BYTE $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 		.BYTE $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 		.BYTE $00,$0F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00

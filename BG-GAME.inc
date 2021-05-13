@@ -258,18 +258,18 @@ _main02_sub03:
 		BEQ		loc_659D
 		CMP		#$03
 		BNE		loc_6599
-		JSR		_apu_play_ctrlE_set01
+		JSR		_apu_play_mus_reqA_set01
 		JMP		loc_65A6
 ; ---------------------------------------------------------------------------
 loc_6599:
 		CMP		#$04
 		BNE		loc_65A3
 loc_659D:
-		JSR		_apu_play_ctrlD_set01
+		JSR		_apu_play_mus_reqB_set01
 		JMP		loc_65A6
 ; ---------------------------------------------------------------------------
 loc_65A3:
-		JSR		_apu_play_ctrlD_set02
+		JSR		_apu_play_mus_reqB_set02
 loc_65A6:
 		LDY		#$FF
 		STY		byte_302
@@ -323,7 +323,7 @@ loc_65FD:
 
 ; =============== S U B	R O U T	I N E =======================================
 _main02_sub05_player_gets_x_points_draw:
-		JSR		_apu_play_ctrlA_set04
+		JSR		_apu_play_se_reqA_set04
 		JSR		_wait_for_70_frames
 		LDA		byte_31B
 		LDY		byte_5D
@@ -341,29 +341,29 @@ loc_6619:
 		LDA		_game_mode_idx
 		CMP		#$02
 		BCS		loc_6641
-		JSR		_apu_play_ctrlD_set08
+		JSR		_apu_play_mus_reqB_set08
 		BNE		loc_6667
 loc_6641:
 		CMP		#$03
 		BNE		loc_664A
-		JSR		_apu_play_ctrlE_set02
+		JSR		_apu_play_mus_reqA_set02
 		BNE		loc_6667
 loc_664A:
-		JSR		_apu_play_ctrlD_set20
+		JSR		_apu_play_mus_reqB_set20
 		BNE		loc_6667
 loc_664F:
 		LDA		_game_mode_idx
 		CMP		#$02
 		BCS		loc_665B
-		JSR		_apu_play_ctrlD_set10
+		JSR		_apu_play_mus_reqB_set10
 		BNE		loc_6667
 loc_665B:
 		CMP		#$03
 		BNE		loc_6664
-		JSR		_apu_play_ctrlE_set04
+		JSR		_apu_play_mus_reqA_set04
 		BNE		loc_6667
 loc_6664:
-		JSR		_apu_play_ctrlD_set40
+		JSR		_apu_play_mus_reqB_set40
 loc_6667:
 		LDA		#$23
 		STA		_nmi_tlmB1_ram
@@ -421,8 +421,6 @@ loc_66C6:
 		ASL
 		ORA		_2p_cpu_ctrl_flag
 		BNE		loc_6701
-;		LDY		word_5A2
-;		LDA		word_5A2+1
 		LDY		#>[_tlm_patch_gets]
 		LDX		#<[_tlm_patch_gets]
 		LDX		#$21
@@ -459,15 +457,11 @@ loc_6716:
 		JSR		_tlm_B1_ram_patch_queue
 		LDX		#$21
 loc_6721:
-;		LDY		word_5A2
-;		LDA		word_5A2+1
 		LDY		#>[_tlm_patch_gets]
 		LDA		#<[_tlm_patch_gets]
 		JSR		_tlm_B1_ram_patch_queue
 		BEQ		loc_6740
 loc_672C:
-;		LDY		word_5A2
-;		LDA		word_5A2+1
 		LDY		#>[_tlm_patch_gets]
 		LDA		#<[_tlm_patch_gets]
 		LDX		#$21
@@ -934,10 +928,10 @@ _main02_sub08_draw_winner:
 		BEQ		loc_6A9A
 		LDA		_cur_player_idx
 		BEQ		loc_6A9A
-		JSR		_apu_play_ctrlD_set80
+		JSR		_apu_play_mus_reqB_set80
 		BNE		loc_6A9D
 loc_6A9A:
-		JSR		_apu_play_ctrlE_set20
+		JSR		_apu_play_mus_reqA_set20
 loc_6A9D:
 		JSR		_ppu_render_off
 		LDA		#$01
@@ -945,13 +939,17 @@ loc_6A9D:
 		JSR		_ingame_game_field_draw
 		LDA		#$00
 		STA		_nmi_disable_flush
-		LDY		#$0F
-		LDA		#$2E
+		LDA		#<[_tlm_60F4]
+		STA		_tmp20w
+		LDA		#>[_tlm_60F4]
+		STA		_tmp20w+1
+		LDY		#$00
 loc_6AAF:
-		STA		_tlm_60F4_p0_w+1,Y
-		STA		_tlm_60F4_p1_w+1,Y
-		DEY
-		BPL		loc_6AAF
+		LDA		(_tmp20w),Y
+		STA		_nmi_tlmB1_ram,Y
+		INY
+		CPY		#[_tlm_60F4_size-_tlm_60F4]
+		BNE		loc_6AAF
 		LDA		_1p_cpu_ctrl_flag
 		ASL
 		ORA		_2p_cpu_ctrl_flag
@@ -959,19 +957,19 @@ loc_6AAF:
 		LDY		#>[_tlm_patch_player]
 		LDA		#<[_tlm_patch_player]
 		LDX		#$23
-		JSR		_tlm_60F4_patch_write
+		JSR		_tlm_B1_ram_patch_queue
 		LDY		#>[_tlm_patch_is]
 		LDA		#<[_tlm_patch_is]
 		LDX		#$28
-		JSR		_tlm_60F4_patch_write
+		JSR		_tlm_B1_ram_patch_queue
 		LDA		#$A5
-		STA		_tlm_60F4_p0_w+9
+		STA		[_nmi_tlmB1_ram+[_tlm_60F4_p0-_tlm_60F4]+9]
 		LDA		#$01
 		LDY		_cur_player_idx
 		BEQ		loc_6ADE
 		LDA		#$02
 loc_6ADE:
-		STA		_tlm_60F4_p0_w+$A
+		STA		[_nmi_tlmB1_ram+[_tlm_60F4_p0-_tlm_60F4]+$A]
 		JMP		loc_6B1E
 ; ---------------------------------------------------------------------------
 loc_6AE4:
@@ -980,39 +978,41 @@ loc_6AE4:
 		LDY		#>[_tlm_patch_player]
 		LDA		#<[_tlm_patch_player]
 		LDX		#$23
-		JSR		_tlm_60F4_patch_write
+		JSR		_tlm_B1_ram_patch_queue
 		LDY		#>[_tlm_patch_is]
 		LDA		#<[_tlm_patch_is]
 		LDX		#$26
-		JSR		_tlm_60F4_patch_write
+		JSR		_tlm_B1_ram_patch_queue
 		LDA		_cur_player_idx
 		BEQ		loc_6B1E
 		STA		byte_539
 		LDY		#>[_tlm_patch_the_loser]
 		LDA		#<[_tlm_patch_the_loser]
 		LDX		#$4A
-		JSR		_tlm_60F4_patch_write
+		JSR		_tlm_B1_ram_patch_queue
 		BEQ		loc_6B27
 loc_6B0C:
 		LDY		#>[_tlm_patch_computer]
 		LDA		#<[_tlm_patch_computer]
 		LDX		#$25
-		JSR		_tlm_60F4_patch_write
+		JSR		_tlm_B1_ram_patch_queue
 		LDY		#>[_tlm_patch_is]
 		LDA		#<[_tlm_patch_is]
 		LDX		#$28
-		JSR		_tlm_60F4_patch_write
+		JSR		_tlm_B1_ram_patch_queue
 loc_6B1E:
 		LDY		#>[_tlm_patch_the_winner]
 		LDA		#<[_tlm_patch_the_winner]
 		LDX		#$4A
-		JSR		_tlm_60F4_patch_write
+		JSR		_tlm_B1_ram_patch_queue
 loc_6B27:
-		LDX		#<[_tlm_60F4_w]
-		LDY		#>[_tlm_60F4_w]
+		LDX		#<[_nmi_tlmB1_ram]
+		LDY		#>[_nmi_tlmB1_ram]
 		JSR		_ppu_tlm_unpack
+		LDY		#$00
+		STY		_ppu_queue_req				; necessary here to prevent ppu dequeue from garbage
 		INC		_main02_sub_idx
-		LDY		#$01
+		INY
 		JSR		_pal_fade_outA
 		LDA		#$0C
 		STA		_tmp4Bb
@@ -1058,19 +1058,19 @@ loc_6B57:
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_tlm_60F4_patch_write:
-		STY		_tmp20w+1
-		STA		_tmp20w
-		LDY		#$00
-		LDA		(_tmp20w),Y
-		TAY
-loc_6B70:
-		LDA		(_tmp20w),Y
-		STA		_tlm_60F4_w,X
-		DEX
-		DEY
-		BNE		loc_6B70
-		RTS
+;_tlm_60F4_patch_write:
+;		STY		_tmp20w+1
+;		STA		_tmp20w
+;		LDY		#$00
+;		LDA		(_tmp20w),Y
+;		TAY
+;loc_6B70:
+;		LDA		(_tmp20w),Y
+;		STA		_tlm_60F4_w,X
+;		DEX
+;		DEY
+;		BNE		loc_6B70
+;		RTS
 ; ---------------------------------------------------------------------------
 _tlm_patch_is:
 		.BYTE $02
@@ -1144,7 +1144,7 @@ _main02_sub0A_stage_complete:
 		BEQ		loc_6C9A
 		LDA		_pads_held+1
 		BEQ		loc_6C9A
-		JSR		_apu_play_ctrlC_set40
+		JSR		_apu_play_se_reqC_set40
 		BNE		loc_6C86
 loc_6C7C:
 		INC		_match_idx
@@ -1209,7 +1209,7 @@ loc_6CF5:
 		JSR		_ppu_tlm_unpack
 		LDY		#$02
 		JSR		_set_field_pal
-		JSR		_apu_play_ctrlE_set08
+		JSR		_apu_play_mus_reqA_set08
 		LDY		#$00
 		STY		_nmi_disable_flush
 		STY		byte_55B
@@ -1391,7 +1391,7 @@ _ingame_points_wnd_draw:
 		ORA		byte_62
 		ORA		byte_577
 		BNE		nullsub_3
-		JSR		_apu_play_ctrlC_set80
+		JSR		_apu_play_se_reqC_set80
 		JSR		_spr_clear
 		LDY		#>[_tlm_ingame_match_info_wnd]
 		LDX		#<[_tlm_ingame_match_info_wnd]
@@ -1568,7 +1568,7 @@ loc_6FBB:
 		LDA		#$01
 		STA		byte_305
 loc_6FC5:
-		JSR		_apu_play_ctrlC_set40
+		JSR		_apu_play_se_reqC_set40
 		RTS
 ; ---------------------------------------------------------------------------
 _tlm_ingame_match_info_wnd:
@@ -1711,7 +1711,7 @@ _tlm_res_60D0:
 		.WORD $A622
 		.BYTE $14
 		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
-_tlm_60F4_w:
+_tlm_60F4:
 		.WORD $8621
 		.BYTE $01
 		.BYTE $0A
@@ -1732,7 +1732,7 @@ _tlm_60F4_w:
 		.BYTE $2D
 		.WORD $C621
 		.BYTE $12
-_tlm_60F4_p0_w:
+_tlm_60F4_p0:
 		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
 		.WORD $E621
 		.BYTE $01
@@ -1745,7 +1745,7 @@ _tlm_60F4_p0_w:
 		.BYTE $2D
 		.WORD $0622
 		.BYTE $12
-_tlm_60F4_p1_w:
+_tlm_60F4_p1:
 		.BYTE $10,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,__,$2D
 		.WORD $2622
 		.BYTE $01
@@ -1766,6 +1766,7 @@ _tlm_60F4_p1_w:
 		.BYTE $01
 		.BYTE $0F
 		.BYTE $FF
+_tlm_60F4_size:
 _tlm_res_6180:
 		.BYTE $24
 		.WORD $522
@@ -3100,7 +3101,7 @@ loc_7DB3:
 		LDY		_cur_player_idx
 		LDA		_1p_cpu_ctrl_flag,Y
 		BNE		locret_7DB2
-		JMP		_apu_play_ctrlB_set04
+		JMP		_apu_play_se_reqB_set04
 ; ---------------------------------------------------------------------------
 byte_7DBD:
 		.BYTE $00,$10,$01,$C0,$00,$1E
@@ -3148,7 +3149,7 @@ loc_7DEB:
 loc_7E05:
 		LDA		byte_30F
 		BNE		loc_7E10
-		JSR		_apu_play_ctrlC_set01
+		JSR		_apu_play_se_reqC_set01
 		INC		byte_30F
 loc_7E10:
 		LDA		byte_6E
@@ -3240,7 +3241,7 @@ loc_7EA3:
 		STA		byte_339
 		JSR		_dice_roll_init
 		JSR		_dice_roll_rand
-		JSR		_apu_play_ctrlC_set02
+		JSR		_apu_play_se_reqC_set02
 		LDA		#$80
 		STA		byte_45
 		RTS
@@ -4154,7 +4155,7 @@ loc_854B:
 		LDY		_cur_player_idx
 		LDA		_1p_cpu_ctrl_flag,Y
 		BNE		loc_8559
-		JSR		_apu_play_ctrlB_set20
+		JSR		_apu_play_se_reqB_set20
 loc_8559:
 		LDA		byte_49
 		EOR		#$01
@@ -4294,7 +4295,7 @@ loc_8623:
 		STA		byte_303
 		LDA		#$00
 		STA		byte_64
-		JSR		_apu_play_ctrlB_set10
+		JSR		_apu_play_se_reqB_set10
 		JMP		_ingame_sub06
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -4648,7 +4649,7 @@ _ingame_sub08:
 		LDA		byte_61
 		JSR		sub_97C5
 		BEQ		loc_88EC
-		JSR		_apu_play_ctrlB_set04
+		JSR		_apu_play_se_reqB_set04
 		LDA		#$07
 		STA		byte_45
 		RTS
@@ -4707,7 +4708,7 @@ loc_8938:
 		ROR
 		ORA		byte_61
 		STA		byte_314,Y
-		JSR		_apu_play_ctrlB_set80
+		JSR		_apu_play_se_reqB_set80
 		LDA		#$09
 		STA		byte_45
 		RTS
@@ -4761,7 +4762,7 @@ loc_8984:
 		STA		byte_30D
 		LDA		#$70
 		STA		byte_64
-		JSR		_apu_play_ctrlB_set08
+		JSR		_apu_play_se_reqB_set08
 		LDA		#$09
 		STA		byte_45
 		RTS
@@ -4787,10 +4788,10 @@ loc_89D9:
 		LDA		byte_61
 		CMP		#$19
 		BEQ		loc_89EE
-		JMP		_apu_play_ctrlA_set80
+		JMP		_apu_play_se_reqA_set80
 ; ---------------------------------------------------------------------------
 loc_89EE:
-		JMP		_apu_play_ctrlA_set40
+		JMP		_apu_play_se_reqA_set40
 ; ---------------------------------------------------------------------------
 locret_89F1:
 		RTS
@@ -4991,7 +4992,7 @@ loc_8B45:
 		RTS
 ; ---------------------------------------------------------------------------
 loc_8B4F:
-		JSR		_apu_play_ctrlB_set04
+		JSR		_apu_play_se_reqB_set04
 		LDA		#$02
 		STA		byte_62
 		LDA		_cur_player_idx
@@ -5073,7 +5074,7 @@ loc_8BE3:
 		LDA		#$23
 		STA		byte_73
 		INC		byte_30A
-		JMP		_apu_play_ctrlA_set02_0
+		JMP		_apu_play_se_reqA_set02_0
 ; ---------------------------------------------------------------------------
 loc_8BED:
 		JSR		sub_8722
@@ -5107,7 +5108,7 @@ loc_8BFC:
 loc_8C24:
 		CMP		#$08
 		BNE		loc_8C48
-		JSR		_apu_play_ctrlA_set02_0
+		JSR		_apu_play_se_reqA_set02_0
 		LDA		byte_6F
 		STA		byte_84
 		LDA		#$F0
@@ -5270,7 +5271,7 @@ loc_8D0F:
 loc_8D39:
 		LSR
 		STA		byte_341
-		JSR		_apu_play_ctrlB_set40
+		JSR		_apu_play_se_reqB_set40
 		JSR		sub_8722
 		LDA		#$0F
 		STA		byte_45
@@ -5390,7 +5391,7 @@ _ingame_sub11:
 		BMI		loc_8E18
 		ASL
 		BMI		loc_8E2C
-		JSR		_apu_play_ctrlB_set04
+		JSR		_apu_play_se_reqB_set04
 		LDA		#$10
 		STA		byte_45
 		RTS
@@ -5607,7 +5608,7 @@ loc_8F68:
 		JSR		_dice_roll_init
 		JSR		_dice_roll_rand
 loc_8F8E:
-		JSR		_apu_play_ctrlC_set02
+		JSR		_apu_play_se_reqC_set02
 		LDA		#$80
 		STA		byte_45
 		JMP		loc_8EED
@@ -5719,7 +5720,7 @@ loc_9046:
 		LDA		#$80
 		STA		byte_332,Y
 		INC		byte_30A
-		JMP		_apu_play_ctrlA_set02_0
+		JMP		_apu_play_se_reqA_set02_0
 ; ---------------------------------------------------------------------------
 loc_905B:
 		CMP		#$08
@@ -5809,7 +5810,7 @@ _ingame_sub1A:
 		LDA		#$10
 		STA		byte_341
 		JSR		sub_8722
-		JSR		_apu_play_ctrlB_set80
+		JSR		_apu_play_se_reqB_set80
 		LDA		#$1C
 		STA		byte_45
 		RTS
@@ -5847,7 +5848,7 @@ loc_910E:
 		LDA		#$10
 		STA		byte_341
 		JSR		sub_8722
-		JSR		_apu_play_ctrlB_set80
+		JSR		_apu_play_se_reqB_set80
 		LDY		byte_4A
 		LDA		byte_314,Y
 		AND		#$7F
@@ -5929,7 +5930,7 @@ loc_91C4:
 		LDA		#$00
 		STA		byte_64
 loc_91DD:
-		JSR		_apu_play_ctrlA_set80
+		JSR		_apu_play_se_reqA_set80
 		LDA		#$00
 		STA		byte_334
 		LDA		byte_4A

@@ -125,19 +125,17 @@ byte_C3EB:
 		.BYTE $07,$7F,$4A,$08
 byte_C3EF:
 		.BYTE $07,$7F,$3D,$08
-;_unref_C3F3
-;		.BYTE $07,$7F,$3D,$08
 
 ; =============== S U B	R O U T	I N E =======================================
 _apu_play:
 		JSR		sub_C499
 		JSR		sub_CD27
 		LDA		#$00
-		STA		_apu_play_ctrlA
-		STA		_apu_play_ctrlB
-		STA		_apu_play_ctrlC
-		STA		_apu_play_ctrlE
-		STA		_apu_play_ctrlD
+		STA		_apu_play_se_reqA
+		STA		_apu_play_se_reqB
+		STA		_apu_play_se_reqC
+		STA		_apu_play_mus_reqA
+		STA		_apu_play_mus_reqB
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -239,14 +237,14 @@ _unref_0:
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_C499:
-		LDA		_apu_play_ctrlA
+		LDA		_apu_play_se_reqA
 		LSR
 		BCS		sub_C481
 		LSR
 		BCS		sub_C473
-		LDA		_apu_play_ctrlD
+		LDA		_apu_play_mus_reqB
 		BNE		loc_C4D4
-		LDA		_apu_play_ctrlE
+		LDA		_apu_play_mus_reqA
 		BNE		loc_C4D9
 		JSR		sub_D19B
 		JSR		sub_C589
@@ -284,9 +282,9 @@ loc_C4EF:
 		STA		byte_774
 		ASL
 		TAX
-		LDA		off_D233,X
+		LDA		_apu_mus_lib,X
 		STA		byte_EA
-		LDA		off_D233+1,X
+		LDA		_apu_mus_lib+1,X
 		STA		byte_EB
 		LDY		#$00
 loc_C501:
@@ -1392,7 +1390,7 @@ sub_CD27:
 sub_CD31:
 		LDX		#$00
 		STX		byte_D7
-		LDA		_apu_play_ctrlA
+		LDA		_apu_play_se_reqA
 		BEQ		loc_CD44
 		LDX		#$01
 		STX		byte_775
@@ -1411,7 +1409,7 @@ loc_CD44:
 sub_CD52:
 		LDX		#$01
 		STX		byte_D7
-		LDA		_apu_play_ctrlB
+		LDA		_apu_play_se_reqB
 		BEQ		loc_CD65
 		LDX		#$08
 		STX		byte_775
@@ -1434,7 +1432,7 @@ loc_CD6F:
 sub_CD75:
 		LDA		#$02
 		STA		byte_D7
-		LDA		_apu_play_ctrlC
+		LDA		_apu_play_se_reqC
 		BEQ		loc_CD88
 		LDX		#$02
 		STX		byte_775
@@ -2121,21 +2119,21 @@ loc_D223:
 		STA		byte_794
 		BEQ		locret_D209
 ; ---------------------------------------------------------------------------
-off_D233:
-		.WORD off_D3D2
-		.WORD off_D66A
-		.WORD off_DA5E
-		.WORD off_DBB6
-		.WORD off_DCD4
-		.WORD off_DC64
-		.WORD off_DC1C
-		.WORD off_DD36
-		.WORD off_D94F
-		.WORD off_DDC0
-		.WORD off_DE28
-		.WORD off_DE75
-		.WORD off_DEAD
-		.WORD off_DF1C
+_apu_mus_lib:
+		.WORD _apu_mus00
+		.WORD _apu_mus01
+		.WORD _apu_mus02
+		.WORD _apu_mus03
+		.WORD _apu_mus04
+		.WORD _apu_mus05
+		.WORD _apu_mus06
+		.WORD _apu_mus07
+		.WORD _apu_mus08
+		.WORD _apu_mus09
+		.WORD _apu_mus0A
+		.WORD _apu_mus0B
+		.WORD _apu_mus0C
+		.WORD _apu_mus0D
 byte_D24F:
 		.BYTE $00,$01,$02,$03,$04,$05,$06,$07,$09,$0E,$13,$1D,$27,$31,$3B,$00
 		.BYTE $01,$02,$07,$09,$00
@@ -2209,14 +2207,14 @@ byte_D392:
 		.BYTE $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 		.BYTE $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 		.BYTE $3F,$3F,$3F,$3F,$3F,$3F,$3F,$3F,$3F,$3F,$3F,$3F,$3F,$3F,$3F,$3F
-off_D3D2:
-		.WORD byte_D49A
-		.WORD byte_D4B2
-		.WORD byte_D4D0
-		.WORD byte_D4E5
-		.WORD byte_D3DD
+_apu_mus00:
+		.WORD _apu_mus00_ch0
+		.WORD _apu_mus00_ch1
+		.WORD _apu_mus00_ch2
+		.WORD _apu_mus00_ch3
+		.WORD _apu_mus00_ch4
 		.BYTE $0F
-byte_D3DD:
+_apu_mus00_ch4:
 		.BYTE $C4
 		.WORD byte_D352
 		.BYTE $80,$7F
@@ -2236,7 +2234,7 @@ byte_D3E2:
 		.BYTE $27,$83,$27,$7F,$27,$7F,$7F,$89,$28,$84,$27,$7F,$83,$7F,$7F,$7F
 		.BYTE $81,$7F,$FC
 		.WORD byte_D3E2
-byte_D49A:
+_apu_mus00_ch0:
 		.BYTE $C0
 		.WORD byte_D2F2
 		.BYTE $80,$7F
@@ -2251,7 +2249,7 @@ byte_D49F:
 		.WORD byte_D583
 		.BYTE $FC
 		.WORD byte_D49F
-byte_D4B2:
+_apu_mus00_ch1:
 		.BYTE $C1
 		.WORD byte_D2F2
 		.BYTE $80,$7F
@@ -2266,7 +2264,7 @@ byte_D4B7:
 		.WORD byte_D5AA
 		.BYTE $FC
 		.WORD byte_D4B7
-byte_D4D0:
+_apu_mus00_ch2:
 		.BYTE $C2
 		.WORD byte_D33E
 		.BYTE $80,$7F
@@ -2279,9 +2277,9 @@ byte_D4D5:
 		.WORD byte_D60B
 		.BYTE $FC
 		.WORD byte_D4D5
-byte_D4E5:
+_apu_mus00_ch3:
 		.BYTE $83,$0C,$0C,$03,$0C,$0C,$03,$0C,$0C,$FC
-		.WORD byte_D4E5
+		.WORD _apu_mus00_ch3
 byte_D4F1:
 		.BYTE $80,$7E,$80,$28,$80,$7E,$80,$27,$80,$7E,$80,$28,$80,$27,$89,$7F
 		.BYTE $83,$1B,$1C,$1E,$20,$22,$FE
@@ -2318,14 +2316,14 @@ byte_D60B:
 		.BYTE $89,$17,$83,$1E,$89,$1E,$83,$17,$89,$19,$19,$82,$7E,$80,$12,$89
 		.BYTE $1B,$1B,$82,$7E,$80,$14,$89,$19,$19,$82,$7E,$80,$12,$83,$17,$7F
 		.BYTE $17,$7F,$7F,$89,$18,$84,$17,$7F,$83,$7F,$7F,$7F,$81,$7F,$FE
-off_D66A:
-		.WORD byte_D696
-		.WORD byte_D688
-		.WORD byte_D6A4
-		.WORD byte_D6B5
-		.WORD byte_D675
+_apu_mus01:
+		.WORD _apu_mus01_ch0
+		.WORD _apu_mus01_ch1
+		.WORD _apu_mus01_ch2
+		.WORD _apu_mus01_ch3
+		.WORD _apu_mus01_ch4
 		.BYTE $0D
-byte_D675:
+_apu_mus01_ch4:
 		.BYTE $C4
 		.WORD byte_D352
 		.BYTE $88,$7F,$84,$7F,$7F,$19,$19
@@ -2336,7 +2334,7 @@ byte_D67F:
 		.WORD byte_D74C
 		.BYTE $FC
 		.WORD byte_D67F
-byte_D688:
+_apu_mus01_ch1:
 		.BYTE $C1
 		.WORD byte_D2F2
 		.BYTE $80,$7F
@@ -2347,7 +2345,7 @@ byte_D68D:
 		.WORD byte_D7D2
 		.BYTE $FC
 		.WORD byte_D68D
-byte_D696:
+_apu_mus01_ch0:
 		.BYTE $C0
 		.WORD byte_D2F2
 		.BYTE $80,$7F
@@ -2358,7 +2356,7 @@ byte_D69B:
 		.WORD byte_D868
 		.BYTE $FC
 		.WORD byte_D69B
-byte_D6A4:
+_apu_mus01_ch2:
 		.BYTE $C2
 		.WORD byte_D32F
 		.BYTE $80,$7F
@@ -2371,7 +2369,7 @@ byte_D6A9:
 		.WORD byte_D8FE
 		.BYTE $FC
 		.WORD byte_D6A9
-byte_D6B5:
+_apu_mus01_ch3:
 		.BYTE $82,$0C,$0C,$0C,$83,$03,$84,$03,$03
 byte_D6BE:
 		.BYTE $E2,$E7,$83,$0C,$0C,$03,$0C,$EF,$EF,$82,$03,$7F,$03,$83,$7F,$84
@@ -2439,7 +2437,7 @@ byte_D8FE:
 		.BYTE $84,$14,$7F,$14,$7F,$82,$27,$84,$19,$7F,$19,$7F,$82,$29,$84,$16
 		.BYTE $7F,$16,$7F,$82,$2C,$84,$1B,$7F,$1B,$7F,$82,$2A,$83,$7F,$20,$7F
 		.BYTE $20,$82,$20,$7F,$83,$7F,$19,$7F,$19,$82,$19,$7F,$FE
-off_D94F:
+_apu_mus08:
 		.WORD byte_D9C5
 		.WORD byte_D9F0
 		.WORD byte_DA1B
@@ -2489,7 +2487,7 @@ byte_DA21:
 byte_DA55:
 		.BYTE $82,$0C,$90,$00,$7F,$0C,$FC
 		.WORD byte_DA55
-off_DA5E:
+_apu_mus02:
 		.WORD byte_DAE2
 		.WORD byte_DB04
 		.WORD byte_DA69
@@ -2556,7 +2554,7 @@ byte_DB7B:
 byte_DBA4:
 		.BYTE $83,$06,$06,$03,$06,$06,$03,$06,$06,$03,$06,$06,$03,$06,$06,$03
 		.BYTE $06,$FE
-off_DBB6:
+_apu_mus03:
 		.WORD byte_DBC8
 		.WORD byte_DBD1
 		.WORD byte_DBDC
@@ -2591,7 +2589,7 @@ byte_DBED:
 byte_DC0A:
 		.BYTE $83,$1D,$20,$22,$20,$24,$1B,$1F,$1D,$82,$19,$1B,$83,$20,$7F,$14
 		.BYTE $7F,$FE
-off_DC1C:
+_apu_mus06:
 		.WORD byte_DC3A
 		.WORD byte_DC41
 		.WORD byte_DC4A
@@ -2620,7 +2618,7 @@ byte_DC4A:
 		.BYTE $80,$1E,$1D,$7E,$81,$1B,$FF
 byte_DC54:
 		.BYTE $82,$2A,$2E,$31,$35,$29,$2C,$30,$33,$27,$2A,$2E,$7E,$81,$31,$FE
-off_DC64:
+_apu_mus05:
 		.WORD byte_DC6F
 		.WORD byte_DC96
 		.WORD byte_DCCB
@@ -2646,7 +2644,7 @@ byte_DCCB:
 		.BYTE $C2
 		.WORD byte_D32F
 		.BYTE $80,$7F,$7F,$7F,$1E,$FF
-off_DCD4:
+_apu_mus04:
 		.WORD byte_DCFE
 		.WORD byte_DD12
 		.WORD byte_DD24
@@ -2671,7 +2669,7 @@ byte_DD24:
 		.BYTE $C2
 		.WORD byte_D339
 		.BYTE $82,$12,$7F,$7F,$7F,$82,$7F,$8A,$19,$84,$1E,$82,$7F,$12,$FF
-off_DD36:
+_apu_mus07:
 		.WORD byte_DD41
 		.WORD byte_DD54
 		.WORD byte_DD84
@@ -2703,7 +2701,7 @@ byte_DD84:
 		.BYTE $25,$90,$20,$7F,$20,$82,$7F,$19,$FF
 byte_DDB0:
 		.BYTE $90,$7F,$7F,$7F,$7F,$7F,$82,$7F,$19,$7F,$1B,$7F,$19,$7F,$18,$FE
-off_DDC0:
+_apu_mus09:
 		.WORD byte_DDE3
 		.WORD byte_DDF9
 		.WORD byte_DE0F
@@ -2730,7 +2728,7 @@ byte_DE0F:
 		.WORD byte_D339
 		.BYTE $83,$19,$7F,$1B,$7F,$1C,$7F,$1D,$7F,$1E,$7F,$1C,$7F,$1B,$7F,$90
 		.BYTE $19,$7F,$7E,$80,$17,$FF
-off_DE28:
+_apu_mus0A:
 		.WORD byte_DE33
 		.WORD byte_DE3C
 		.WORD byte_DE45
@@ -2757,7 +2755,7 @@ byte_DE45:
 byte_DE60:
 		.BYTE $84,$21,$23,$21,$1E,$90,$1C,$7F,$1A,$17,$7F,$15,$17,$7F,$12,$15
 		.BYTE $7F,$17,$82,$7F,$FE
-off_DE75:
+_apu_mus0B:
 		.WORD byte_DE92
 		.WORD byte_DE9B
 		.WORD byte_DE89
@@ -2790,25 +2788,26 @@ byte_DE9B:
 		.BYTE $FF
 byte_DEA4:
 		.BYTE $83,$1D,$1E,$7F,$1F,$7F,$80,$20,$FE
-off_DEAD:
-		.WORD byte_DEC3
-		.WORD byte_DECA
+_apu_mus0C:
+		.WORD _apu_mus0C_ch0
+		.WORD _apu_mus0C_ch1
 		.WORD $0000
 		.WORD $0000
-		.WORD byte_DEB8
+		.WORD _apu_mus0C_ch4
 		.BYTE $0B
-byte_DEB8:
+_apu_mus0C_ch4:
 		.BYTE $BE,$0C,$C4
 		.WORD byte_D352
 		.BYTE $E2,$FD
 		.WORD byte_DF00
 		.BYTE $EF,$FF
-byte_DEC3:
+_apu_mus0C_ch0:
 		.BYTE $C0
 		.WORD byte_D314
-		.WORD byte_D5FD
-		.BYTE $DE,$FF
-byte_DECA:
+		.BYTE $FD
+		.WORD byte_DED5
+		.BYTE $FF
+_apu_mus0C_ch1:
 		.BYTE $C1
 		.WORD byte_D314
 		.BYTE $91,$7F,$92,$7F,$FD
@@ -2826,7 +2825,7 @@ byte_DEE2:
 byte_DF00:
 		.BYTE $81,$20,$89,$1D,$83,$1E,$81,$20,$82,$25,$1E,$81,$1D,$85,$1B,$1D
 		.BYTE $1B,$1D,$1B,$1D,$1B,$1D,$83,$1B,$19,$80,$19,$FE
-off_DF1C:
+_apu_mus0D:
 		.WORD byte_DF27
 		.WORD byte_DF3C
 		.WORD byte_DF51

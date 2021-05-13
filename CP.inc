@@ -2260,7 +2260,7 @@ locret_1B9E4:
 
 ; =============== S U B	R O U T	I N E =======================================
 _cp_sub03_field_and_dice_editor:
-		JSR		_apu_play_ctrlA_set02
+		JSR		_apu_play_se_reqA_set02
 		LDA		_cur_player_idx
 		STA		byte_34D
 		PHA
@@ -2287,7 +2287,7 @@ loc_1BA06:
 		LDA		byte_34B
 		ORA		byte_34C
 		BEQ		loc_1BA28
-		JSR		_apu_play_ctrlB_set04
+		JSR		_apu_play_se_reqB_set04
 		JMP		loc_1BA36
 ; ---------------------------------------------------------------------------
 loc_1BA28:

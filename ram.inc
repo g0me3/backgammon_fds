@@ -45,10 +45,10 @@ byte_14:
 		.BYTE 0
 byte_15:
 		.BYTE 0
-;		.BYTE 0
-;		.BYTE 0
-;		.BYTE 0
-;		.BYTE 0
+		.BYTE 0
+		.BYTE 0
+		.BYTE 0
+		.BYTE 0
 byte_1A:
 		.BYTE 0
 byte_1B:
@@ -91,10 +91,10 @@ _nmi_counter:
 		.BYTE 0
 _ppu_dequeue_req:
 		.BYTE 0
-;		.BYTE 0
+		.BYTE 0
 _nmi_tlm_lib_idx:
 		.BYTE 0
-;		.BYTE 0
+		.BYTE 0
 _main02_sub_idx:
 		.BYTE 0
 byte_3C:
@@ -1914,15 +1914,15 @@ byte_7A3:
 		.BYTE 0
 		.BYTE 0
 		.BYTE 0
-_apu_play_ctrlA:
+_apu_play_se_reqA:
 		.BYTE 0
-_apu_play_ctrlB:
+_apu_play_se_reqB:
 		.BYTE 0
-_apu_play_ctrlC:
+_apu_play_se_reqC:
 		.BYTE 0
-_apu_play_ctrlE:
+_apu_play_mus_reqA:
 		.BYTE 0
-_apu_play_ctrlD:
+_apu_play_mus_reqB:
 		.BYTE 0
 		.BYTE 0
 		.BYTE 0
