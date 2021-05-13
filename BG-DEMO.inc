@@ -722,7 +722,7 @@ _demo08:
 		JSR		_wait_for_nmi
 		LDY		#$01
 		JSR		_pal_fade_outB
-		JMP		sub_A5D6
+		JMP		_common_program_reload
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_270B6:

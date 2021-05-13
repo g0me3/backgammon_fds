@@ -5,6 +5,7 @@
 j__apu_play:
 		JMP		_apu_play
 
+off_C303:
 		.WORD sub_CDD6
 		.WORD sub_CDC3
 		.WORD sub_CE47
@@ -13,6 +14,7 @@ j__apu_play:
 		.WORD sub_CDB8
 		.WORD sub_CDBD
 		.WORD sub_CDBD
+off_C313:
 		.WORD sub_CDDD
 		.WORD sub_CDD0
 		.WORD sub_CE58
@@ -21,6 +23,7 @@ j__apu_play:
 		.WORD nullsub_2
 		.WORD nullsub_2
 		.WORD nullsub_2
+off_C323:
 		.WORD sub_CFBA
 		.WORD sub_CF6C
 		.WORD sub_CE70
@@ -29,6 +32,7 @@ j__apu_play:
 		.WORD sub_CEC7
 		.WORD sub_CE9D
 		.WORD sub_CF54
+off_C333:
 		.WORD sub_CFD0
 		.WORD sub_CF73
 		.WORD sub_CE7C
@@ -37,6 +41,7 @@ j__apu_play:
 		.WORD sub_CED3
 		.WORD sub_CEA9
 		.WORD sub_CF5B
+off_C343:
 		.WORD sub_D060
 		.WORD sub_D0B5
 		.WORD sub_CDBD
@@ -45,6 +50,7 @@ j__apu_play:
 		.WORD sub_CDBD
 		.WORD sub_D014
 		.WORD sub_CFDD
+off_C353:
 		.WORD sub_D0E4
 		.WORD sub_D0E4
 		.WORD nullsub_2
@@ -1345,7 +1351,6 @@ sub_CCEB:
 		STA		byte_D8
 		PHA
 		STX		word_E2
-		LDY		#$C3
 		STY		word_E2+1
 		LDY		#$00
 loc_CCF6:
@@ -1395,7 +1400,8 @@ sub_CD31:
 		BEQ		loc_CD44
 		LDX		#$01
 		STX		byte_775
-		LDX		#$03
+		LDX		#<[off_C303]
+		LDY		#>[off_C303]
 		JMP		loc_CD6F
 ; ---------------------------------------------------------------------------
 loc_CD44:
@@ -1403,7 +1409,8 @@ loc_CD44:
 		BEQ		locret_CD9E
 		LDX		#$00
 		STX		byte_D7
-		LDX		#$13
+		LDX		#<[off_C313]
+		LDY		#>[off_C313]
 		JMP		loc_CD6F
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -1414,14 +1421,20 @@ sub_CD52:
 		BEQ		loc_CD65
 		LDX		#$08
 		STX		byte_775
-		LDX		#$23
+		LDX		#<[off_C323]
+		LDY		#>[off_C323]
 		JMP		loc_CD6F
 ; ---------------------------------------------------------------------------
 loc_CD65:
 		LDA		byte_78F
 		BEQ		locret_CD9E
-		LDX		#$33
-		JMP		loc_CD6F
+		LDX		#<[off_C333]
+		LDY		#>[off_C333]
+;		JMP		loc_CD6F
+
+; !FALLTHROUGH!
+
+; =============== S U B	R O U T	I N E =======================================
 loc_CD6F:
 		JSR		sub_CCEB
 		JMP		(word_E4)
@@ -1434,13 +1447,15 @@ sub_CD75:
 		BEQ		loc_CD88
 		LDX		#$02
 		STX		byte_775
-		LDX		#$43
+		LDX		#<[off_C343]
+		LDY		#>[off_C343]
 		JMP		loc_CD6F
 ; ---------------------------------------------------------------------------
 loc_CD88:
 		LDA		byte_790
 		BEQ		locret_CD9E
-		LDX		#$53
+		LDX		#<[off_C353]
+		LDY		#>[off_C353]
 		JMP		loc_CD6F
 ; ---------------------------------------------------------------------------
 loc_CD92:

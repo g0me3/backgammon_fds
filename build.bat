@@ -4,6 +4,9 @@ cd nas
 
 echo assemble...
 
+rem to draw dasm output
+dasm bank0.nas -f3 -obank0.bin
+rem to generate lst and err filrs
 dasm bank0.nas -f3 -l!bank0.lst -obank0.bin >> !err.log
 
 dasm hdr.nas -f3 -ohdr.bin > NUL

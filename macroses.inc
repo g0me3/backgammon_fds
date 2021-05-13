@@ -13,6 +13,46 @@ LANGUAGE		EQU		LANG_EN
 
 ;-------------------F-O-N-T-S-------------------
 
+_0 	EQU	$00
+_1 	EQU	$01
+_2 	EQU	$02
+_3 	EQU	$03
+_4 	EQU	$04
+_5 	EQU	$05
+_6 	EQU	$06
+_7 	EQU	$07
+_8 	EQU	$08
+_9 	EQU	$09
+
+_A 	EQU	$11
+_B 	EQU	$12
+_C 	EQU	$13
+_D 	EQU	$14
+_E 	EQU	$15
+_F 	EQU	$16
+_G 	EQU	$17
+_H 	EQU	$18
+_I 	EQU	$19
+_J 	EQU	$1A
+_K 	EQU	$1B
+_L 	EQU	$1C
+_M 	EQU	$1D
+_N 	EQU	$1E
+_O 	EQU	$1F
+_P 	EQU	$20
+_Q 	EQU	$21
+_R 	EQU	$22
+_S 	EQU	$23
+_T 	EQU	$24
+_U 	EQU	$25
+_V 	EQU	$26
+_W 	EQU	$27
+_X 	EQU	$28
+_Y 	EQU	$29
+_ex	EQU	$2A
+_dt	EQU	$2B
+__  EQU $2E
+
 ;--------------------A-P-U----------------------
 
 ;--------------D-E-B-U-G-G-I-N-G----------------

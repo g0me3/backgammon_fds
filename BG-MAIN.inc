@@ -1,33 +1,26 @@
 
 ;		ORG $6000
-
-_cheat_flag1_w:
-		.BYTE $00
-_prog_crc_w:
-		.WORD $0000
-_sound_crc_w:
-		.WORD $0000
-
+;_prog_crc_w:
+;		.WORD $0000
+;_sound_crc_w:
+;		.WORD $0000
 ; =============== S U B	R O U T	I N E =======================================
-_load_file_by_idx:
-		JSR		$E1F8 ; _BIOS_load_files_by_idx
+;_load_file_by_idx:
+;		JSR		$E1F8 ; _BIOS_load_files_by_idx
 ; ---------------------------------------------------------------------------
-		.WORD _disk_id
-_load_files_idx_list_ofs_w:
-		.WORD $0000
+;		.WORD _disk_id
+;_load_files_idx_list_ofs_w:
+;		.WORD $0000
 ; ---------------------------------------------------------------------------
-		RTS
+;		RTS
 ; ---------------------------------------------------------------------------
-_first_boot_init_flag_w:
-		.BYTE $00
-_overlay_loaded_flag_w:
-		.BYTE $00
-_menu_pos_idx_w:
-		.BYTE $00
-_match_pts_w:
-		.BYTE $00
-_ppu_title_tiles_ppu_swap_flag_w:
-		.BYTE $00
+;_first_boot_init_flag_w:
+;		.BYTE $00
+;_overlay_loaded_flag_w:
+;		.BYTE $00
+;_ppu_title_tiles_ppu_swap_flag_w:
+;		.BYTE $00
+
 _tlm_res_6012:
 		.BYTE $31
 		.WORD $421
@@ -226,13 +219,13 @@ _tlm_res_61A5:
 		.BYTE $FF
 _tlm_res_61CA:
 		.BYTE $18
-		.WORD 0
+		.WORD $0000
 		.BYTE $14
 		.BYTE $2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$2F,$63,$64,$2F,$2F,$2F,$2F,$2F
 		.BYTE $2F,$2F,$2F,$2F
 		.BYTE $FF
 _pal1_w:
-		.WORD $3F
+		.WORD $003F
 		.BYTE $20
 _pal1_pw:
 		.BYTE $17,$30,$1A,$0F,$17,$16,$1A,$0F,$17,$30,$27,$0F,$17,$16,$27,$0F
@@ -277,7 +270,7 @@ loc_623E:
 		TXS
 		LDX		_frames_counter
 ;		JSR		_first_boot_init
-		LDY		#>[_ppu_queue_buf+$62]
+		LDY		#>[byte_700]
 		STY		word_10+1
 		LDY		#$00
 		STY		word_10
@@ -321,142 +314,142 @@ loc_6262:
 		STA		_main00_sub_idx
 		STA		byte_567
 		STA		_main02_sub_idx
-		LDA		_overlay_loaded_flag_w
-		CMP		#$70
-		BNE		loc_62BD
-		LDY		#$00
-		STY		_ppu_title_tiles_ppu_swap_flag_w
-		STY		_overlay_loaded_flag_w
-		INY
-		STY		_load_file_list_idx
-		TYA
-		JSR		_change_screen
-loc_62BD:
+;		LDA		_overlay_loaded_flag_w
+;		CMP		#$70
+;		BNE		loc_62BD
+;		LDY		#$00
+;		STY		_ppu_title_tiles_ppu_swap_flag_w
+;		STY		_overlay_loaded_flag_w
+;		INY
+;		STY		_load_file_list_idx
+;		TYA
+;		JSR		_file_load
+;loc_62BD:
 ;		JSR		_integrity_test
 		JMP		_MAIN
 
 ; =============== S U B	R O U T	I N E =======================================
-_first_boot_init:
-		LDA		_first_boot_init_flag_w
-		BEQ		loc_62C9
-		RTS
+;_first_boot_init:
+;		LDA		_first_boot_init_flag_w
+;		BEQ		loc_62C9
+;		RTS
 ; ---------------------------------------------------------------------------
-loc_62C9:
-		LDA		#$70
-		STA		_overlay_loaded_flag_w
-		INC		_first_boot_init_flag_w
-		JSR		_crc_sum_prog
-		LDA		byte_1E
-		STA		_prog_crc_w
-		LDA		byte_1F
-		STA		_prog_crc_w+1
-		JSR		_crc_sum_sound
-		LDA		byte_1E
-		STA		_sound_crc_w
-		LDA		byte_1F
-		STA		_sound_crc_w+1
-		LDA		#$2C
-		STA		_tmp20w+1
-		LDA		#>[_spr_buf]
-		STA		_tmp1Cw+1
-		STA		byte_1F
-		LDA		#$00
-		STA		_tmp20w
-		STA		_tmp1Cw
-		STA		byte_1E
-		JSR		_ppu_load_mem_swap
-		LDA		#$2E
-		STA		_tmp20w+1
-		LDA		#>[byte_600]
-		STA		_tmp1Cw+1
-		LDA		#$02
-		STA		byte_1F
-		LDA		#$00
-		STA		_tmp20w
-		STA		_tmp1Cw
-		STA		byte_1E
-		JSR		_ppu_load_mem_swap
-		LDA		#$00
-		STA		_overlay_loaded_flag_w
-		RTS
+;loc_62C9:
+;		LDA		#$70
+;		STA		_overlay_loaded_flag_w
+;		INC		_first_boot_init_flag_w
+;		JSR		_crc_sum_prog
+;		LDA		byte_1E
+;		STA		_prog_crc_w
+;		LDA		byte_1F
+;		STA		_prog_crc_w+1
+;		JSR		_crc_sum_sound
+;		LDA		byte_1E
+;		STA		_sound_crc_w
+;		LDA		byte_1F
+;		STA		_sound_crc_w+1
+;		LDA		#$2C
+;		STA		_tmp20w+1
+;		LDA		#>[_spr_buf]
+;		STA		_tmp1Cw+1
+;		STA		byte_1F
+;		LDA		#$00
+;		STA		_tmp20w
+;		STA		_tmp1Cw
+;		STA		byte_1E
+;		JSR		_ppu_load_mem_swap
+;		LDA		#$2E
+;		STA		_tmp20w+1
+;		LDA		#>[byte_600]
+;		STA		_tmp1Cw+1
+;		LDA		#$02
+;		STA		byte_1F
+;		LDA		#$00
+;		STA		_tmp20w
+;		STA		_tmp1Cw
+;		STA		byte_1E
+;		JSR		_ppu_load_mem_swap
+;		LDA		#$00
+;		STA		_overlay_loaded_flag_w
+;		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-_integrity_test:
-		JSR		_nmi_off
-		JSR		_crc_sum_prog
-		LDA		byte_1E
-		CMP		_prog_crc_w
-		BNE		loc_6345
-		LDA		byte_1F
-		CMP		_prog_crc_w+1
-		BNE		loc_6345
-		JSR		_crc_sum_sound
-		LDA		byte_1E
-		CMP		_sound_crc_w
-		BNE		loc_6345
-		LDA		byte_1F
-		CMP		_sound_crc_w+1
-		BNE		loc_6345
-		JMP		_nmi_on
-; ---------------------------------------------------------------------------
-loc_6345:
-		JSR		_nmi_on
-		LDA		#$03
-		STA		_load_file_list_idx
-		JSR		_change_screen
-		JSR		_nmi_off
-		JMP		RESET
+;_integrity_test:
+;		JSR		_nmi_off
+;		JSR		_crc_sum_prog
+;		LDA		byte_1E
+;		CMP		_prog_crc_w
+;		BNE		loc_6345
+;		LDA		byte_1F
+;		CMP		_prog_crc_w+1
+;		BNE		loc_6345
+;		JSR		_crc_sum_sound
+;		LDA		byte_1E
+;		CMP		_sound_crc_w
+;		BNE		loc_6345
+;		LDA		byte_1F
+;		CMP		_sound_crc_w+1
+;		BNE		loc_6345
+;		JMP		_nmi_on
+;; ---------------------------------------------------------------------------
+;loc_6345:
+;		JSR		_nmi_on
+;		LDA		#$03
+;		STA		_load_file_list_idx
+;		JSR		_file_load
+;		JSR		_nmi_off
+;		JMP		RESET
 
 ; =============== S U B	R O U T	I N E =======================================
-_crc_sum_prog:
-		LDA		#>[RESET]
-		STA		_tmp20w+1
-		LDA		#<[RESET]
-		STA		_tmp20w
-		LDA		#>[$BBF3]
-		STA		_tmp1Cw+1
-		LDA		#<[$BBF3]
-		STA		_tmp1Cw
-		JMP		_crc_sum
+;_crc_sum_prog:
+;		LDA		#>[RESET]
+;		STA		_tmp20w+1
+;		LDA		#<[RESET]
+;		STA		_tmp20w
+;		LDA		#>[$BBF3]
+;		STA		_tmp1Cw+1
+;		LDA		#<[$BBF3]
+;		STA		_tmp1Cw
+;		JMP		_crc_sum
 
 ; =============== S U B	R O U T	I N E =======================================
-_crc_sum_sound:
-		LDA		#>[j__apu_play]
-		STA		_tmp20w+1
-		LDA		#<[j__apu_play]
-		STA		_tmp20w
-		LDA		#>[$E000]
-		STA		_tmp1Cw+1
-		LDA		#<[$E000]
-		STA		_tmp1Cw
+;_crc_sum_sound:
+;		LDA		#>[j__apu_play]
+;		STA		_tmp20w+1
+;		LDA		#<[j__apu_play]
+;		STA		_tmp20w
+;		LDA		#>[$E000]
+;		STA		_tmp1Cw+1
+;		LDA		#<[$E000]
+;		STA		_tmp1Cw
 
 ; =============== S U B	R O U T	I N E =======================================
-_crc_sum:
-		LDY		#$00
-		STY		byte_1F
-		STY		byte_1E
-loc_637F:
-		LDA		(_tmp20w),Y
-		CLC
-		ADC		byte_1E
-		STA		byte_1E
-		BCC		loc_638A
-		INC		byte_1F
-loc_638A:
-		INC		_tmp20w
-		BNE		loc_6390
-		INC		_tmp20w+1
-loc_6390:
-		LDA		_tmp1Cw
-		SEC
-		SBC		_tmp20w
-		STA		byte_57
-		LDA		_tmp1Cw+1
-		SBC		_tmp20w+1
-		BNE		loc_637F
-		LDA		byte_57
-		BNE		loc_637F
-		RTS
+;_crc_sum:
+;		LDY		#$00
+;		STY		byte_1F
+;		STY		byte_1E
+;loc_637F:
+;		LDA		(_tmp20w),Y
+;		CLC
+;		ADC		byte_1E
+;		STA		byte_1E
+;		BCC		loc_638A
+;		INC		byte_1F
+;loc_638A:
+;		INC		_tmp20w
+;		BNE		loc_6390
+;		INC		_tmp20w+1
+;loc_6390:
+;		LDA		_tmp1Cw
+;		SEC
+;		SBC		_tmp20w
+;		STA		byte_57
+;		LDA		_tmp1Cw+1
+;		SBC		_tmp20w+1
+;		BNE		loc_637F
+;		LDA		byte_57
+;		BNE		loc_637F
+;		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
 _MAIN:
@@ -1690,15 +1683,15 @@ _ending_screen:
 		JSR		_pal_fade_outB
 		LDA		#$02
 		STA		_load_file_list_idx
-		JSR		_change_screen
-		LDA		#$70
-		STA		_overlay_loaded_flag_w
-		JSR		$0000 ; _ending
-		LDY		#$00
-		STY		_overlay_loaded_flag_w
+		JSR		_file_load
+;		LDA		#$70
+;		STA		_overlay_loaded_flag_w
+		JSR		_ending
+;		LDY		#$00
+;		STY		_overlay_loaded_flag_w
 		INY
 		STY		_load_file_list_idx
-		JMP		_change_screen
+		JMP		_file_load
 
 ; =============== S U B	R O U T	I N E =======================================
 _main02_sub0C:
@@ -7962,7 +7955,7 @@ loc_9DE0:
 		JMP		sub_9C6D
 
 ; =============== S U B	R O U T	I N E =======================================
-_change_screen:
+_file_load:
 		JSR		_apu_play_ctrlA_set01
 		JSR		_spr_clear
 		LDA		#$06
@@ -7974,42 +7967,54 @@ _change_screen:
 		LDX		#$2F
 		LDY		#$00
 		JSR		_ppu_fill
-		LDX		#<[_tlm_9E36]
-		LDY		#>[_tlm_9E36]
-		JSR		_ppu_tlm_unpack
-		LDX		#<[_tlm_9E1D]
-		LDY		#>[_tlm_9E1D]
-		JSR		_ppu_tlm_unpack
+;		LDX		#<[_tlm_9E36]
+;		LDY		#>[_tlm_9E36]
+;		JSR		_ppu_tlm_unpack
+;		LDX		#<[_tlm_9E1D]
+;		LDY		#>[_tlm_9E1D]
+;		JSR		_ppu_tlm_unpack
 		JSR		_nmi_on
 		JSR		_ppu_render_on
-		JSR		sub_9E73
+;		JSR		_fds_file_load
 		LDA		#$07
 		STA		_nmi_tlm_lib_idx
 		JMP		_nmi_on
 ; ---------------------------------------------------------------------------
-_tlm_9E1D:
-		.WORD $AB21
-		.BYTE $0B
-		.BYTE $1E,$1F,$27,$2E,$1C,$1F,$11,$14,$19,$1E,$17
-		.WORD $ED21
-		.BYTE $07
-		.BYTE $27,$11,$19,$24,$2B,$2B,$2B
-		.BYTE $FF
-_tlm_9E36:
-		.BYTE $21,$89,$01,$0A,$21,$8A,$4D,$0B,$21,$97,$01,$0C,$21,$A9,$01,$10
-		.BYTE $21,$AA,$4D,$2E,$21,$B7,$01,$2D,$21,$C9,$01,$10,$21,$CA,$4D,$2E
-		.BYTE $21,$D7,$01,$2D,$21,$E9,$01,$10,$21,$EA,$4D,$2E,$21,$F7,$01,$2D
-		.BYTE $22,$09,$01,$0D,$22,$0A,$4D,$0E,$22,$17,$01,$0F,$FF
+;_tlm_9E1D:
+;		.WORD $AB21
+;		.BYTE $0B
+;		.BYTE _N,_O,_W,__,_L,_O,_A,_D,_I,_N,_G
+;		.WORD $ED21
+;		.BYTE $07
+;		.BYTE _W,_A,_I,_T,_dt,_dt,_dt
+;		.BYTE $FF
+;_tlm_9E36:
+;		.BYTE $21,$89,$01,$0A
+;		.BYTE $21,$8A,$4D,$0B
+;		.BYTE $21,$97,$01,$0C
+;		.BYTE $21,$A9,$01,$10
+;		.BYTE $21,$AA,$4D,$2E
+;		.BYTE $21,$B7,$01,$2D
+;		.BYTE $21,$C9,$01,$10
+;		.BYTE $21,$CA,$4D,$2E
+;		.BYTE $21,$D7,$01,$2D
+;		.BYTE $21,$E9,$01,$10
+;		.BYTE $21,$EA,$4D,$2E
+;		.BYTE $21,$F7,$01,$2D
+;		.BYTE $22,$09,$01,$0D
+;		.BYTE $22,$0A,$4D,$0E
+;		.BYTE $22,$17,$01,$0F
+;		.BYTE $FF
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_9E73:
-		LDA		#$70
-		STA		_overlay_loaded_flag_w
-		LDY		_load_file_list_idx
-		LDA		off_9EA9,Y
-		STA		_load_files_idx_list_ofs_w
-		LDA		off_9EAD,Y
-		STA		_load_files_idx_list_ofs_w+1
+_fds_file_load:
+;		LDA		#$70
+;		STA		_overlay_loaded_flag_w
+;		LDY		_load_file_list_idx
+;		LDA		off_9EA9,Y
+;		STA		_load_files_idx_list_ofs_w
+;		LDA		off_9EAD,Y
+;		STA		_load_files_idx_list_ofs_w+1
 		LDA		#$00
 		STA		$4022
 		STA		$4010
@@ -8020,99 +8025,99 @@ sub_9E73:
 		AND		#$FB
 		STA		_ppu_ctrl_shadow
 		STA		_PPU_CTRL
-		JSR		_load_file_by_idx
-		BNE		loc_9EC7
-		STA		_overlay_loaded_flag_w
+;		JSR		_load_file_by_idx
+;		BNE		_error_message
+;		STA		_overlay_loaded_flag_w
 		RTS
 ; ---------------------------------------------------------------------------
-off_9EA9:
-		.BYTE <[byte_9EBB]
-		.BYTE <[byte_9EBE]
-		.BYTE <[byte_9EC0]
-		.BYTE <[byte_9EC4]
-off_9EAD:
-		.BYTE >[byte_9EBB]
-		.BYTE >[byte_9EBE]
-		.BYTE >[byte_9EC0]
-		.BYTE >[byte_9EC4]
-_disk_id:
-		.BYTE $01
-		.BYTE "BAG "
-		.BYTE $00, $00, $00, $00, $00
-byte_9EBB:
-		.BYTE $10,$11,$FF
-byte_9EBE:
-		.BYTE $01,$FF
-byte_9EC0:
-		.BYTE $20,$11,$21,$FF
-byte_9EC4:
-		.BYTE $01,$00,$FF
+;off_9EA9:
+;		.BYTE <[byte_9EBB]
+;		.BYTE <[byte_9EBE]
+;		.BYTE <[byte_9EC0]
+;		.BYTE <[byte_9EC4]
+;off_9EAD:
+;		.BYTE >[byte_9EBB]
+;		.BYTE >[byte_9EBE]
+;		.BYTE >[byte_9EC0]
+;		.BYTE >[byte_9EC4]
+;_disk_id:
+;		.BYTE $01
+;		.BYTE "BAG "
+;		.BYTE $00, $00, $00, $00, $00
+;byte_9EBB:
+;		.BYTE $10,$11,$FF
+;byte_9EBE:
+;		.BYTE $01,$FF
+;byte_9EC0:
+;		.BYTE $20,$11,$21,$FF
+;byte_9EC4:
+;		.BYTE $01,$00,$FF
 ; ---------------------------------------------------------------------------
-loc_9EC7:
-		PHA
-		STA		byte_57
-		LSR
-		LSR
-		LSR
-		LSR
-		CMP		#$0A
-		BCC		loc_9ED4
-		ADC		#$07
-loc_9ED4:
-		STA		_tlm_9F36_p0_w+4
-		LDA		byte_57
-		AND		#$0F
-		CMP		#$0A
-		BCC		loc_9EE1
-		ADC		#$07
-loc_9EE1:
-		STA		_tlm_9F36_p0_w+5
-		JSR		_nmi_on
-		JSR		_ppu_render_off
-		JSR		_nmi_off
-		JSR		sub_9AA9
-		LDX		#<[_tlm_9E36]
-		LDY		#>[_tlm_9E36]
-		JSR		_ppu_tlm_unpack
-		LDY		byte_57
-		CPY		#$09
-		BCC		loc_9EFF
-		LDY		#$09
-loc_9EFF:
-		DEY
-		LDA		off_9F40,Y
-		CLC
-		ADC		#<[_tlm_9F49]
-		TAX
-		LDA		#>[_tlm_9F49]
-		ADC		#$00
-		TAY
-		JSR		_ppu_tlm_unpack
-		LDY		#>[_tlm_9F36_w]
-		LDX		#<[_tlm_9F36_w]
-		JSR		_ppu_tlm_unpack
-		JSR		_nmi_on
-		JSR		_ppu_render_on
-		PLA
-		CMP		#$01
-		BEQ		loc_9F2A
-loc_9F21:
-		LDA		word_10
-		LDA		$4032
-		AND		#$01
-		BEQ		loc_9F21
-loc_9F2A:
-		LDA		word_10
-		LDA		$4032
-		AND		#$01
-		BNE		loc_9F2A
-		JMP		_change_screen
+;_error_message:
+;		PHA
+;		STA		byte_57
+;		LSR
+;		LSR
+;		LSR
+;		LSR
+;		CMP		#$0A
+;		BCC		loc_9ED4
+;		ADC		#$07
+;loc_9ED4:
+;		STA		_tlm_9F36_p0_w+4
+;		LDA		byte_57
+;		AND		#$0F
+;		CMP		#$0A
+;		BCC		loc_9EE1
+;		ADC		#$07
+;loc_9EE1:
+;		STA		_tlm_9F36_p0_w+5
+;		JSR		_nmi_on
+;		JSR		_ppu_render_off
+;		JSR		_nmi_off
+;		JSR		sub_9AA9
+;		LDX		#<[_tlm_9E36]
+;		LDY		#>[_tlm_9E36]
+;		JSR		_ppu_tlm_unpack
+;		LDY		byte_57
+;		CPY		#$09
+;		BCC		loc_9EFF
+;		LDY		#$09
+;loc_9EFF:
+;		DEY
+;		LDA		off_9F40,Y
+;		CLC
+;		ADC		#<[_tlm_9F49]
+;		TAX
+;		LDA		#>[_tlm_9F49]
+;		ADC		#$00
+;		TAY
+;		JSR		_ppu_tlm_unpack
+;		LDY		#>[_tlm_9F36_w]
+;		LDX		#<[_tlm_9F36_w]
+;		JSR		_ppu_tlm_unpack
+;		JSR		_nmi_on
+;		JSR		_ppu_render_on
+;		PLA
+;		CMP		#$01
+;		BEQ		loc_9F2A
+;loc_9F21:
+;		LDA		word_10
+;		LDA		$4032
+;		AND		#$01
+;		BEQ		loc_9F21
+;loc_9F2A:
+;		LDA		word_10
+;		LDA		$4032
+;		AND		#$01
+;		BNE		loc_9F2A
+;		JMP		_file_load
 ; ---------------------------------------------------------------------------
 _tlm_9F36_w:
 		.WORD $ED21
 		.BYTE $06
 _tlm_9F36_p0_w:
-		.BYTE $15,$22,$22,$2B,$00,$00
+		.BYTE _E,_R,_R,_dt,$00,$00
 		.BYTE $FF
 off_9F40:
 		.BYTE _tlm_9F49	- $9F49
@@ -8127,39 +8132,39 @@ off_9F40:
 _tlm_9F49:
 		.WORD $AC21
 		.BYTE $08
-		.BYTE $14,$19,$23,$1B,$2E,$23,$15,$24,$FF
+		.BYTE _D,_I,_S,_K,__,_S,_E,_T,$FF
 _tlm_9F55:
 		.WORD $AC21
 		.BYTE $07
-		.BYTE $12,$11,$24,$24,$15,$22,$29,$FF
+		.BYTE _B,_A,_T,_T,_E,_R,_Y,$FF
 _tlm_9F60:
 		.WORD $AA21
 		.BYTE $0D
-		.BYTE $27,$22,$19,$24,$15,$2E,$20,$22,$1F,$24,$15,$13,$24,$FF
+		.BYTE _W,_R,_I,_T,_E,__,_P,_R,_O,_T,_E,_C,_T,$FF
 _tlm_9F71:
 		.WORD $AB21
 		.BYTE $0A
-		.BYTE $17,$11,$1D,$15,$2E,$1D,$11,$1B,$15,$22,$FF
+		.BYTE _G,_A,_M,_E,__,_M,_A,_K,_E,_R,$FF
 _tlm_9F7F:
 		.WORD $AC21
 		.BYTE $09
-		.BYTE $17,$11,$1D,$15,$2E,$1E,$11,$1D,$15,$FF
+		.BYTE _G,_A,_M,_E,__,_N,_A,_M,_E,$FF
 _tlm_9F8C:
 		.WORD $AA21
 		.BYTE $0C
-		.BYTE $17,$11,$1D,$15,$2E,$26,$15,$22,$23,$19,$1F,$1E,$FF
+		.BYTE _G,_A,_M,_E,__,_V,_E,_R,_S,_I,_O,_N,$FF
 _tlm_9F9C:
 		.WORD $AC21
 		.BYTE $08
-		.BYTE $11,$2B,$12,$2E,$23,$19,$14,$15,$FF
+		.BYTE _A,_dt,_B,__,_S,_I,_D,_E,$FF
 _tlm_9FA8:
 		.WORD $AC21
 		.BYTE $08
-		.BYTE $14,$19,$23,$1B,$2E,$1E,$1F,$2B,$FF
+		.BYTE _D,_I,_S,_K,__,_N,_O,_dt,$FF
 _tlm_9FB4:
 		.WORD $AA21
 		.BYTE $0C
-		.BYTE $14,$19,$23,$1B,$2E,$24,$22,$1F,$25,$12,$1C,$15,$FF
+		.BYTE _D,_I,_S,_K,__,_T,_R,_O,_U,_B,_L,_E,$FF
 
 ; =============== S U B	R O U T	I N E =======================================
 _apu_play_ctrlA_set01:
@@ -8662,8 +8667,8 @@ _main00_sub00_title_idraw:
 		LDX		#<[_tlm_A672]
 		LDY		#>[_tlm_A672]
 		JSR		_ppu_tlm_unpack
-		LDA		_ppu_title_tiles_ppu_swap_flag_w
-		BNE		loc_A294
+;		LDA		_ppu_title_tiles_ppu_swap_flag_w
+;		BNE		loc_A294
 ;		JSR		_ppu_title_tiles_ppu_sawp
 loc_A294:
 		LDA		#$00
@@ -8724,8 +8729,8 @@ loc_A2EC:
 		JSR		_pal_fade_outB
 		LDA		#$01
 		STA		_nmi_disable_flush
-		LDA		_ppu_title_tiles_ppu_swap_flag_w
-		BEQ		loc_A308
+;		LDA		_ppu_title_tiles_ppu_swap_flag_w
+;		BEQ		loc_A308
 ;		JSR		_ppu_title_tiles_ppu_sawp
 loc_A308:
 		LDA		#$00
@@ -8905,9 +8910,9 @@ _demo_play_start:
 		JSR		_wait_for_70_frames
 		LDA		#$00
 		STA		_load_file_list_idx
-		JSR		_change_screen
-		LDA		#$70
-		STA		_overlay_loaded_flag_w
+		JSR		_file_load
+;		LDA		#$70
+;		STA		_overlay_loaded_flag_w
 		LDY		#$00
 		STY		_demo_sub_idx
 		INC		_main_sub_idx
@@ -9104,49 +9109,49 @@ loc_A57E:
 		JMP		_sync
 
 ; =============== S U B	R O U T	I N E =======================================
-_ppu_title_tiles_ppu_sawp:
-		LDA		_ppu_title_tiles_ppu_swap_flag_w
-		EOR		#$01
-		STA		_ppu_title_tiles_ppu_swap_flag_w
-		LDA		#$70
-		STA		_overlay_loaded_flag_w
-		LDA		#$1C
-		STA		_tmp20w+1
-		LDA		#$00
-		STA		_tmp20w
-		LDA		#$2C
-		STA		_tmp1Cw+1
-		LDA		#$00
-		STA		_tmp1Cw
-		LDA		#$04
-		STA		byte_1F
-		LDA		#$00
-		STA		byte_1E
-		JSR		_ppu_load_ppu_swap
-		LDA		#$17
-		STA		_tmp20w+1
-		LDA		#$00
-		STA		_tmp20w
-		LDA		#>[$BE00]
-		STA		_tmp1Cw+1
-		LDA		#<[$BE00]
-		STA		_tmp1Cw
-		LDA		#$05
-		STA		byte_1F
-		LDA		#$00
-		STA		byte_1E
-		JSR		_ppu_load_mem_swap
-		LDA		#$00
-		STA		_overlay_loaded_flag_w
-		RTS
+;_ppu_title_tiles_ppu_sawp:
+;		LDA		_ppu_title_tiles_ppu_swap_flag_w
+;		EOR		#$01
+;		STA		_ppu_title_tiles_ppu_swap_flag_w
+;		LDA		#$70
+;		STA		_overlay_loaded_flag_w
+;		LDA		#$1C
+;		STA		_tmp20w+1
+;		LDA		#$00
+;		STA		_tmp20w
+;		LDA		#$2C
+;		STA		_tmp1Cw+1
+;		LDA		#$00
+;		STA		_tmp1Cw
+;		LDA		#$04
+;		STA		byte_1F
+;		LDA		#$00
+;		STA		byte_1E
+;		JSR		_ppu_load_ppu_swap
+;		LDA		#$17
+;		STA		_tmp20w+1
+;		LDA		#$00
+;		STA		_tmp20w
+;		LDA		#>[$BE00]
+;		STA		_tmp1Cw+1
+;		LDA		#<[$BE00]
+;		STA		_tmp1Cw
+;		LDA		#$05
+;		STA		byte_1F
+;		LDA		#$00
+;		STA		byte_1E
+;		JSR		_ppu_load_mem_swap
+;		LDA		#$00
+;		STA		_overlay_loaded_flag_w
+;		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_A5D6:
+_common_program_reload:
 		LDA		#$01
 		STA		_load_file_list_idx
-		JSR		_change_screen
-		LDA		#$00
-		STA		_overlay_loaded_flag_w
+		JSR		_file_load
+;		LDA		#$00
+;		STA		_overlay_loaded_flag_w
 		LDA		#$00
 		STA		_main_sub_idx
 		STA		_main00_sub_idx
