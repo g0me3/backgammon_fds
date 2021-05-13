@@ -1552,10 +1552,8 @@ _title_push_start_toggle:
 		.BYTE 0
 byte_55F:
 		.BYTE 0
-byte_560:
-		.BYTE 0
-byte_561:
-		.BYTE 0
+_match_pts_val:
+		.BYTE 0,0
 _main_sub_idx:
 		.BYTE 0
 byte_563:
@@ -1807,7 +1805,7 @@ _cheat_flag1_w:
 		.BYTE 0
 _menu_pos_idx_w:
 		.BYTE 0
-_match_pts_w:
+_match_menu_pos:
 		.BYTE 0
 		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 		.BYTE 0,0,0,0,0,0,0,0,0,0,0,0
@@ -2103,11 +2101,11 @@ byte_7A3:
 		.BYTE 0
 		.BYTE 0
 		.BYTE 0
-_apu_ctrlA:
+_apu_play_ctrlA:
 		.BYTE 0
-_apu_ctrlB:
+_apu_play_ctrlB:
 		.BYTE 0
-_apu_ctrlC:
+_apu_play_ctrlC:
 		.BYTE 0
 _apu_play_ctrlE:
 		.BYTE 0

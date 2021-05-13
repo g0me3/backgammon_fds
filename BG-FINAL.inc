@@ -437,10 +437,7 @@ _ending0E:
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_AC9B:
-		LDA		#$20
-		LDX		#$2F
-		LDY		#$00
-		JSR		_ppu_fill_ex
+		JSR		_ppu_nt_clear
 		LDA		#$10
 		STA		_tmp4Bb
 		LDA		#$20

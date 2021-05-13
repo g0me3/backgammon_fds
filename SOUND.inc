@@ -164,7 +164,7 @@ _apu_play_ctrlA_set80:
 
 ; =============== S U B	R O U T	I N E =======================================
 _apu_play_ctrlA_set_ex:
-		STA		_apu_ctrlA
+		STA		_apu_play_ctrlA
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -208,7 +208,7 @@ _apu_play_ctrlB_set80:
 
 ; =============== S U B	R O U T	I N E =======================================
 _apu_play_ctrlB_set_ex:
-		STA		_apu_ctrlB
+		STA		_apu_play_ctrlB
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -232,7 +232,7 @@ _apu_play_ctrlC_set80:
 
 ; =============== S U B	R O U T	I N E =======================================
 _apu_play_ctrlC_set_ex:
-		STA		_apu_ctrlC
+		STA		_apu_play_ctrlC
 		RTS
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -318,9 +318,9 @@ _apu_play:
 		JSR		sub_C499
 		JSR		sub_CD27
 		LDA		#$00
-		STA		_apu_ctrlA
-		STA		_apu_ctrlB
-		STA		_apu_ctrlC
+		STA		_apu_play_ctrlA
+		STA		_apu_play_ctrlB
+		STA		_apu_play_ctrlC
 		STA		_apu_play_ctrlE
 		STA		_apu_play_ctrlD
 		RTS
@@ -424,7 +424,7 @@ _unref_0:
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_C499:
-		LDA		_apu_ctrlA
+		LDA		_apu_play_ctrlA
 		LSR
 		BCS		sub_C481
 		LSR
@@ -1577,7 +1577,7 @@ sub_CD27:
 sub_CD31:
 		LDX		#$00
 		STX		byte_D7
-		LDA		_apu_ctrlA
+		LDA		_apu_play_ctrlA
 		BEQ		loc_CD44
 		LDX		#$01
 		STX		byte_775
@@ -1596,7 +1596,7 @@ loc_CD44:
 sub_CD52:
 		LDX		#$01
 		STX		byte_D7
-		LDA		_apu_ctrlB
+		LDA		_apu_play_ctrlB
 		BEQ		loc_CD65
 		LDX		#$08
 		STX		byte_775
@@ -1619,7 +1619,7 @@ loc_CD6F:
 sub_CD75:
 		LDA		#$02
 		STA		byte_D7
-		LDA		_apu_ctrlC
+		LDA		_apu_play_ctrlC
 		BEQ		loc_CD88
 		LDX		#$02
 		STX		byte_775

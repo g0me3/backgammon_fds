@@ -2,22 +2,6 @@
 		ORG $A980
 
 ; =============== S U B	R O U T	I N E =======================================
-j__dummy:
-		JMP	_dummy
-
-; =============== S U B	R O U T	I N E =======================================
-j__dummy_0:
-		JMP	_dummy
-
-; =============== S U B	R O U T	I N E =======================================
-j__dummy_1:
-		JMP	_dummy
-
-; =============== S U B	R O U T	I N E =======================================
-_j_demo:
-		JMP		_demo
-
-; =============== S U B	R O U T	I N E =======================================
 _demo:
 		LDA		_demo_sub_idx
 		JSR		_switch
@@ -39,7 +23,7 @@ _demo00:
 		JSR		_main02_sub00_game_init
 		JSR		_main02_sub01
 		JSR		_nmi_off
-		JSR		_game_field_draw
+		JSR		_regular_game_field_draw
 		JSR		_nmi_on
 		LDY		#$01
 		JSR		_pal_fade_outA
@@ -429,7 +413,7 @@ loc_26DDC:
 		STA		_main02_sub_idx
 		LDA		#$06
 		STA		byte_55C
-		JMP		_main_subC
+		JMP		_main_chr_patch_hanler
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_26E01:
@@ -654,7 +638,7 @@ _demo07:
 		LDA		#$01
 		STA		_nmi_disable_flush
 		JSR		sub_270D8
-		JSR		sub_270B6
+		JSR		_demo_game_field_draw
 		LDY		#$00
 		STY		_nmi_disable_flush
 		STY		byte_31E
@@ -663,7 +647,7 @@ _demo07:
 		INY
 		STY		byte_55C
 		STY		byte_5D
-		JSR		_main_subC
+		JSR		_main_chr_patch_hanler
 		JSR		_sync
 		JSR		sub_8E47
 		LDY		#$01
@@ -692,7 +676,7 @@ _demo08:
 		DEY
 		STY		_byte_270E4_w+$2C
 		JSR		sub_270D8
-		JSR		sub_270B6
+		JSR		_demo_game_field_draw
 		LDY		#$00
 		STY		_nmi_disable_flush
 		STY		byte_31E
@@ -700,7 +684,7 @@ _demo08:
 		LDA		#$03
 		STA		byte_55C
 		STA		byte_5D
-		JSR		_main_subC
+		JSR		_main_chr_patch_hanler
 		JSR		_sync
 		JSR		sub_8E47
 		LDY		#$01
@@ -725,13 +709,15 @@ _demo08:
 		JMP		_common_program_reload
 
 ; =============== S U B	R O U T	I N E =======================================
-sub_270B6:
+_demo_game_field_draw:
 		JSR		_spr_clear
 		JSR		_ppu_nt_clear
 		LDX		#<[_tlm_game_field]
 		LDY		#>[_tlm_game_field]
 		JSR		_ppu_tlm_unpack
 		JSR		sub_96C5
+; TODO: same as _regular_game_field_draw but without this function
+;		JSR		sub_96C5
 		LDA		#$00
 loc_270C8:
 		PHA
@@ -1020,10 +1006,6 @@ loc_2729C:
 		INY
 		RTS
 
-; =============== S U B	R O U T	I N E =======================================
-_dummy:
-		LDA		#$00
-		RTS
 ; ---------------------------------------------------------------------------
 byte_272A7:
 		.BYTE $80,$00,$00,$05,$80,$00,$00,$05,$01,$91,$53,$06,$80,$01,$00,$0C

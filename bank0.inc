@@ -10,19 +10,18 @@ _total_free	SET 0
 
 		SECTION_START
 		INCLUDE "..\SOUND.inc"
-		SECTION_END "SOUND"
-
-		SECTION_START
-		INCBIN "..\copyrights.txt"
 		INCLUDE "..\BG-MAIN.inc"
-		SECTION_END "BG-MAIN"
+		INCLUDE "..\CP.inc"
+		SECTION_END "SOUND BG-MAIN and CP"
 
 		SECTION_START
-		INCLUDE "..\CP.inc"
-		SECTION_END "CP"
+		INCLUDE "..\BG-GAME.inc"
+		SECTION_END "BG-GAME"
 
 		SECTION_START
 		INCLUDE "..\BG-FINAL.inc"
 		SECTION_END "BG-FINAL"
+
+		INCBIN "..\copyrights.txt"
 
 		LAST_BANK_END 0,$10000
