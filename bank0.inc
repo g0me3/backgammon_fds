@@ -8,11 +8,21 @@ _total_free	SET 0
 
 		BANK_START $00
 
-		INCBIN "..\copyrights.txt"
-
-		INCLUDE "..\BG-MAIN.inc"
-		INCLUDE "..\CP.inc"
+		SECTION_START
 		INCLUDE "..\SOUND.inc"
+		SECTION_END "SOUND"
+
+		SECTION_START
+		INCBIN "..\copyrights.txt"
+		INCLUDE "..\BG-MAIN.inc"
+		SECTION_END "BG-MAIN"
+
+		SECTION_START
+		INCLUDE "..\CP.inc"
+		SECTION_END "CP"
+
+		SECTION_START
 		INCLUDE "..\BG-FINAL.inc"
+		SECTION_END "BG-FINAL"
 
 		LAST_BANK_END 0,$10000

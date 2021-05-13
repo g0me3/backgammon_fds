@@ -131,8 +131,8 @@ byte_C3EB:
 		.BYTE $07,$7F,$4A,$08
 byte_C3EF:
 		.BYTE $07,$7F,$3D,$08
-		.BYTE $07,$7F,$3D,$08
-		.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF
+;_unref_C3F3
+;		.BYTE $07,$7F,$3D,$08
 
 ; =============== S U B	R O U T	I N E =======================================
 _apu_play:
@@ -1328,6 +1328,8 @@ sub_CCCC:
 sub_CCD0:
 		LDA		#$04
 
+; !FALLTHROUGH!
+
 ; =============== S U B	R O U T	I N E =======================================
 sub_CCD2:
 		STA		word_E2
@@ -1351,6 +1353,7 @@ sub_CCEB:
 		STA		byte_D8
 		PHA
 		STX		word_E2
+		LDY		#>[off_C303]
 		STY		word_E2+1
 		LDY		#$00
 loc_CCF6:
@@ -1389,8 +1392,7 @@ byte_CD20:
 sub_CD27:
 		JSR		sub_CD31
 		JSR		sub_CD52
-		JSR		sub_CD75
-		RTS
+		JMP		sub_CD75
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_CD31:
@@ -1401,8 +1403,7 @@ sub_CD31:
 		LDX		#$01
 		STX		byte_775
 		LDX		#<[off_C303]
-		LDY		#>[off_C303]
-		JMP		loc_CD6F
+		BNE		loc_CD6F
 ; ---------------------------------------------------------------------------
 loc_CD44:
 		LDA		byte_78E
@@ -1410,8 +1411,7 @@ loc_CD44:
 		LDX		#$00
 		STX		byte_D7
 		LDX		#<[off_C313]
-		LDY		#>[off_C313]
-		JMP		loc_CD6F
+		BNE		loc_CD6F
 
 ; =============== S U B	R O U T	I N E =======================================
 sub_CD52:
@@ -1422,15 +1422,12 @@ sub_CD52:
 		LDX		#$08
 		STX		byte_775
 		LDX		#<[off_C323]
-		LDY		#>[off_C323]
-		JMP		loc_CD6F
+		BNE		loc_CD6F
 ; ---------------------------------------------------------------------------
 loc_CD65:
 		LDA		byte_78F
 		BEQ		locret_CD9E
 		LDX		#<[off_C333]
-		LDY		#>[off_C333]
-;		JMP		loc_CD6F
 
 ; !FALLTHROUGH!
 
@@ -1448,15 +1445,13 @@ sub_CD75:
 		LDX		#$02
 		STX		byte_775
 		LDX		#<[off_C343]
-		LDY		#>[off_C343]
-		JMP		loc_CD6F
+		BNE		loc_CD6F
 ; ---------------------------------------------------------------------------
 loc_CD88:
 		LDA		byte_790
 		BEQ		locret_CD9E
 		LDX		#<[off_C353]
-		LDY		#>[off_C353]
-		JMP		loc_CD6F
+		BNE		loc_CD6F
 ; ---------------------------------------------------------------------------
 loc_CD92:
 		LDX		byte_D7
